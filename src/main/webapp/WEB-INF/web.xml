@@ -30,6 +30,7 @@
 		<servlet-name>UserServiceServlet</servlet-name>
 		<url-pattern>/user/service</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>CreateBabyAction</servlet-name>
 		<servlet-class>baby.controller.CreateBabyAction</servlet-class>
@@ -38,6 +39,7 @@
 		<servlet-name>CreateBabyAction</servlet-name>
 		<url-pattern>/addBaby</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>CommunityServiceServlet</servlet-name>
 		<servlet-class>community.controller.CommunityServiceServlet</servlet-class>
@@ -45,6 +47,14 @@
 	<servlet-mapping>
 		<servlet-name>CommunityServiceServlet</servlet-name>
 		<url-pattern>/community/service</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DiaryServiceServlet</servlet-name>
+		<servlet-class>diary.controller.DiaryServiceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DiaryServiceServlet</servlet-name>
+		<url-pattern>/diary/service</url-pattern>
 	</servlet-mapping>
 
 	<!-- Error Page -->
