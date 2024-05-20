@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<link rel="stylesheet" href="/resources/style/form.css">
+<link rel="stylesheet" href="/resources/style/user.css">
 </head>
 <body>
 	<section id="root">

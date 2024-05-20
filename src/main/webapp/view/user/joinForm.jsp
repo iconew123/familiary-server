@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<link rel="stylesheet" href="/resources/style/form.css">
+<link rel="stylesheet" href="/resources/style/user.css">tyle/form.css">
 </head>
 <script src="/resources/script/validation-join.js"></script>
 <body>
