@@ -30,6 +30,15 @@
 		<servlet-name>UserServiceServlet</servlet-name>
 		<url-pattern>/user/service</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CommunityServiceServlet</servlet-name>
+		<servlet-class>community.controller.CommunityServiceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommunityServiceServlet</servlet-name>
+		<url-pattern>/community/service</url-pattern>
+	</servlet-mapping>
 
 	<!-- Error Page -->
 	<servlet>
