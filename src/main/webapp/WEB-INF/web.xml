@@ -30,6 +30,15 @@
 		<servlet-name>UserServiceServlet</servlet-name>
 		<url-pattern>/user/service</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DiaryServiceServlet</servlet-name>
+		<servlet-class>diary.controller.DiaryServiceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DiaryServiceServlet</servlet-name>
+		<url-pattern>/diary/service</url-pattern>
+	</servlet-mapping>
 
 	<!-- Error Page -->
 	<servlet>
