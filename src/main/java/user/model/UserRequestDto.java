@@ -30,7 +30,7 @@ public class UserRequestDto {
 	}
 
 	public UserRequestDto(String id, String password, String nickname, String name, String security_number,
-			String telecom, String phone, String adress, String email, String position) {
+			String telecom, String phone, String adress, String email) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -41,7 +41,6 @@ public class UserRequestDto {
 		this.phone = phone;
 		this.adress = adress;
 		this.email = email;
-		this.position = position;
 	}
 
 	public String getId() {
