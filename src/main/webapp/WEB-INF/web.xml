@@ -19,8 +19,8 @@
 			<include-prelude>/taglib.jsp</include-prelude>
 		</jsp-property-group>
 	</jsp-config>
-	
-	
+
+
 	<!-- Servlet Mapping -->
 	<servlet>
 		<servlet-name>UserServiceServlet</servlet-name>
@@ -30,14 +30,21 @@
 		<servlet-name>UserServiceServlet</servlet-name>
 		<url-pattern>/user/service</url-pattern>
 	</servlet-mapping>
-	
-		<servlet>
+	<servlet>
 		<servlet-name>CreateBabyAction</servlet-name>
 		<servlet-class>baby.controller.CreateBabyAction</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CreateBabyAction</servlet-name>
 		<url-pattern>/addBaby</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CommunityServiceServlet</servlet-name>
+		<servlet-class>community.controller.CommunityServiceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommunityServiceServlet</servlet-name>
+		<url-pattern>/community/service</url-pattern>
 	</servlet-mapping>
 
 	<!-- Error Page -->
