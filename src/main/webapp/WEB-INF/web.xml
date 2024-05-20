@@ -30,6 +30,15 @@
 		<servlet-name>UserServiceServlet</servlet-name>
 		<url-pattern>/user/service</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>CreateBabyAction</servlet-name>
+		<servlet-class>baby.controller.CreateBabyAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreateBabyAction</servlet-name>
+		<url-pattern>/addBaby</url-pattern>
+	</servlet-mapping>
 
 	<!-- Error Page -->
 	<servlet>
