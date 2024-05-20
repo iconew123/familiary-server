@@ -12,15 +12,13 @@ public class CommunityRequestDto {
 	private Blob photo;
 	private String tag;
 	private String comment;
-	private Timestamp regDate;
-	private Timestamp modDate;
 
 	public CommunityRequestDto() {
 
 	}
 
 	public CommunityRequestDto(int code, String userId, String userNickname, String title, String content, Blob photo,
-			String tag, String comment, Timestamp regDate, Timestamp modDate) {
+			String tag, String comment) {
 		super();
 		this.code = code;
 		this.userId = userId;
@@ -30,8 +28,6 @@ public class CommunityRequestDto {
 		this.photo = photo;
 		this.tag = tag;
 		this.comment = comment;
-		this.regDate = regDate;
-		this.modDate = modDate;
 	}
 
 	public int getCode() {
@@ -66,14 +62,6 @@ public class CommunityRequestDto {
 		return comment;
 	}
 
-	public Timestamp getRegDate() {
-		return regDate;
-	}
-
-	public Timestamp getModDate() {
-		return modDate;
-	}
-
 	public void setCode(int code) {
 		this.code = code;
 	}
@@ -104,14 +92,6 @@ public class CommunityRequestDto {
 
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-
-	public void setRegDate(Timestamp regDate) {
-		this.regDate = regDate;
-	}
-
-	public void setModDate(Timestamp modDate) {
-		this.modDate = modDate;
 	}
 
 }

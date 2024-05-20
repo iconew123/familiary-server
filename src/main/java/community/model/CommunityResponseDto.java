@@ -13,26 +13,6 @@ public class CommunityResponseDto {
 	private String tag;
 	private String comment;
 	private Timestamp regDate;
-	private Timestamp modDate;
-
-	public CommunityResponseDto() {
-
-	}
-
-	public CommunityResponseDto(int code, String userId, String userNickname, String title, String content, Blob photo,
-			String tag, String comment, Timestamp regDate, Timestamp modDate) {
-		super();
-		this.code = code;
-		this.userId = userId;
-		this.userNickname = userNickname;
-		this.title = title;
-		this.content = content;
-		this.photo = photo;
-		this.tag = tag;
-		this.comment = comment;
-		this.regDate = regDate;
-		this.modDate = modDate;	
-	}
 
 	public CommunityResponseDto(int code, String userId, String userNickname, String title, String content, Blob photo,
 			String tag, String comment, Timestamp regDate) {
@@ -46,6 +26,19 @@ public class CommunityResponseDto {
 		this.tag = tag;
 		this.comment = comment;
 		this.regDate = regDate;
+	}
+
+	public CommunityResponseDto(int code, String userId, String userNickname, String title, String content, Blob photo,
+			String tag, String comment) {
+		super();
+		this.code = code;
+		this.userId = userId;
+		this.userNickname = userNickname;
+		this.title = title;
+		this.content = content;
+		this.photo = photo;
+		this.tag = tag;
+		this.comment = comment;
 	}
 
 	public int getCode() {
@@ -84,10 +77,6 @@ public class CommunityResponseDto {
 		return regDate;
 	}
 
-	public Timestamp getModDate() {
-		return modDate;
-	}
-
 	public void setCode(int code) {
 		this.code = code;
 	}
@@ -122,10 +111,6 @@ public class CommunityResponseDto {
 
 	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
-	}
-
-	public void setModDate(Timestamp modDate) {
-		this.modDate = modDate;
 	}
 
 }
