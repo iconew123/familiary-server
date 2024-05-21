@@ -40,6 +40,15 @@ public class CommunityResponseDto {
 		this.tag = tag;
 		this.comment = comment;
 	}
+	
+	public CommunityResponseDto(int code, String userNickname, String title, String content, Blob photo) {
+		super();
+		this.code = code;
+		this.userNickname = userNickname;
+		this.title = title;
+		this.content = content;
+		this.photo = photo;
+	}
 
 	public int getCode() {
 		return code;
