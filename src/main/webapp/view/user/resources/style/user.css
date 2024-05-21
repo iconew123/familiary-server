@@ -100,31 +100,6 @@ form > div > input:last-child {
 	margin: 10px;
 }
 
-#gender-man:checked ~ div > #gender-man-label, 
-#gender-woman:checked ~ div > #gender-woman-label, 
-#country-local:checked ~ div > #country-local-label, 
-#country-foreigner:checked ~ div > #country-foreigner-label
-{
-	color: #222831;
-}
-
-label > div {
-	width: 70px;
-	padding: 10px;
-	text-align: center;
-	border: solid 1px lightgrey;	
-	font-size: 0.8em;
-}
-
-label:first-child > div {
-	border-radius: 6px 0 0 6px;
-	border-right: none;
-}
-
-label:last-child > div {
-	border-radius: 0 6px 6px 0;
-}
-
 .error-container {
 	margin: 10px 0 0 0;
 	color: tomato;
@@ -137,14 +112,4 @@ label:last-child > div {
 #agree,
 .error-container > p {
 	display: none;
-}
-
-#agree-label > p {
-	font-size: 0.8em;
-	margin: 6px 0;
-}
-
-#agree-label > p > b {
-	color: #222831;
-	font-weight: bold;
 }

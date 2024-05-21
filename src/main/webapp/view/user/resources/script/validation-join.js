@@ -11,11 +11,20 @@ $(document).ready(() => {
 
 	$('#password').focusout(e => {
 		if ($('#password').val() === "") {
-			$('#error-msg-pw').show();
+			$('error-msg-password').show();
 			$('#password').css('border', 'solid 1px tomato');
 		} else {
-			$('#error-msg-pw').hide();
+			$('#error-msg-password').hide();
 			$('#password').css('border', 'solid 1px lightgrey');
+		}
+	});
+	$('#nickname').focusout(e => {
+		if ($('#nickname').val() === "") {
+			$('#error-msg-nickname').show();
+			$('#nickname').css('border', 'solid 1px tomato');
+		} else {
+			$('#error-msg-nickname').hide();
+			$('#nickname').css('border', 'solid 1px lightgrey');
 		}
 	});
 
@@ -107,7 +116,7 @@ $(document).ready(() => {
 		}
 		if (nickname === "") {
 			isValid = false;
-			$('#error-msg-name').show();
+			$('#error-msg-nickname').show();
 			$('#name').css('border', 'solid 1px tomato');
 		}
 		if (name === "") {
@@ -134,7 +143,6 @@ $(document).ready(() => {
 
 		if (isValid) {
 			e.target.submit();
-			// $('#form').submit();    -> 이렇게 쓰면 다시 이벤트로 돌아와서 무한루프에 갇힘
 		}
 
 	});
