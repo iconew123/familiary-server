@@ -32,12 +32,12 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>CreateBabyAction</servlet-name>
-		<servlet-class>baby.controller.CreateBabyAction</servlet-class>
+		<servlet-name>BabyServiceServlet</servlet-name>
+		<servlet-class>baby.controller.BabyServiceServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>CreateBabyAction</servlet-name>
-		<url-pattern>/addBaby</url-pattern>
+		<servlet-name>BabyServiceServlet</servlet-name>
+		<url-pattern>/baby</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

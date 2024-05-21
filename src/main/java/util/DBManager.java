@@ -18,12 +18,12 @@ public class DBManager {
          
          conn = source.getConnection();
          
-         System.out.println("DB 연동 성공");         
+         System.out.println("DB 연동 성공");  
       } catch (Exception e) {
          e.printStackTrace();
          System.out.println("DB 연동 실패");   
       }
-      return null;
+      return conn;
    }
    
    public static void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {

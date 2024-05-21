@@ -1,16 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Baby Record</title>
+<meta charset="UTF-8">
 </head>
 <body>
     <h2>Create Baby Record</h2>
-    <form action="/addBaby" method="post">
-        <label for="code">Code:</label><br>
-        <input type="text" id="code" name="code"><br>
-        
+    <form action="/baby" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="command" value="create">
         <label for="nickname">Nickname:</label><br>
         <input type="text" id="nickname" name="nickname" required><br>
         
