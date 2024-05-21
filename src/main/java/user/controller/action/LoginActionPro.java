@@ -1,16 +1,19 @@
-<%@page import="user.model.UserResponseDto"%>
-<%@page import="user.model.UserDao"%>
-<%@page import="user.model.UserRequestDto"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-<%
+package user.controller.action;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import user.controller.UserAction;
+import user.model.UserDao;
+import user.model.UserResponseDto;
+
+public class LoginActionPro implements UserAction{
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("EUC-KR");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		
@@ -27,7 +30,6 @@
 			UserResponseDto user = userDao.findUserByIdAndPassword(id);
 			
 			if(user != null) {
-				session.setAttribute("user", user);
 				response.sendRedirect("/mypage");				
 			} else {
 				response.sendRedirect("/login");				
@@ -35,6 +37,7 @@
 		} else {
 			response.sendRedirect("/login");
 		}
-	%>
-</body>
-</html>
+		
+
+	}
+}

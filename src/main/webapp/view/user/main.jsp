@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<link rel="stylesheet" href="/resources/style/user.css">
 </head>
+<jsp:include page="/header"></jsp:include>
 <body>
-
+<h1>메인화면</h1>
 </body>
 </html>
