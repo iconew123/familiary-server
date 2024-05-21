@@ -1,8 +1,9 @@
 package baby.model;
 
+import java.sql.Blob;
+
 import javax.sql.rowset.serial.SerialBlob;
 
-import com.mysql.cj.jdbc.Blob;
 
 public class BabyRequestDto {
 	private String code;
@@ -10,14 +11,13 @@ public class BabyRequestDto {
 	private String name; // null
 	private String gender; // null
 	private String expected_date;
-	private SerialBlob photo; // null
+	private Blob photo; // null
 	private String blood_type; // null
 
-	public BabyRequestDto(String code, String nickname, String name, String gender, String expected_date, SerialBlob photo,
+	public BabyRequestDto(String nickname, String name, String gender, String expected_date, Blob photo,
 			String blood_type) {
 		super();
 
-		this.code = code;
 		this.nickname = nickname;
 		this.name = name;
 		this.gender = gender;
@@ -66,11 +66,11 @@ public class BabyRequestDto {
 		this.expected_date = expected_date;
 	}
 
-	public SerialBlob getPhoto() {
+	public Blob getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(SerialBlob photo) {
+	public void setPhoto(Blob photo) {
 		this.photo = photo;
 	}
 
