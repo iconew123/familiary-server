@@ -4,24 +4,29 @@ import java.sql.Blob;
 import java.sql.Date;
 
 public class DiaryRequestDto {
+	
+	private int code;
 	private String babyCode;
 	private Date date;
 	private String title;
 	private String content;
 	private Blob photo;
 	private String category;
-	private String comment;
 	
-	public DiaryRequestDto(String babyCode, Date date, String title, String content, Blob photo, String category,
-			String comment) {
+	public DiaryRequestDto(int code, String babyCode, Date date, String title, String content, Blob photo,
+			String category) {
 		super();
+		this.code = code;
 		this.babyCode = babyCode;
 		this.date = date;
 		this.title = title;
 		this.content = content;
 		this.photo = photo;
 		this.category = category;
-		this.comment = comment;
+	}
+
+	public int getCode() {
+		return code;
 	}
 
 	public String getBabyCode() {
@@ -48,8 +53,8 @@ public class DiaryRequestDto {
 		return category;
 	}
 
-	public String getComment() {
-		return comment;
+	public void setCode(int code) {
+		this.code = code;
 	}
 
 	public void setBabyCode(String babyCode) {
@@ -75,10 +80,5 @@ public class DiaryRequestDto {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-	
 	
 }

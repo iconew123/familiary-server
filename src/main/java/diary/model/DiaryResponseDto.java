@@ -2,26 +2,36 @@ package diary.model;
 
 import java.sql.Blob;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class DiaryResponseDto {
+	
+	private int code;
 	private String babyCode;
 	private Date date;
 	private String title;
 	private String content;
 	private Blob photo;
 	private String category;
-	private String comment;
+	private Timestamp regDate;
+	private Timestamp modDate;
 	
-	public DiaryResponseDto(String babyCode, Date date, String title, String content, Blob photo, String category,
-			String comment) {
+	public DiaryResponseDto(int code, String babyCode, Date date, String title, String content, Blob photo,
+			String category, Timestamp regDate, Timestamp modDate) {
 		super();
+		this.code = code;
 		this.babyCode = babyCode;
 		this.date = date;
 		this.title = title;
 		this.content = content;
 		this.photo = photo;
 		this.category = category;
-		this.comment = comment;
+		this.regDate = regDate;
+		this.modDate = modDate;
+	}
+
+	public int getCode() {
+		return code;
 	}
 
 	public String getBabyCode() {
@@ -48,8 +58,16 @@ public class DiaryResponseDto {
 		return category;
 	}
 
-	public String getComment() {
-		return comment;
+	public Timestamp getRegDate() {
+		return regDate;
+	}
+
+	public Timestamp getModDate() {
+		return modDate;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
 	}
 
 	public void setBabyCode(String babyCode) {
@@ -76,9 +94,14 @@ public class DiaryResponseDto {
 		this.category = category;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setRegDate(Timestamp regDate) {
+		this.regDate = regDate;
 	}
+
+	public void setModDate(Timestamp modDate) {
+		this.modDate = modDate;
+	}
+	
 	
 	
 }
