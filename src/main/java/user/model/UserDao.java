@@ -100,5 +100,43 @@ public class UserDao {
 		}
 		return null;
 	}
+	
+	public UserResponseDto updateUserEmail(UserRequestDto userDto) {
+		UserResponseDto user = null;
+		try {
+			String sql = "UPDATE users SET email=? WHERE id=? AND password=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userDto.getEmail());
+			pstmt.setString(2, userDto.getId());
+			pstmt.setString(3, userDto.getPassword());
+			
+			pstmt.execute();
+			
+			user = findUserByIdAndPassword(userDto.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	public boolean deleteUser(UserRequestDto userDto) {
+		if(findUserByIdAndPassword(userDto.getId()) == null)
+			return false;
+		
+		try {
+			String sql = "DELETE FROM users WHERE id=? AND password=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userDto.getId());
+			pstmt.setString(2, userDto.getPassword());
+			
+			pstmt.execute();
+			
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		return false;
+	}
 
 }

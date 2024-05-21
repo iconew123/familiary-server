@@ -19,25 +19,25 @@ public class User {
 	private Timestamp regDate;
 	private Timestamp modDate;
 
-	public User(String id, String baby_code, String password, String nickname, String name, String security_number,
-			String telecom, String phone, String adress, String email, String position, String is_admin,
-			Timestamp regDate, Timestamp modDate) {
-		super();
-		this.id = id;
-		this.baby_code = baby_code;
-		this.password = password;
-		this.nickname = nickname;
-		this.name = name;
-		this.security_number = security_number;
-		this.telecom = telecom;
-		this.phone = phone;
-		this.adress = adress;
-		this.email = email;
-		this.position = position;
-		this.is_admin = is_admin;
-		this.regDate = regDate;
-		this.modDate = modDate;
-	}
+//	public User(String id, String baby_code, String password, String nickname, String name, String security_number,
+//			String telecom, String phone, String adress, String email, String position, String is_admin,
+//			Timestamp regDate, Timestamp modDate) {
+//		super();
+//		this.id = id;
+//		this.baby_code = baby_code;
+//		this.password = password;
+//		this.nickname = nickname;
+//		this.name = name;
+//		this.security_number = security_number;
+//		this.telecom = telecom;
+//		this.phone = phone;
+//		this.adress = adress;
+//		this.email = email;
+//		this.position = position;
+//		this.is_admin = is_admin;
+//		this.regDate = regDate;
+//		this.modDate = modDate;
+//	}
 
 	public String getId() {
 		return id;

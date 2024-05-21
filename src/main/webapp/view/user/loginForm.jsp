@@ -9,7 +9,7 @@
 <body>
 	<section id="root">
 		<h2>로그인</h2>
-		<form method="POST" action="/loginPro">
+		<form method="POST" action="/LoginActionPro">
 			<div>
 				<input type="text" id="id" name="id" placeholder="아이디">
 				<input type="password" id="password" name="password" placeholder="비밀번호">
