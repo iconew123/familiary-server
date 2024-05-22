@@ -8,7 +8,9 @@
 <body>
     <h2>Create Baby Record</h2>
     <form action="/baby" method="post" enctype="multipart/form-data">
+    
 		<input type="hidden" name="command" value="create">
+		
         <label for="nickname">Nickname:</label><br>
         <input type="text" id="nickname" name="nickname" required><br>
         
