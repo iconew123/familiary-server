@@ -11,13 +11,12 @@ public class Baby {
 	private String name;		// null 
 	private String gender;		// null 
 	private String expected_date;
-	private Blob photo;			// null 
 	private String blood_type;	// null 
 	private Timestamp regDate;
 	private Timestamp modDate;
 	
 	public Baby(String code, String nickname, String name, String gender,
-			String expected_date, Blob photo, String blood_type, Timestamp regDate, Timestamp modDate) {
+			String expected_date, String blood_type, Timestamp regDate, Timestamp modDate) {
 		super();
 		
 		
@@ -26,7 +25,6 @@ public class Baby {
 		this.name = name;
 		this.gender = gender;
 		this.expected_date = expected_date;
-		this.photo = photo;
 		this.blood_type = blood_type;
 		this.regDate = regDate;
 		this.modDate = modDate;
@@ -50,10 +48,6 @@ public class Baby {
 
 	public String getExpected_date() {
 		return expected_date;
-	}
-
-	public Blob getPhoto() {
-		return photo;
 	}
 
 	public String getBlood_type() {

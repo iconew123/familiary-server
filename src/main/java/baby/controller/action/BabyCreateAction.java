@@ -17,8 +17,12 @@ import javax.sql.rowset.serial.SerialBlob;
 import org.json.JSONObject;
 
 import baby.controller.Action;
+import baby.model.Baby;
 import baby.model.BabyDao;
 import baby.model.BabyRequestDto;
+import baby.model.BabyResponseDto;
+import enroll.model.EnrollDao;
+import enroll.model.EnrollRequestDto;
 
 public class BabyCreateAction implements Action {
 
@@ -27,16 +31,19 @@ public class BabyCreateAction implements Action {
 		String method = request.getMethod();
 		System.out.println("method : " + method);
 
+		String nickname = null;
+		String name = null;
+		String gender = null;
+		String expected_date = null;
+		String blood_type = null;
+		
+		String user_id = null;
+		String position = null;
+		
 		if (method.equals("POST")) {
 			// 요첨 값 받아오기
 			Collection<Part> parts = request.getParts();
 
-			String nickname = null;
-			String name = null;
-			String gender = null;
-			String expected_date = null;
-			Blob photo = null;
-			String blood_type = null;
 
 			// 각 Part 객체를 순회하며 이름과 내용을 출력
 			for (Part part : parts) {
@@ -45,69 +52,63 @@ public class BabyCreateAction implements Action {
 				String partName = part.getName();
 				InputStream in = part.getInputStream();
 
-				if (partName.equals("photo")) {
-					try {
-					photo = createBlobFromPart(part);
-					}catch(SQLException e) {
-						e.printStackTrace();
-						return;
-					}
-				} else {
-					BufferedReader br = new BufferedReader(new InputStreamReader(in));
-					String value = br.readLine();
+				BufferedReader br = new BufferedReader(new InputStreamReader(in));
+				String value = br.readLine();
 
-					switch (partName) {
-					case "nickname":
-						nickname = value;
-						break;
-					case "name":
-						name = value;
-						break;
-					case "gender":
-						gender = value;
-						break;
-					case "expected_date":
-						expected_date = value;
-						break;
-					case "blood_type":
-						blood_type = value;
-						break;
-					}
-
-					br.close();
+				switch (partName) {
+				case "nickname":
+					nickname = value;
+					break;
+				case "name":
+					name = value;
+					break;
+				case "gender":
+					gender = value;
+					break;
+				case "expected_date":
+					expected_date = value;
+					break;
+				case "blood_type":
+					blood_type = value;
+					break;
+				
+				case "user_id":
+					user_id = value;
+					break;
+				case "position":
+					position = value;
+					break;
 				}
-				in.close();
+
+				br.close();
 			}
-
-			// 생성 로직
-			// BabyDto 생성 -> DB에 insert
-
-			BabyRequestDto baby = new BabyRequestDto(nickname, name, gender, expected_date, photo, blood_type);
-			BabyDao dao = new BabyDao();
-			dao.createBaby(baby);
-			
-			// 결과를 응답하기
-			JSONObject resObj = new JSONObject();
-			resObj.put("status", 200);
-			resObj.put("message", "아기가 성공적으로 등록되었습니다.");
-
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("application/json;charset=utf8");
-
-			response.getWriter().append(resObj.toString());
-		} else {
-			response.sendError(404, "유효하지 않은 접근 경로입니다.");
 		}
 
-	}
+		// 생성 로직
+		// BabyDto 생성 -> DB에 insert
 
-	private Blob createBlobFromPart(Part part) throws IOException, SQLException {
+		BabyRequestDto baby = new BabyRequestDto(nickname, name, gender, expected_date, blood_type);		
+		BabyDao dao = new BabyDao();
+		dao.createBaby(baby);
 		
-		InputStream inputStream = part.getInputStream();
-		byte[] bytes = inputStream.readAllBytes();
+		Baby sample = dao.readLatestBaby();
+		String baby_code = sample.getCode();
+
+		EnrollRequestDto enroll = new EnrollRequestDto(user_id, baby_code, position);
+		EnrollDao enrollDao = new EnrollDao();
+		enrollDao.createEnroll(enroll);
+
 		
-		inputStream.close();
-		return new SerialBlob(bytes);
+		// 결과를 응답하기
+		JSONObject resObj = new JSONObject();
+		resObj.put("status", 200);
+		resObj.put("message", "아기가 성공적으로 등록되었습니다.");
+
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json;charset=utf8");
+
+		response.getWriter().append(resObj.toString());
+
 	}
 
 }

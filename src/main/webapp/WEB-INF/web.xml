@@ -22,6 +22,7 @@
 
 
    <!-- Servlet Mapping -->
+
    <servlet>
       <servlet-name>UserServiceServlet</servlet-name>
       <servlet-class>user.controller.ServiceServlet</servlet-class>
@@ -39,7 +40,7 @@
       <servlet-name>CreateBabyAction</servlet-name>
       <url-pattern>/addBaby</url-pattern>
    </servlet-mapping>
-   
+
    <servlet>
       <servlet-name>CommunityServiceServlet</servlet-name>
       <servlet-class>community.controller.CommunityServiceServlet</servlet-class>
@@ -56,7 +57,7 @@
       <servlet-name>DiaryServiceServlet</servlet-name>
       <url-pattern>/diary/*</url-pattern>
    </servlet-mapping>
-   
+
    <servlet>
       <servlet-name>BabyServiceServlet</servlet-name>
       <servlet-class>baby.controller.BabyServiceServlet</servlet-class>
@@ -64,8 +65,7 @@
    <servlet-mapping>
       <servlet-name>BabyServiceServlet</servlet-name>
       <url-pattern>/baby</url-pattern>
-   </servlet-mapping>   
-   
+   </servlet-mapping>
 
    <!-- Error Page -->
    <servlet>
@@ -170,7 +170,7 @@
       <servlet-name>deleteUser</servlet-name>
       <jsp-file>/views/user/deleteUser.jsp</jsp-file>
    </servlet>
-   <servlet-mapping>
+   <servlet-mapping> 
       <servlet-name>deleteUser</servlet-name>
       <url-pattern>/deleteUser</url-pattern>
    </servlet-mapping>
