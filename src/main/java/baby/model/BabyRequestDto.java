@@ -11,10 +11,9 @@ public class BabyRequestDto {
 	private String name; // null
 	private String gender; // null
 	private String expected_date;
-	private Blob photo; // null
 	private String blood_type; // null
 
-	public BabyRequestDto(String nickname, String name, String gender, String expected_date, Blob photo,
+	public BabyRequestDto(String nickname, String name, String gender, String expected_date,
 			String blood_type) {
 		super();
 
@@ -22,7 +21,6 @@ public class BabyRequestDto {
 		this.name = name;
 		this.gender = gender;
 		this.expected_date = expected_date;
-		this.photo = photo;
 		this.blood_type = blood_type;
 	}
 
@@ -64,14 +62,6 @@ public class BabyRequestDto {
 
 	public void setExpected_date(String expected_date) {
 		this.expected_date = expected_date;
-	}
-
-	public Blob getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(Blob photo) {
-		this.photo = photo;
 	}
 
 	public String getBlood_type() {
