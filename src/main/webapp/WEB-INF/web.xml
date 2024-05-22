@@ -69,7 +69,7 @@
 
   <servlet>
      <servlet-name>image</servlet-name>
-     <servlet-class>image.controller.ServiceServlet</servlet-class>
+     <servlet-class>image.controller.ImageServiceServlet</servlet-class>
   </servlet>
   <servlet-mapping>
      <servlet-name>image</servlet-name>
