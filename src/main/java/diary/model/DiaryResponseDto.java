@@ -5,26 +5,24 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class DiaryResponseDto {
-	
+
 	private int code;
 	private String babyCode;
 	private Date date;
 	private String title;
 	private String content;
-	private Blob photo;
 	private String category;
 	private Timestamp regDate;
 	private Timestamp modDate;
-	
-	public DiaryResponseDto(int code, String babyCode, Date date, String title, String content, Blob photo,
-			String category, Timestamp regDate, Timestamp modDate) {
+
+	public DiaryResponseDto(int code, String babyCode, Date date, String title, String content, String category,
+			Timestamp regDate, Timestamp modDate) {
 		super();
 		this.code = code;
 		this.babyCode = babyCode;
 		this.date = date;
 		this.title = title;
 		this.content = content;
-		this.photo = photo;
 		this.category = category;
 		this.regDate = regDate;
 		this.modDate = modDate;
@@ -48,10 +46,6 @@ public class DiaryResponseDto {
 
 	public String getContent() {
 		return content;
-	}
-
-	public Blob getPhoto() {
-		return photo;
 	}
 
 	public String getCategory() {
@@ -86,10 +80,6 @@ public class DiaryResponseDto {
 		this.content = content;
 	}
 
-	public void setPhoto(Blob photo) {
-		this.photo = photo;
-	}
-
 	public void setCategory(String category) {
 		this.category = category;
 	}
@@ -101,7 +91,5 @@ public class DiaryResponseDto {
 	public void setModDate(Timestamp modDate) {
 		this.modDate = modDate;
 	}
-	
-	
-	
+
 }

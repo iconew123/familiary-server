@@ -3,6 +3,9 @@ package diary.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import util.DBManager;
 
 public class DiaryDao {
 	
@@ -18,5 +21,35 @@ public class DiaryDao {
 	
 	public static DiaryDao getInstance() {
 		return instance;
+	}
+	
+	public boolean createDiary(DiaryRequestDto diary) {
+		
+		try {
+			conn = DBManager.getConnection();
+			String sql = "INSERT INTO diary(baby_code, title, content, category) VALUE(?,?,?,?);";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, diary.getBabyCode());
+			pstmt.setString(2, diary.getTitle());
+			pstmt.setString(3, diary.getContent());
+			pstmt.setString(4, diary.getCategory());
+			
+			int result = pstmt.executeUpdate();
+			System.out.println(result);
+			
+			if(result == 1)
+				return true;
+			else
+				return false;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		
+		return false;
 	}
 }

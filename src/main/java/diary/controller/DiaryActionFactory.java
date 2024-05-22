@@ -3,7 +3,7 @@ package diary.controller;
 import diary.controller.action.CreateDiaryAction;
 
 public class DiaryActionFactory {
-	
+
 	private DiaryActionFactory() {
 	
 	}
@@ -14,10 +14,11 @@ public class DiaryActionFactory {
 		return instance;
 	}
 	
-	public DiaryAction getAction(String diaryCommand) {
+	public DiaryAction getAction(String command) {
 		DiaryAction action = null;
 		
-		if(diaryCommand.equals("createDiary"))
+
+		if(command.equals("create"))
 			action = new CreateDiaryAction();
 		
 		return action;
