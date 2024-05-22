@@ -1,10 +1,13 @@
 package user.model;
 
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import user.model.UserRequestDto;
+import user.model.UserResponseDto;
+import util.DBManager;
 
 public class UserDao {
 	private Connection conn;
@@ -12,7 +15,7 @@ public class UserDao {
 	private ResultSet rs;
 
 	private UserDao() {
-		setConnection();
+
 	}
 
 	private static UserDao instance = new UserDao();
@@ -21,58 +24,13 @@ public class UserDao {
 		return instance;
 	}
 
-	private void setConnection() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			String url = "jdbc:mysql://database-familiary.cn02w04k0uua.ap-northeast-2.rds.amazonaws.com:3306/familiary-db";
-			String user = "lr2l";
-			String password = "nb93Vs3MSjxqUCx";
-
-			this.conn = DriverManager.getConnection(url, user, password);
-
-			System.out.println("[DB 연동 성공]");
-		} catch (Exception e) {
-			System.err.println("[DB 연동 실패]");
-			e.printStackTrace();
-		}
-	}
-
-	public UserResponseDto findUserByIdAndPassword(String id) {
-		UserResponseDto user = null;
-
-		try {
-			String sql = "SELECT id, nickname, name, security_number, telecom, phone, email, adress, position  FROM users WHERE id=?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				String nickname = rs.getString(2);
-
-				String name = rs.getString(3);
-				String security_number = rs.getString(4);
-				String telecom = rs.getString(5);
-				String phone = rs.getString(6);
-				String email = rs.getString(7);
-				String adress = rs.getString(8);
-				String position = rs.getString(9);
-
-				user = new UserResponseDto(id, name, nickname, email, adress, security_number, telecom, phone,
-						position);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return user;
-	}
-
 	public UserResponseDto createUser(UserRequestDto userDto) {
-
+		
 		try {
-			String sql = "INSERT INTO users(id, password,nickname, name, security_number , telecom, phone,  email, adress ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			conn = DBManager.getConnection();
+
+
+			String sql = "INSERT INTO users(id, password,nickname, name, security_number , telecom, phone,  email, adress ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -90,53 +48,85 @@ public class UserDao {
 			String adress = userDto.getAdress().equals("") ? null : userDto.getAdress();
 			pstmt.setString(9, adress);
 
-			pstmt.setString(11, userDto.getPosition());
-
 			pstmt.execute();
 
-			return findUserByIdAndPassword(userDto.getId());
+			return new UserResponseDto(userDto.getId(), userDto.getNickname(), userDto.getName(), userDto.getSecurity_number(), userDto.getTelecom(),  userDto.getTelecom(), userDto.getPhone(), email,
+					adress);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
 		}
 		return null;
 	}
-	
-	public UserResponseDto updateUserEmail(UserRequestDto userDto) {
-		UserResponseDto user = null;
-		try {
-			String sql = "UPDATE users SET email=? WHERE id=? AND password=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userDto.getEmail());
-			pstmt.setString(2, userDto.getId());
-			pstmt.setString(3, userDto.getPassword());
-			
-			pstmt.execute();
-			
-			user = findUserByIdAndPassword(userDto.getId());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return user;
-	}
-	
-	public boolean deleteUser(UserRequestDto userDto) {
-		if(findUserByIdAndPassword(userDto.getId()) == null)
-			return false;
-		
-		try {
-			String sql = "DELETE FROM users WHERE id=? AND password=?";
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, userDto.getId());
-			pstmt.setString(2, userDto.getPassword());
-			
-			pstmt.execute();
-			
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
-		return false;
-	}
+
+//	public UserResponseDto findUserByIdAndPassword(String id) {
+//		UserResponseDto user = null;
+//
+//		try {
+//			String sql = "SELECT id, nickname, name, security_number, telecom, phone, email, adress, position  FROM users WHERE id=?";
+//
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, id);
+//
+//			rs = pstmt.executeQuery();
+//
+//			if (rs.next()) {
+//				String nickname = rs.getString(2);
+//
+//				String name = rs.getString(3);
+//				String security_number = rs.getString(4);
+//				String telecom = rs.getString(5);
+//				String phone = rs.getString(6);
+//				String email = rs.getString(7);
+//				String adress = rs.getString(8);
+//				String position = rs.getString(9);
+//
+//				user = new UserResponseDto(id, name, nickname, email, adress, security_number, telecom, phone,
+//						position);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return user;
+//	}
+//
+//	public UserResponseDto updateUserEmail(UserRequestDto userDto) {
+//		UserResponseDto user = null;
+//		try {
+//			String sql = "UPDATE users SET email=? WHERE id=? AND password=?";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, userDto.getEmail());
+//			pstmt.setString(2, userDto.getId());
+//			pstmt.setString(3, userDto.getPassword());
+//
+//			pstmt.execute();
+//
+//			user = findUserByIdAndPassword(userDto.getId());
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return user;
+//	}
+//
+//	public boolean deleteUser(UserRequestDto userDto) {
+//		if (findUserByIdAndPassword(userDto.getId()) == null)
+//			return false;
+//
+//		try {
+//			String sql = "DELETE FROM users WHERE id=? AND password=?";
+//			pstmt = conn.prepareStatement(sql);
+//
+//			pstmt.setString(1, userDto.getId());
+//			pstmt.setString(2, userDto.getPassword());
+//
+//			pstmt.execute();
+//
+//			return true;
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return false;
+//	}
 
 }

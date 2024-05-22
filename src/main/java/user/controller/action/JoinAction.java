@@ -11,12 +11,10 @@ import user.model.UserDao;
 import user.model.UserRequestDto;
 import user.model.UserResponseDto;
 
-public class JoinActionPro implements UserAction {
+public class JoinAction implements UserAction {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("EUC-KR");
-
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String nickname = request.getParameter("nickname");

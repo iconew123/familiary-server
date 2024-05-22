@@ -10,10 +10,9 @@ import user.controller.UserAction;
 import user.model.UserDao;
 import user.model.UserResponseDto;
 
-public class LoginActionPro implements UserAction{
+public class LoginAction implements UserAction{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("EUC-KR");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		
@@ -27,17 +26,17 @@ public class LoginActionPro implements UserAction{
 		if(isValid) {
 
 			UserDao userDao = UserDao.getInstance();
-			UserResponseDto user = userDao.findUserByIdAndPassword(id);
+//			UserResponseDto user = userDao.findUserByIdAndPassword(id);
 			
-			if(user != null) {
-				response.sendRedirect("/mypage");				
-			} else {
-				response.sendRedirect("/login");				
-			}
-		} else {
-			response.sendRedirect("/login");
+//			if(user != null) {
+//				response.sendRedirect("/mypage");				
+//			} else {
+//				response.sendRedirect("/login");				
+//			}
+//		} else {
+//			response.sendRedirect("/login");
 		}
-		
+//		
 
 	}
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
 <body>
 	<header>
 		<h1>Familiary</h1>
-		
+
 		<c:choose>
 			<c:when test="${empty user }">
 				<button onclick="location.href='/main'">로그아웃</button>
@@ -26,10 +26,10 @@
 		</c:choose>
 		<button onclick="location.href='/join'">회원가입</button>
 
-         <button onclick="location.href='/diaryHome'">다이어리</button>
-         <button onclick="location.href='/info'">INFO:</button>
-         <button onclick="location.href='/community'">커뮤니티</button>
-         <button onclick="location.href='/myPage'">MY PAGE</button>
+		<button onclick="location.href='/diaryHome'">다이어리</button>
+		<button onclick="location.href='/info'">INFO:</button>
+		<button onclick="location.href='/community'">커뮤니티</button>
+		<button onclick="location.href='/myPage'">MY PAGE</button>
 
 	</header>
 </body>
