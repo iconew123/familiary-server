@@ -1,6 +1,7 @@
 package diary.controller;
 
 import diary.controller.action.CreateDiaryAction;
+import diary.controller.action.UpdateDiaryAction;
 
 public class DiaryActionFactory {
 
@@ -20,6 +21,8 @@ public class DiaryActionFactory {
 
 		if(command.equals("create"))
 			action = new CreateDiaryAction();
+		else if(command.equals("update"))
+			action = new UpdateDiaryAction();
 		
 		return action;
 	}

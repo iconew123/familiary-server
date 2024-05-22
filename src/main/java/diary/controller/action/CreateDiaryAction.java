@@ -33,9 +33,7 @@ public class CreateDiaryAction implements DiaryAction {
 			response.setContentType("application/json;charset=utf8");
 			if (diary != null) {
 				boolean isVaild = diaryDao.createDiary(diary);
-				isVaild = false;
 				if (isVaild) {
-
 					resObj.put("status", 200);
 					resObj.put("message", "다이어리가 성공적으로 등록되었습니다.");
 					resObj.put("babycode", babycode);
@@ -54,7 +52,5 @@ public class CreateDiaryAction implements DiaryAction {
 		} else {
 			response.sendError(404, "유효하지 않은 접근 경로입니다.");
 		}
-
 	}
-
 }

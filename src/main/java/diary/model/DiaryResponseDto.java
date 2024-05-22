@@ -28,6 +28,16 @@ public class DiaryResponseDto {
 		this.modDate = modDate;
 	}
 
+	public DiaryResponseDto(int code, String babyCode, Date date, String title, String content, String category) {
+		super();
+		this.code = code;
+		this.babyCode = babyCode;
+		this.date = date;
+		this.title = title;
+		this.content = content;
+		this.category = category;
+	}
+
 	public int getCode() {
 		return code;
 	}
