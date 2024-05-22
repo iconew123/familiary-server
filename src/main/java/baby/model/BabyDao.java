@@ -1,17 +1,10 @@
 package baby.model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-
-import javax.sql.rowset.serial.SerialBlob;
 
 import util.DBManager;
 
@@ -68,40 +61,75 @@ public class BabyDao {
 		}
 		return null;
 	}
-	
+
 	public Baby readLatestBaby() {
-		
+
 		Baby baby = null;
-		
+
 		try {
 			conn = DBManager.getConnection();
-			
+
 			String sql = "SELECT * FROM baby ORDER BY reg_date DESC LIMIT 1";
-			
+
 			pstmt = conn.prepareStatement(sql);
-			
+
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-	            String code = rs.getString("code");
-	            String nickname = rs.getString("nickname");
-	            String name = rs.getString("name");
-	            String gender = rs.getString("gender");
-	            String expected_date = rs.getString("expected_date");
-	            String bloodType = rs.getString("blood_type");
-	            Timestamp regDate = rs.getTimestamp("reg_date");
-	            Timestamp modDate = rs.getTimestamp("mod_date");
-			
-	            baby = new Baby(code, nickname, name, gender, expected_date, bloodType, regDate, modDate);			
-	            
+
+			if (rs.next()) {
+				String code = rs.getString("code");
+				String nickname = rs.getString("nickname");
+				String name = rs.getString("name");
+				String gender = rs.getString("gender");
+				String expected_date = rs.getString("expected_date");
+				String bloodType = rs.getString("blood_type");
+				Timestamp regDate = rs.getTimestamp("reg_date");
+				Timestamp modDate = rs.getTimestamp("mod_date");
+
+				baby = new Baby(code, nickname, name, gender, expected_date, bloodType, regDate, modDate);
+
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return baby;
-		
+
+	}
+
+	public Baby findBabyByCode(String babyCode) {
+
+		Baby baby = null;
+
+		try {
+			conn = DBManager.getConnection();
+
+			String sql = "SELECT * FROM baby WHERE code = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, babyCode);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String code = rs.getString("code");
+				String nickname = rs.getString("nickname");
+				String name = rs.getString("name");
+				String gender = rs.getString("gender");
+				String expected_date = rs.getString("expected_date");
+				String bloodType = rs.getString("blood_type");
+				Timestamp regDate = rs.getTimestamp("reg_date");
+				Timestamp modDate = rs.getTimestamp("mod_date");
+
+				baby = new Baby(code, nickname, name, gender, expected_date, bloodType, regDate, modDate);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return baby;
 	}
 
 }
