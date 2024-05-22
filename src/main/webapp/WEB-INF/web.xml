@@ -67,6 +67,15 @@
       <url-pattern>/baby</url-pattern>
    </servlet-mapping>
 
+  <servlet>
+     <servlet-name>image</servlet-name>
+     <servlet-class>image.controller.ServiceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>image</servlet-name>
+     <url-pattern>/image/*</url-pattern>
+  </servlet-mapping>
+
    <!-- Error Page -->
    <servlet>
       <servlet-name>error</servlet-name>
