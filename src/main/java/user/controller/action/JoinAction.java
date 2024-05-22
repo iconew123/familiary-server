@@ -11,11 +11,12 @@ import user.model.UserDao;
 import user.model.UserRequestDto;
 import user.model.UserResponseDto;
 
-public class JoinActionPro implements UserAction {
+public class JoinAction implements UserAction {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("EUC-KR");
+
+		request.setCharacterEncoding("UTF-8");
 
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
@@ -34,11 +35,9 @@ public class JoinActionPro implements UserAction {
 		UserResponseDto user = userDao.createUser(userDto);
 
 		if (user == null) {
-			response.sendRedirect("/join");
+			
 		} else {
-			System.out.println("user : " + user);
 
-			response.sendRedirect("/login");
 		}
 
 	}

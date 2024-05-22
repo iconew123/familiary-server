@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/style/user.css">
 </head>
 <body>
 	<section id="root">
-		<h2>�α���</h2>
-		<form method="POST" action="/LoginActionPro">
+		<h2>로그인</h2>
+		<form method="POST">
 			<div>
-				<input type="text" id="id" name="id" placeholder="���̵�">
-				<input type="password" id="password" name="password" placeholder="��й�ȣ">
+				<input type="text" id="id" name="id" placeholder="아이디">
+				<input type="password" id="password" name="password" placeholder="비밀번호">
 			</div>
 			<div class="error-container">
-				<p class="error-msg" id="error-msg-id">* ���̵�: �ʼ� �����Դϴ�.</p>
-				<p class="error-msg" id="error-msg-password">* ��й�ȣ: �ʼ� �����Դϴ�.</p>
+				<p class="error-msg" id="error-msg-id">* 아이디: 필수 정보입니다.</p>
+				<p class="error-msg" id="error-msg-password">* 비밀번호: 필수 정보입니다.</p>
 			</div>
 			
-			<input type="submit" value="�α���">
+			<input type="submit" value="로그인">
 		</form>
 	</section>
 </body>

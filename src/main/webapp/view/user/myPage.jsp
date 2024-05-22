@@ -1,17 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
+<meta charset="UTF-8">
 <head>
-<jsp:include page="/header" />
 </head>
 <body>
 
-	<button onclick="location.href='/updateUser'">È¸¿øÁ¤º¸¼öÁ¤</button>
-	<button onclick="location.href='/deleteUser'">È¸¿øÅ»Åð</button>
-	<button onclick="location.href='/deleteUser'">¾Æ±âÁ¤º¸</button>
+	<button onclick="location.href='/updateUser'">íšŒì›ì •ë³´ìˆ˜ì •</button>
+	<button onclick="location.href='/deleteUser'">íšŒì›íƒˆí‡´</button>
+	<button onclick="location.href='/deleteUser'">ì•„ê¸°ì •ë³´</button>
 </body>
-<jsp:include page="/footer" />
+
 </html>
