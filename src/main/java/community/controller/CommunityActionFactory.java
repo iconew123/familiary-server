@@ -1,6 +1,7 @@
 package community.controller;
 
 import community.controller.action.CreateCommunityAction;
+import community.controller.action.DeleteCommunityAction;
 import community.controller.action.ReadCommunityByNoticeAction;
 import community.controller.action.ReadCommunityByRecommendAction;
 import community.controller.action.ReadCommunityByTalkAction;
@@ -31,6 +32,8 @@ public class CommunityActionFactory {
 			action = new ReadCommunityByRecommendAction();
 		} else if (command.equals("update")) {
 			action = new UpdateCommunityAction();
+		} else if (command.equals("delete")) {
+			action = new DeleteCommunityAction();
 		}
 
 		return action;
