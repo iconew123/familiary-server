@@ -19,7 +19,7 @@ public class DateServlet extends HttpServlet {
 	    
 		// CROS 정책을 허용하여 모든 도메인에서 접근가능하도록 설정
 		response.setHeader("Access-Control-Allow-Origin", "*");
-
+	    
 	    response.setContentType("text/plain");
 	    response.setCharacterEncoding("UTF-8");
 
