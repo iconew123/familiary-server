@@ -38,7 +38,8 @@ public class CommunityServiceServlet extends HttpServlet {
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		super.doDelete(request, response);
+		request.setCharacterEncoding("UTF-8");
+		doGet(request, response);
 	}
 
 }
