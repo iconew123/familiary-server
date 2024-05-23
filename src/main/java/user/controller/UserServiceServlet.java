@@ -35,10 +35,12 @@ public class UserServiceServlet extends HttpServlet {
 			if (action != null) {
 				action.execute(request, response);
 			} else {
-				response.sendError(404);
+				response.sendError(400);
+				System.out.println("No Existed User");
 			}
 		} else {
-			response.sendError(404);
+			response.sendError(500);
+			System.out.println("Database Error");
 		}
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -58,9 +60,11 @@ public class UserServiceServlet extends HttpServlet {
 				action.execute(request, response);
 			} else {
 				response.sendError(400);
+				System.out.println("No Existed User");
 			}
 		} else {
-			response.sendError(404);
+			response.sendError(500);
+			System.out.println("Database Error");
 		}
 
 	}
@@ -78,10 +82,12 @@ public class UserServiceServlet extends HttpServlet {
 			if (action != null) {
 				action.execute(request, response);
 			} else {
-				response.sendError(404);
+				response.sendError(400);
+				System.out.println("No Existed User");
 			}
 		} else {
-			response.sendError(404);
+			response.sendError(500);
+			System.out.println("Database Error");
 		}
 	}
 

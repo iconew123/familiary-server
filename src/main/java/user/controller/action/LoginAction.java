@@ -10,24 +10,29 @@ import user.controller.UserAction;
 import user.model.UserDao;
 import user.model.UserResponseDto;
 
-public class LoginAction implements UserAction{
+public class LoginAction implements UserAction {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
-		
-		boolean isValid = true;
-		
-		if(id == null || id.equals(""))
-			isValid = false;
-		else if(password == null || password.equals(""))
-			isValid = false;
-		
-		if(isValid) {
 
-			UserDao userDao = UserDao.getInstance();
+		String method = request.getMethod();
+		System.out.println("method : " + method);
+
+		if (method.equals("POST")) {
+			String id = request.getParameter("id");
+			String password = request.getParameter("password");
+
+			boolean isValid = true;
+
+			if (id == null || id.equals(""))
+				isValid = false;
+			else if (password == null || password.equals(""))
+				isValid = false;
+
+			if (isValid) {
+
+				UserDao userDao = UserDao.getInstance();
 //			UserResponseDto user = userDao.findUserByIdAndPassword(id);
-			
+
 //			if(user != null) {
 //				response.sendRedirect("/mypage");				
 //			} else {
@@ -35,8 +40,8 @@ public class LoginAction implements UserAction{
 //			}
 //		} else {
 //			response.sendRedirect("/login");
-		}
+			}
 //		
-
+		}
 	}
 }

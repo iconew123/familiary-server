@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import user.controller.UserAction;
 
-public class DeleteAction implements UserAction  {
+public class DeleteAction implements UserAction {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 }
