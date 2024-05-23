@@ -48,7 +48,7 @@ public class CreateCommunityAction implements Action {
 				String category = jsonObject.getString("category");
 
 				CommunityRequestDto community = new CommunityRequestDto(userId, userNickname, title, content, category);
-				communityDao.createBoard(community);
+				communityDao.createCommunity(community);
 
 				System.out.println(communityDao);
 
