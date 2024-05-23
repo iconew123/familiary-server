@@ -73,7 +73,7 @@
    </servlet>
    <servlet-mapping>
       <servlet-name>BabyServiceServlet</servlet-name>
-      <url-pattern>/baby</url-pattern>
+      <url-pattern>/baby/*</url-pattern>
    </servlet-mapping>
 
   <servlet>

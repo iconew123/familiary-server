@@ -2,6 +2,7 @@ package baby.controller;
 
 import baby.controller.action.BabyCreateAction;
 import baby.controller.action.BabyInfoAction;
+import baby.controller.action.BabyUpdateAction;
 import util.Action;
 
 //	2. ActionFactory
@@ -30,6 +31,8 @@ public class BabyActionFactory {
 			action = new BabyCreateAction();
 		} else if(command.equals("read")) {
 			action = new BabyInfoAction();
+		} else if(command.equals("update")) {
+			action = new BabyUpdateAction();
 		}
 		
 		return action;
