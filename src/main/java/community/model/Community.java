@@ -1,6 +1,5 @@
 package community.model;
 
-import java.sql.Blob;
 import java.sql.Timestamp;
 
 public class Community {
@@ -9,23 +8,19 @@ public class Community {
 	private String userNickname;
 	private String title;
 	private String content;
-	private Blob photo;
-	private String tag;
-	private String comment;
+	private String category;
 	private Timestamp regDate;
 	private Timestamp modDate;
 
-	public Community(int code, String userId, String userNickname, String title, String content, Blob photo,
-			String tag, String comment, Timestamp regDate, Timestamp modDate) {
+	public Community(int code, String userId, String userNickname, String title, String content, String category,
+			Timestamp regDate, Timestamp modDate) {
 		super();
 		this.code = code;
 		this.userId = userId;
 		this.userNickname = userNickname;
 		this.title = title;
 		this.content = content;
-		this.photo = photo;
-		this.tag = tag;
-		this.comment = comment;
+		this.category = category;
 		this.regDate = regDate;
 		this.modDate = modDate;
 	}
@@ -50,16 +45,8 @@ public class Community {
 		return content;
 	}
 
-	public Blob getPhoto() {
-		return photo;
-	}
-
-	public String getTag() {
-		return tag;
-	}
-
-	public String getComment() {
-		return comment;
+	public String getCategory() {
+		return category;
 	}
 
 	public Timestamp getRegDate() {
