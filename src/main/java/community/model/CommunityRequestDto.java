@@ -11,11 +11,20 @@ public class CommunityRequestDto {
 	public CommunityRequestDto() {
 
 	}
-
+	
 	public CommunityRequestDto(int code, String userId, String userNickname, String title, String content,
 			String category) {
 		super();
 		this.code = code;
+		this.userId = userId;
+		this.userNickname = userNickname;
+		this.title = title;
+		this.content = content;
+		this.category = category;
+	}
+	
+	public CommunityRequestDto(String userId, String userNickname, String title, String content, String category) {
+		super();
 		this.userId = userId;
 		this.userNickname = userNickname;
 		this.title = title;

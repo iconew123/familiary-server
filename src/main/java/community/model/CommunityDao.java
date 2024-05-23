@@ -54,8 +54,7 @@ public class CommunityDao {
 		return list;
 	}
 
-	// 잡담용 크리에이트 보드
-	public CommunityResponseDto createBoardForChatCategory(CommunityRequestDto CommunityRequestDto) {
+	public CommunityResponseDto createBoard(CommunityRequestDto CommunityRequestDto) {
 		conn = DBManager.getConnection();
 
 		CommunityResponseDto community = null;
@@ -63,8 +62,9 @@ public class CommunityDao {
 		String userNickname = CommunityRequestDto.getUserNickname();
 		String title = CommunityRequestDto.getTitle();
 		String content = CommunityRequestDto.getContent();
+		String category = CommunityRequestDto.getCategory();
 
-		String sql = "INSERT INTO community (user_id, user_nickname, title, content, category) VALUES (?, ?, ?, ?,'잡담')";
+		String sql = "INSERT INTO community (user_id, user_nickname, title, content, category) VALUES (?, ?, ?, ?, ?)";
 
 		try {
 			pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -72,6 +72,7 @@ public class CommunityDao {
 			pstmt.setString(2, userNickname);
 			pstmt.setString(3, title);
 			pstmt.setString(4, content);
+			pstmt.setString(5, category);
 
 			pstmt.executeUpdate();
 
