@@ -24,6 +24,15 @@
    <!-- Servlet Mapping -->
 
    <servlet>
+      <servlet-name>DateServlet</servlet-name>
+      <servlet-class>baby.controller.action.DateServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>DateServlet</servlet-name>
+      <url-pattern>/sample</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
       <servlet-name>UserServiceServlet</servlet-name>
       <servlet-class>user.controller.ServiceServlet</servlet-class>
    </servlet>
@@ -183,4 +192,22 @@
       <servlet-name>deleteUser</servlet-name>
       <url-pattern>/deleteUser</url-pattern>
    </servlet-mapping>
+   
+   <filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+    <init-param>
+        <param-name>cors.allowed.origins</param-name>
+        <param-value>*</param-value> <!-- 모든 출처를 허용 -->
+    </init-param>
+    <init-param>
+        <param-name>cors.allowed.methods</param-name>
+        <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value> <!-- 허용할 HTTP 메서드 -->
+    </init-param>
+</filter>
+<filter-mapping>
+    <filter-name>CorsFilter</filter-name>
+    <url-pattern>/*</url-pattern> <!-- 모든 경로에 대해 필터 적용 -->
+</filter-mapping>
 </web-app>
+
