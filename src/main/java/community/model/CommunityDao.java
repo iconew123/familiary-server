@@ -204,6 +204,8 @@ public class CommunityDao {
 		}
 
 		try {
+			conn = DBManager.getConnection();
+			
 			String sql = "DELETE FROM community WHERE code=? AND user_id=?";
 			pstmt = conn.prepareStatement(sql);
 

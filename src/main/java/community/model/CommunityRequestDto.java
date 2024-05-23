@@ -31,6 +31,12 @@ public class CommunityRequestDto {
 		this.content = content;
 		this.category = category;
 	}
+	
+	public CommunityRequestDto(int code, String userId) {
+		super();
+		this.code = code;
+		this.userId = userId;
+	}
 
 	public int getCode() {
 		return code;
