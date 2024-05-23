@@ -4,6 +4,7 @@ import community.controller.action.CreateCommunityAction;
 import community.controller.action.ReadCommunityByNoticeAction;
 import community.controller.action.ReadCommunityByRecommendAction;
 import community.controller.action.ReadCommunityByTalkAction;
+import community.controller.action.UpdateCommunityAction;
 import util.Action;
 
 public class CommunityActionFactory {
@@ -28,6 +29,8 @@ public class CommunityActionFactory {
 			action = new ReadCommunityByNoticeAction();
 		} else if (command.equals("read/recommend")) {
 			action = new ReadCommunityByRecommendAction();
+		} else if (command.equals("update")) {
+			action = new UpdateCommunityAction();
 		}
 
 		return action;
