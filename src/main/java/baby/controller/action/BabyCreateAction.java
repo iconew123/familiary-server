@@ -28,6 +28,7 @@ public class BabyCreateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String method = request.getMethod();
 		System.out.println("method : " + method);
 
