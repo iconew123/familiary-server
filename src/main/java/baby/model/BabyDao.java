@@ -160,5 +160,24 @@ public class BabyDao {
 
 	    return success;
 	}
+	
+	public boolean deleteBaby(Baby baby) {
+		try {
+			String sql = "DELETE FROM baby WHERE code=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, baby.getCode());
+			
+			pstmt.execute();
+			
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+		
+		return false;
+	}
 
 }

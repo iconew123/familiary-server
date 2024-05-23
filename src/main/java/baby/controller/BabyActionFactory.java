@@ -1,6 +1,7 @@
 package baby.controller;
 
 import baby.controller.action.BabyCreateAction;
+import baby.controller.action.BabyDeleteAction;
 import baby.controller.action.BabyInfoAction;
 import baby.controller.action.BabyUpdateAction;
 import util.Action;
@@ -33,6 +34,8 @@ public class BabyActionFactory {
 			action = new BabyInfoAction();
 		} else if(command.equals("update")) {
 			action = new BabyUpdateAction();
+		} else if(command.equals("delete")) {
+			action = new BabyDeleteAction();
 		}
 		
 		return action;
