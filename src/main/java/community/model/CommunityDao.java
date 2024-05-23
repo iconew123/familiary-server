@@ -27,13 +27,15 @@ public class CommunityDao {
 	}
 
 	// 잡담 게시판용 게시글 전체 보기
-	public List<CommunityResponseDto> findCommunityAll() {
+	public List<CommunityResponseDto> findCommunityAllByTalk() {
 		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
 		conn = DBManager.getConnection();
 		String sql = "SELECT code, user_id, user_nickname, title, content, category, reg_date FROM community WHERE category='잡담' order by reg_date desc";
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				int code = rs.getInt(1);
 				String userId = rs.getString(2);
@@ -48,8 +50,62 @@ public class CommunityDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			DBManager.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+
+	// 공지 게시판용 게시글 전체 보기
+	public List<CommunityResponseDto> findCommunityAllByNotice() {
+		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
+		conn = DBManager.getConnection();
+		String sql = "SELECT code, user_id, user_nickname, title, content, category, reg_date FROM community WHERE category='공지' order by reg_date desc";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				int code = rs.getInt(1);
+				String userId = rs.getString(2);
+				String userNickName = rs.getString(3);
+				String title = rs.getString(4);
+				String content = rs.getString(5);
+				String category = rs.getString(6);
+				Timestamp regDate = rs.getTimestamp(7);
+				CommunityResponseDto community = new CommunityResponseDto(code, userId, userNickName, title, content,
+						category, regDate);
+				list.add(community);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	// 추천 게시판용 게시글 전체 보기
+	public List<CommunityResponseDto> findCommunityAllByRecommend() {
+		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
+		conn = DBManager.getConnection();
+		String sql = "SELECT code, user_id, user_nickname, title, content, category, reg_date FROM community WHERE category='정보' order by reg_date desc";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				int code = rs.getInt(1);
+				String userId = rs.getString(2);
+				String userNickName = rs.getString(3);
+				String title = rs.getString(4);
+				String content = rs.getString(5);
+				String category = rs.getString(6);
+				Timestamp regDate = rs.getTimestamp(7);
+				CommunityResponseDto community = new CommunityResponseDto(code, userId, userNickName, title, content,
+						category, regDate);
+				list.add(community);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
