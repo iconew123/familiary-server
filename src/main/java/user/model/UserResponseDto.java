@@ -9,10 +9,9 @@ public class UserResponseDto {
 	private String phone;
 	private String adress;
 	private String email;
-	private String position;
 
 	public UserResponseDto(String id, String name, String email, String nickname, String adress, String security_number,
-			String telecom, String phone, String position) {
+			String telecom, String phone) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -22,7 +21,7 @@ public class UserResponseDto {
 		this.security_number = security_number;
 		this.telecom = telecom;
 		this.phone = phone;
-		this.position = position;
+
 	}
 
 	public UserResponseDto(User user) {
@@ -34,7 +33,7 @@ public class UserResponseDto {
 		this.security_number = getSecurity_number();
 		this.telecom = getTelecom();
 		this.phone = getPhone();
-		this.position = getPosition();
+
 	}
 
 	public String getId() {
@@ -99,14 +98,6 @@ public class UserResponseDto {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
 	}
 
 }

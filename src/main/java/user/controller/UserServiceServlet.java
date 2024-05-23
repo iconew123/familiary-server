@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import user.controller.UserActionFactory;
-import user.controller.UserAction;
+import util.Action;
 
 @MultipartConfig
 public class UserServiceServlet extends HttpServlet {
@@ -25,12 +25,13 @@ public class UserServiceServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String command = request.getParameter("command");
 		System.out.println("GET command" + command);
 
 		if (command != null) {
 			UserActionFactory daf = UserActionFactory.getInstance();
-			UserAction action = daf.getAction(command);
+			Action action = daf.getAction(command);
 
 			if (action != null) {
 				action.execute(request, response);
@@ -42,6 +43,7 @@ public class UserServiceServlet extends HttpServlet {
 			response.sendError(500);
 			System.out.println("Database Error");
 		}
+
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -54,7 +56,7 @@ public class UserServiceServlet extends HttpServlet {
 
 		if (command != null) {
 			UserActionFactory daf = UserActionFactory.getInstance();
-			UserAction action = daf.getAction(command);
+			Action action = daf.getAction(command);
 
 			if (action != null) {
 				action.execute(request, response);
@@ -72,12 +74,14 @@ public class UserServiceServlet extends HttpServlet {
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+
 		String command = request.getParameter("command");
 		System.out.println("GET command" + command);
 
 		if (command != null) {
 			UserActionFactory daf = UserActionFactory.getInstance();
-			UserAction action = daf.getAction(command);
+			Action action = daf.getAction(command);
 
 			if (action != null) {
 				action.execute(request, response);
@@ -89,6 +93,7 @@ public class UserServiceServlet extends HttpServlet {
 			response.sendError(500);
 			System.out.println("Database Error");
 		}
+
 	}
 
 }
