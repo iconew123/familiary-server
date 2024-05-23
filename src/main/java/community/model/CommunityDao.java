@@ -111,7 +111,7 @@ public class CommunityDao {
 		return list;
 	}
 
-	public CommunityResponseDto createBoard(CommunityRequestDto CommunityRequestDto) {
+	public CommunityResponseDto createCommunity(CommunityRequestDto CommunityRequestDto) {
 		conn = DBManager.getConnection();
 
 		CommunityResponseDto community = null;
@@ -196,6 +196,29 @@ public class CommunityDao {
 			e.printStackTrace();
 		}
 		return community;
+	}
+
+	public boolean deleteCommunity(CommunityRequestDto communityRequestDto) {
+		if (findCommunityByCode(communityRequestDto.getCode()) == null) {
+			return false;
+		}
+
+		try {
+			String sql = "DELETE FROM community WHERE code=? AND user_id=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, communityRequestDto.getCode());
+			pstmt.setString(2, communityRequestDto.getUserId());
+
+			pstmt.execute();
+
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		return false;
 	}
 
 }
