@@ -1,6 +1,5 @@
 package community.model;
 
-import java.sql.Blob;
 import java.sql.Timestamp;
 
 public class CommunityResponseDto {
@@ -9,45 +8,38 @@ public class CommunityResponseDto {
 	private String userNickname;
 	private String title;
 	private String content;
-	private Blob photo;
-	private String tag;
-	private String comment;
+	private String category;
 	private Timestamp regDate;
 
-	public CommunityResponseDto(int code, String userId, String userNickname, String title, String content, Blob photo,
-			String tag, String comment, Timestamp regDate) {
+	public CommunityResponseDto(int code, String userId, String userNickname, String title, String content,
+			String category, Timestamp regDate) {
 		super();
 		this.code = code;
 		this.userId = userId;
 		this.userNickname = userNickname;
 		this.title = title;
 		this.content = content;
-		this.photo = photo;
-		this.tag = tag;
-		this.comment = comment;
+		this.category = category;
 		this.regDate = regDate;
 	}
-
-	public CommunityResponseDto(int code, String userId, String userNickname, String title, String content, Blob photo,
-			String tag, String comment) {
+	
+	public CommunityResponseDto(int code, String userId, String userNickname, String title, String content,
+			String category) {
 		super();
 		this.code = code;
 		this.userId = userId;
 		this.userNickname = userNickname;
 		this.title = title;
 		this.content = content;
-		this.photo = photo;
-		this.tag = tag;
-		this.comment = comment;
+		this.category = category;
 	}
-	
-	public CommunityResponseDto(int code, String userNickname, String title, String content, Blob photo) {
+
+	public CommunityResponseDto(int code, String userNickname, String title, String content) {
 		super();
 		this.code = code;
 		this.userNickname = userNickname;
 		this.title = title;
 		this.content = content;
-		this.photo = photo;
 	}
 
 	public int getCode() {
@@ -70,16 +62,8 @@ public class CommunityResponseDto {
 		return content;
 	}
 
-	public Blob getPhoto() {
-		return photo;
-	}
-
-	public String getTag() {
-		return tag;
-	}
-
-	public String getComment() {
-		return comment;
+	public String getCategory() {
+		return category;
 	}
 
 	public Timestamp getRegDate() {
@@ -106,20 +90,13 @@ public class CommunityResponseDto {
 		this.content = content;
 	}
 
-	public void setPhoto(Blob photo) {
-		this.photo = photo;
-	}
-
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
 	}
-
+	
+	
 }

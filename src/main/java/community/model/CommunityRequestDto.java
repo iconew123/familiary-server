@@ -1,33 +1,35 @@
 package community.model;
 
-import java.sql.Blob;
-import java.sql.Timestamp;
-
 public class CommunityRequestDto {
 	private int code;
 	private String userId;
 	private String userNickname;
 	private String title;
 	private String content;
-	private Blob photo;
-	private String tag;
-	private String comment;
+	private String category;
 
 	public CommunityRequestDto() {
 
 	}
-
-	public CommunityRequestDto(int code, String userId, String userNickname, String title, String content, Blob photo,
-			String tag, String comment) {
+	
+	public CommunityRequestDto(int code, String userId, String userNickname, String title, String content,
+			String category) {
 		super();
 		this.code = code;
 		this.userId = userId;
 		this.userNickname = userNickname;
 		this.title = title;
 		this.content = content;
-		this.photo = photo;
-		this.tag = tag;
-		this.comment = comment;
+		this.category = category;
+	}
+	
+	public CommunityRequestDto(String userId, String userNickname, String title, String content, String category) {
+		super();
+		this.userId = userId;
+		this.userNickname = userNickname;
+		this.title = title;
+		this.content = content;
+		this.category = category;
 	}
 
 	public int getCode() {
@@ -50,16 +52,8 @@ public class CommunityRequestDto {
 		return content;
 	}
 
-	public Blob getPhoto() {
-		return photo;
-	}
-
-	public String getTag() {
-		return tag;
-	}
-
-	public String getComment() {
-		return comment;
+	public String getCategory() {
+		return category;
 	}
 
 	public void setCode(int code) {
@@ -82,16 +76,8 @@ public class CommunityRequestDto {
 		this.content = content;
 	}
 
-	public void setPhoto(Blob photo) {
-		this.photo = photo;
-	}
-
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 }

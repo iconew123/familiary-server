@@ -56,8 +56,9 @@
    </servlet>
    <servlet-mapping>
       <servlet-name>CommunityServiceServlet</servlet-name>
-      <url-pattern>/community/service</url-pattern>
+      <url-pattern>/community/*</url-pattern>
    </servlet-mapping>
+   
    <servlet>
       <servlet-name>DiaryServiceServlet</servlet-name>
       <servlet-class>diary.controller.DiaryServiceServlet</servlet-class>
