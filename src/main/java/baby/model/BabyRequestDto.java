@@ -23,6 +23,18 @@ public class BabyRequestDto {
 		this.expected_date = expected_date;
 		this.blood_type = blood_type;
 	}
+	
+	public BabyRequestDto(String code, String nickname, String name, String gender, String expected_date,
+			String blood_type) {
+		super();
+
+		this.code  = code;
+		this.nickname = nickname;
+		this.name = name;
+		this.gender = gender;
+		this.expected_date = expected_date;
+		this.blood_type = blood_type;
+	}
 
 	public String getCode() {
 		return code;

@@ -14,47 +14,26 @@ public class BabyInfoAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 요청에서 아기 코드 가져오기
-        String babyCode = request.getParameter("babyCode");
-
-        // 아기 코드가 없는 경우 에러 응답 보내기
-        if (babyCode == null || babyCode.isEmpty()) {
-            JSONObject errorResponse = new JSONObject();
-            errorResponse.put("status", 400);
-            errorResponse.put("message", "아기 코드를 제공해야 합니다.");
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("application/json;charset=utf-8");
-            response.getWriter().append(errorResponse.toString());
-            return;
-        }
+        String babyCode = request.getParameter("baby_code");
 
         // 아기 정보를 데이터베이스에서 가져오기
         BabyDao babyDao = new BabyDao();
         Baby baby = babyDao.findBabyByCode(babyCode);
 
-        // 아기가 존재하지 않는 경우 에러 응답 보내기
-        if (baby == null) {
-            JSONObject errorResponse = new JSONObject();
-            errorResponse.put("status", 404);
-            errorResponse.put("message", "해당하는 아기를 찾을 수 없습니다.");
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("application/json;charset=utf-8");
-            response.getWriter().append(errorResponse.toString());
-            return;
-        }
-
         // 아기 정보를 JSON 형식으로 변환하여 응답 보내기
-        JSONObject jsonResponse = new JSONObject();
-        jsonResponse.put("status", 200);
-        jsonResponse.put("message", "아기 정보를 성공적으로 가져왔습니다.");
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("status", 200);
+        jsonObj.put("message", "아기 정보를 성공적으로 가져왔습니다.");
         
-        jsonResponse.put("babyCode", baby.getCode());
-        jsonResponse.put("nickname", baby.getNickname());
-        jsonResponse.put("name", baby.getName());
-        jsonResponse.put("gender", baby.getGender());
-        jsonResponse.put("expectedDate", baby.getExpected_date());
-        jsonResponse.put("bloodType", baby.getBlood_type());
+        jsonObj.put("baby_code", baby.getCode());
+        jsonObj.put("nickname", baby.getNickname());
+        jsonObj.put("name", baby.getName());
+        jsonObj.put("gender", baby.getGender());
+        jsonObj.put("expected_date", baby.getExpected_date());
+        jsonObj.put("bloodType", baby.getBlood_type());
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=utf-8");
-        response.getWriter().append(jsonResponse.toString());
+        // jsonObj 객체를 문자열 형태로 변환한 후에, HttpServletResponse의 PrintWriter를 사용하여 클라이언트에게 전송하는 역할
+        response.getWriter().append(jsonObj.toString());
     }
 }

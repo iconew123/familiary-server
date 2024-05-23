@@ -74,7 +74,7 @@
    </servlet>
    <servlet-mapping>
       <servlet-name>BabyServiceServlet</servlet-name>
-      <url-pattern>/baby</url-pattern>
+      <url-pattern>/baby/*</url-pattern>
    </servlet-mapping>
 
   <servlet>
@@ -194,7 +194,7 @@
       <url-pattern>/deleteUser</url-pattern>
    </servlet-mapping>
    
-   <filter>
+  <filter>
     <filter-name>CorsFilter</filter-name>
     <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
     <init-param>
@@ -210,5 +210,6 @@
     <filter-name>CorsFilter</filter-name>
     <url-pattern>/*</url-pattern> <!-- 모든 경로에 대해 필터 적용 -->
 </filter-mapping>
+
 </web-app>
 

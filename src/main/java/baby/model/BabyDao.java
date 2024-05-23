@@ -131,5 +131,53 @@ public class BabyDao {
 
 		return baby;
 	}
+	
+	public boolean updateBaby(BabyRequestDto babyDto) {
+		boolean success = false;
+	    
+		try {
+	        conn = DBManager.getConnection(); // 데이터베이스 연결 가져오기
+
+	        String sql = "UPDATE baby SET nickname=?, name=?, gender=?, expected_date=?, blood_type=? WHERE code=?";
+
+	        pstmt = conn.prepareStatement(sql); 
+	        pstmt.setString(1, babyDto.getNickname());
+	        pstmt.setString(2, babyDto.getName());
+	        pstmt.setString(3, babyDto.getGender());
+	        pstmt.setString(4, babyDto.getExpected_date());
+	        pstmt.setString(5, babyDto.getBlood_type());
+	        pstmt.setString(6, babyDto.getCode());
+	        
+	        int rowsAffected = pstmt.executeUpdate();
+	        
+	        success = (rowsAffected > 0);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // 리소스 해제
+	        DBManager.close(conn, pstmt);
+	    }
+
+	    return success;
+	}
+	
+	public boolean deleteBaby(Baby baby) {
+		try {
+			String sql = "DELETE FROM baby WHERE code=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, baby.getCode());
+			
+			pstmt.execute();
+			
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+		
+		return false;
+	}
 
 }
