@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-import diary.controller.DiaryAction;
 import diary.model.DiaryDao;
 import diary.model.DiaryRequestDto;
+import util.Action;
 
-public class CreateDiaryAction implements DiaryAction {
+public class CreateDiaryAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

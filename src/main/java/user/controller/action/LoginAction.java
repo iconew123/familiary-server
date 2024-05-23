@@ -6,11 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.controller.UserAction;
 import user.model.UserDao;
 import user.model.UserResponseDto;
+import util.Action;
 
-public class LoginAction implements UserAction{
+public class LoginAction implements Action{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");

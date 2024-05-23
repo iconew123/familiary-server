@@ -6,16 +6,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.Action;
+
 public class CommunityServiceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String command = request.getParameter("command"); // input >> hidden 으로 가져옴
 
 		CommunityActionFactory af = CommunityActionFactory.getInstance();
-		CommunityAction action = af.getAction(command);
+		Action action = af.getAction(command);
 
 		if (action != null) {
-			action.excute(request, response);
+			action.execute(request, response);
 		}
 	}
 

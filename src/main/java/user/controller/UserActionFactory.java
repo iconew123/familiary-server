@@ -1,6 +1,6 @@
 package user.controller;
 
-
+import util.Action;
 
 public class UserActionFactory {
 
@@ -14,8 +14,8 @@ public class UserActionFactory {
 		return instance;
 	}
 	
-	public UserAction getAction (String command) {
-		UserAction action = null;
+	public Action getAction (String command) {
+		Action action = null;
 		
 //		if (command.equals("join")) {
 //			action = new JoinActionPro();

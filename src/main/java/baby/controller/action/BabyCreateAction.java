@@ -16,13 +16,13 @@ import javax.sql.rowset.serial.SerialBlob;
 
 import org.json.JSONObject;
 
-import baby.controller.Action;
 import baby.model.Baby;
 import baby.model.BabyDao;
 import baby.model.BabyRequestDto;
 import baby.model.BabyResponseDto;
 import enroll.model.EnrollDao;
 import enroll.model.EnrollRequestDto;
+import util.Action;
 
 public class BabyCreateAction implements Action {
 

@@ -2,6 +2,7 @@ package diary.controller;
 
 import diary.controller.action.CreateDiaryAction;
 import diary.controller.action.UpdateDiaryAction;
+import util.Action;
 
 public class DiaryActionFactory {
 
@@ -15,8 +16,8 @@ public class DiaryActionFactory {
 		return instance;
 	}
 	
-	public DiaryAction getAction(String command) {
-		DiaryAction action = null;
+	public Action getAction(String command) {
+		Action action = null;
 		
 
 		if(command.equals("create"))

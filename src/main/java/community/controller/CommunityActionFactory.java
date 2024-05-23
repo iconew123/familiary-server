@@ -1,5 +1,7 @@
 package community.controller;
 
+import util.Action;
+
 public class CommunityActionFactory {
 	private CommunityActionFactory() {
 
@@ -11,8 +13,8 @@ public class CommunityActionFactory {
 		return instance;
 	}
 
-	public CommunityAction getAction(String command) {
-		CommunityAction action = null;
+	public Action getAction(String command) {
+		Action action = null;
 
 		return action;
 	}

@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
-import baby.controller.Action;
 import baby.model.Baby;
 import baby.model.BabyDao;
+import util.Action;
 
 public class BabyInfoAction implements Action {
     @Override

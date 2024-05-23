@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.Action;
+
 public class DiaryServiceServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -19,7 +21,7 @@ public class DiaryServiceServlet extends HttpServlet {
 
 		if (command != null) {
 			DiaryActionFactory daf = DiaryActionFactory.getInstance();
-			DiaryAction action = daf.getAction(command);
+			Action action = daf.getAction(command);
 
 			if (action != null) {
 				action.execute(request, response);
@@ -40,7 +42,7 @@ public class DiaryServiceServlet extends HttpServlet {
 		
 		if (command != null) {
 			DiaryActionFactory daf = DiaryActionFactory.getInstance();
-			DiaryAction action = daf.getAction(command);
+			Action action = daf.getAction(command);
 
 			if (action != null) {
 				action.execute(request, response);

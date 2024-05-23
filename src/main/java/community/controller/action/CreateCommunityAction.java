@@ -6,12 +6,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import community.controller.CommunityAction;
 import community.model.CommunityDao;
+import util.Action;
 
-public class CreateCommunityAction implements CommunityAction {
+public class CreateCommunityAction implements Action {
+
+
 	@Override
-	public void excute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		CommunityDao communityDao = CommunityDao.getInstance();
 		
