@@ -1,6 +1,9 @@
 package user.controller;
 
-
+import user.controller.action.JoinAction;
+import user.controller.action.LoginAction;
+import user.controller.action.LogoutAction;
+import user.controller.action.UpdateAction;
 
 public class UserActionFactory {
 
@@ -17,21 +20,21 @@ public class UserActionFactory {
 	public UserAction getAction (String command) {
 		UserAction action = null;
 		
-//		if (command.equals("join")) {
-//			action = new JoinActionPro();
-//		}
-//		else if (command.equals("login")) {
-//			action = new LoginActionPro();
-//		}  
-//		else if (command.equals("logout")) {
-//			action = new LogoutActionPro();
-//		} 
-//		else if (command.equals("update")) {
-//			action = new UpdateActionPro();
-//		} 
-//		else if (command.equals("delete")) {
-//			action = new LoginActionPro();
-//		}
+		if (command.equals("join")) {
+			action = new JoinAction();
+		}
+		else if (command.equals("login")) {
+			action = new LoginAction();
+		}  
+		else if (command.equals("logout")) {
+			action = new LogoutAction();
+		} 
+		else if (command.equals("update")) {
+			action = new UpdateAction();
+		} 
+		else if (command.equals("delete")) {
+			action = new LoginAction();
+		}
 
 		
 		return action;

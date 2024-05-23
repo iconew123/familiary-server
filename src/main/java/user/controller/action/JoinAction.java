@@ -15,29 +15,31 @@ public class JoinAction implements UserAction {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
-		String nickname = request.getParameter("nickname");
-		String name = request.getParameter("name");
-		String security_number = request.getParameter("security_number");
-		String telecom = request.getParameter("telecom");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		String adress = request.getParameter("adress");
 
-		UserRequestDto userDto = new UserRequestDto(id, password, nickname, name, security_number, telecom, phone,
-				email, adress);
+	
+			String id = request.getParameter("id");
+			String password = request.getParameter("password");
+			String nickname = request.getParameter("nickname");
+			String name = request.getParameter("name");
+			String security_number = request.getParameter("security_number");
+			String telecom = request.getParameter("telecom");
+			String phone = request.getParameter("phone");
+			String email = request.getParameter("email");
+			String adress = request.getParameter("adress");
 
-		UserDao userDao = UserDao.getInstance();
-		UserResponseDto user = userDao.createUser(userDto);
+			UserRequestDto userDto = new UserRequestDto(id, password, nickname, name, security_number, telecom, phone,
+					email, adress);
 
-		if (user == null) {
-			response.sendRedirect("/join");
-		} else {
-			System.out.println("user : " + user);
+			UserDao userDao = UserDao.getInstance();
+			UserResponseDto user = userDao.createUser(userDto);
 
-			response.sendRedirect("/login");
-		}
+			if (user == null) {
+				response.sendRedirect("/join");
+			} else {
+				System.out.println("user : " + user);
+				response.sendRedirect("/login");
+			}
 
+		
 	}
 }
