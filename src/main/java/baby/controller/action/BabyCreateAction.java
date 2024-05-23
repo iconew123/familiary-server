@@ -100,7 +100,7 @@ public class BabyCreateAction implements Action {
 		enrollDao.createEnroll(enroll);
 
 		
-		// 결과를 응답하기
+		// 결과를 응답하기ㅋㅋ
 		JSONObject resObj = new JSONObject();
 		resObj.put("status", 200);
 		resObj.put("message", "아기가 성공적으로 등록되었습니다.");
