@@ -1,6 +1,7 @@
 package community.model;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,7 +36,7 @@ public class CommunityDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				int code = rs.getInt(1);
 				String userId = rs.getString(2);
@@ -63,7 +64,7 @@ public class CommunityDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				int code = rs.getInt(1);
 				String userId = rs.getString(2);
@@ -91,7 +92,7 @@ public class CommunityDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				int code = rs.getInt(1);
 				String userId = rs.getString(2);
@@ -167,6 +168,32 @@ public class CommunityDao {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(conn, pstmt, rs);
+		}
+		return community;
+	}
+
+	public CommunityResponseDto updateCommunity(CommunityRequestDto communityDto) {
+		CommunityResponseDto community = null;
+
+		if (findCommunityByCode(communityDto.getCode()) == null) {
+			return community;
+		}
+
+		try {
+			conn = DBManager.getConnection();
+
+			String sql = "UPDATE community SET title=? content=? WHERE board_code=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, communityDto.getTitle());
+			pstmt.setString(2, communityDto.getContent());
+			pstmt.setInt(3, communityDto.getCode());
+
+			pstmt.execute();
+
+			community = findCommunityByCode(communityDto.getCode());
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return community;
 	}
