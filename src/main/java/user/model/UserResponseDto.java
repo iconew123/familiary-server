@@ -26,13 +26,13 @@ public class UserResponseDto {
 
 	public UserResponseDto(User user) {
 		this.id = user.getId();
-		this.name = getName();
+		this.name = user.getName();
 		this.email = user.getEmail();
-		this.nickname = getNickname();
-		this.adress = getAdress();
-		this.security_number = getSecurity_number();
-		this.telecom = getTelecom();
-		this.phone = getPhone();
+		this.nickname = user.getNickname();
+		this.adress = user.getAdress();
+		this.security_number = user.getSecurity_number();
+		this.telecom = user.getTelecom();
+		this.phone = user.getPhone();
 
 	}
 

@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import baby.model.Baby;
+import baby.model.BabyRequestDto;
 import user.model.UserRequestDto;
 import user.model.UserResponseDto;
 import util.DBManager;
@@ -155,10 +158,25 @@ public class UserDao {
 			
 			UserResponseDto userVo = findUserById(userDto.getId());
 			
-//			User userVo = findUserById(userDto.getId());
-//			user = new UserResponseDto(userVo);
-			
 			return userVo;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	public UserResponseDto updateUserNickname(UserRequestDto userDto, String newNickname) {
+		UserResponseDto user = null;
+		try {
+			String sql = "UPDATE users SET nickname=? WHERE id=? AND password=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userDto.getNickname());
+			pstmt.setString(2, userDto.getId());
+			pstmt.setString(3, userDto.getPassword());
+
+			pstmt.execute();
+
+			user = findUserByIdAndPassword(userDto.getId(), userDto.getPassword());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -192,6 +210,24 @@ public class UserDao {
 			pstmt.setString(2, userDto.getPhone());
 			pstmt.setString(3, userDto.getId());
 			pstmt.setString(4, userDto.getPassword());
+
+			pstmt.execute();
+
+			user = findUserByIdAndPassword(userDto.getId(), userDto.getPassword());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	public UserResponseDto updateUserAdress(UserRequestDto userDto, String newAdress) {
+		UserResponseDto user = null;
+		try {
+			String sql = "UPDATE users SET adress=? WHERE id=? AND password=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userDto.getAdress());
+			pstmt.setString(2, userDto.getId());
+			pstmt.setString(3, userDto.getPassword());
 
 			pstmt.execute();
 
