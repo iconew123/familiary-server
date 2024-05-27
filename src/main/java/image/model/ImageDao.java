@@ -3,6 +3,7 @@ package image.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,5 +55,33 @@ public class ImageDao {
 		}
 		
 		return list;
+	}
+	
+	public boolean createImage(ImageRequestDto uploadImage) {
+		
+		try {
+			conn = DBManager.getConnection();
+			String sql = "INSERT INTO image  (url, id, type, code) VALUES(?,?,?,?);";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, uploadImage.getUrl());
+			pstmt.setString(2, uploadImage.getId());
+			pstmt.setString(3, uploadImage.getType());
+			pstmt.setInt(4, uploadImage.getCode());
+			
+			int result = pstmt.executeUpdate();
+			
+			if(result == 1) {
+				return true;
+			}else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 }

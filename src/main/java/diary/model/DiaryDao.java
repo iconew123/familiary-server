@@ -23,33 +23,33 @@ public class DiaryDao {
 	public static DiaryDao getInstance() {
 		return instance;
 	}
-	
+
 	public DiaryResponseDto findDiaryOfDate(Date date) {
 		DiaryResponseDto readDiary = null;
-		
+
 		try {
 			conn = DBManager.getConnection();
 			String sql = "SELECT * FROM diary WHERE date=?;";
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setDate(1, date);
-			
+
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				int diarycode = rs.getInt(1);
 				String babyCode = rs.getString(2);
 				Date getDate = rs.getDate(3);
 				String title = rs.getString(4);
 				String content = rs.getString(5);
 				String category = rs.getString(6);
-				
+
 				readDiary = new DiaryResponseDto(diarycode, babyCode, getDate, title, content, category);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return readDiary;
 	}
 
@@ -82,5 +82,5 @@ public class DiaryDao {
 
 		return false;
 	}
-	
+
 }

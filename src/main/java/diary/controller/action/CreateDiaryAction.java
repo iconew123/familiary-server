@@ -1,19 +1,11 @@
 package diary.controller.action;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,101 +13,106 @@ import javax.servlet.http.Part;
 
 import org.json.JSONObject;
 
+import diary.model.DiaryDao;
+import diary.model.DiaryRequestDto;
+import diary.model.DiaryResponseDto;
+import image.model.ImageDao;
+import image.model.ImageRequestDto;
 import util.Action;
 import util.InputStreamParsor;
 
 public class CreateDiaryAction implements Action {
 
-    @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String method = request.getMethod();
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DiaryDao diaryDao = DiaryDao.getInstance();
 
-        if (method.equals("POST")) {
+		String method = request.getMethod();
+		String babyCode = null;
+		String title = null;
+		String content = null;
+		String category = null;
+		String imageId = null;
+		String imageUrl = null;
+		LocalDate today = LocalDate.now();
+		Date sqlDate = Date.valueOf(today);
 
-            List<Part> parts = (List<Part>) request.getParts();
+		// 오늘날짜 다이어리를 이미 작성했는지 유효성 검사
+		DiaryResponseDto diary = diaryDao.findDiaryOfDate(sqlDate);
+		boolean isVaild = true;
 
-            for (Part part : parts) {
-                String name = part.getName();
-                String type = part.getContentType();
-                System.out.println("name : " + name );
-                System.out.println("type : " + type);
+		if (diary == null) {
+			isVaild = true;
+		} else {
+			isVaild = false;
+		}
 
-                InputStream in = part.getInputStream();
+		if (isVaild) {
+			if (method.equals("POST")) {
 
-                if (name.equals("photo")) {
-                    // 이미지 파일의 원본 데이터 읽기
-                    byte[] imageContent = in.readAllBytes();
+				List<Part> parts = (List<Part>) request.getParts();
 
-                    // 요청 준비
-                    URL url = new URL("https://api.imgbb.com/1/upload");
-                    HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
+				for (Part part : parts) {
+					String name = part.getName();
+					String type = part.getContentType();
 
-                    String boundary = UUID.randomUUID().toString();
-                    conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+					InputStream in = part.getInputStream();
 
-                    // API 키 가져오기
-                    String key = "";
-                    try {
-                        Context init = new InitialContext();
-                        key = (String) init.lookup("java:comp/env/Imgbb/Key");
-                        if (key == null || key.isEmpty()) {
-                            throw new RuntimeException("API key is not set or found");
-                        }
-                    } catch (NamingException e) {
-                        e.printStackTrace();
-                        throw new ServletException("Failed to retrieve API key", e);
-                    }
+					if (name.equals("photo")) {
+						try {
+							JSONObject jsonResponse = InputStreamParsor.uploadImage(in, type);
+							imageId = jsonResponse.getJSONObject("data").getString("id");
+							imageUrl = jsonResponse.getJSONObject("data").getString("url");
+							System.out.println("image ID: " + imageId);
+							System.out.println("Image URL: " + imageUrl);
+						} catch (Exception e) {
+							e.printStackTrace();
+							throw new ServletException("image업로드 실패", e);
+						}
+					} else if (name.equals("babycode")) {
+					    babyCode = InputStreamParsor.parseToString(in).trim();
+					    System.out.println(babyCode);
+					} else if (name.equals("title")) {
+					    title = InputStreamParsor.parseToString(in).trim();
+					    System.out.println(title);
+					} else if (name.equals("content")) {
+					    content = InputStreamParsor.parseToString(in).trim();
+					    System.out.println(content);
+					} else if (name.equals("category")) {
+					    category = InputStreamParsor.parseToString(in).trim();
+					    System.out.println(category);
+					}
 
-                    // 연결을 출력 모드로 설정
-                    conn.setDoOutput(true);
-                    try (DataOutputStream out = new DataOutputStream(conn.getOutputStream())) {
-                        // 키 부분 작성
-                        out.writeBytes("--" + boundary + "\r\n");
-                        out.writeBytes("Content-Disposition: form-data; name=\"key\"\r\n\r\n");
-                        out.writeBytes(key + "\r\n");
+					in.close();
+				}
 
-                        // 이미지 부분 작성
-                        out.writeBytes("--" + boundary + "\r\n");
-                        out.writeBytes("Content-Disposition: form-data; name=\"image\"; filename=\"image\"\r\n");
-                        out.writeBytes("Content-Type: " + type + "\r\n\r\n");
-                        out.write(imageContent);
-                        out.writeBytes("\r\n");
+				// 오늘의 다이어리 생성
+				DiaryRequestDto toDayDiary = new DiaryRequestDto(babyCode, title, content, category);
+				boolean isCorrect = diaryDao.createDiary(toDayDiary);
 
-                        // 멀티파트 폼 데이터 끝
-                        out.writeBytes("--" + boundary + "--\r\n");
-                        out.flush();
-                    }
+				// 이미지가 있다면 , 이미지도 테이블에 저장
+				if (isCorrect && (imageId != null && imageUrl != null)) {
+					ImageDao imageDao = ImageDao.getInstance();
 
-                    // 응답 읽기
-                    try (InputStream res = conn.getInputStream()) {
-                        String responseData = InputStreamParsor.parseToString(res);
-                        System.out.println("response data : " + responseData);
+					diary = diaryDao.findDiaryOfDate(sqlDate);
+					System.out.println(diary);
+					ImageRequestDto uploadImage = new ImageRequestDto(imageUrl, imageId, "diary", diary.getCode());
+					System.out.println(uploadImage);
 
-                        // JSON 형식의 응답을 JSON 객체로 변환
-                        JSONObject jsonResponse = new JSONObject(responseData);
+					boolean isUploadSuccess = imageDao.createImage(uploadImage);
 
-                        // JSON 응답에서 필요한 데이터 추출
-                        String imageUrl = jsonResponse.getJSONObject("data").getString("url");
-                        
-                        System.out.println("Image URL: " + imageUrl);
-                    } catch (IOException e) {
-                        InputStream errorStream = conn.getErrorStream();
-                        if (errorStream != null) {
-                            String errorResponse = new BufferedReader(new InputStreamReader(errorStream))
-                                .lines().collect(Collectors.joining("\n"));
-                            System.err.println("Error response: " + errorResponse);
-                        }
-                        throw e; // 예외 처리 후 재발생
-                    } finally {
-                        conn.disconnect();
-                    }
-                } else {
-                    String data = InputStreamParsor.parseToString(in);
-                }
+					if (isUploadSuccess) {
+						System.out.println("이미지 업로드 성공");
+					} else {
+						System.out.println("이미지 업로드 실패");
+					}
+				}
 
-                in.close();
-            }
-        }
-    }
+			}
+		} else {
+			System.out.println("이미 오늘 다이어리를 작성완료했습니다. 일기를 수정해주세요.");
+		}
+
+	}
+
 }
