@@ -3,6 +3,7 @@ package communityComment.model;
 import java.sql.Timestamp;
 
 public class CommunityCommentRequestDto {
+	private String code;
 	private int communityCode;
 	private String userId;
 	private String userNickname;
@@ -13,15 +14,26 @@ public class CommunityCommentRequestDto {
 
 	}
 
-	public CommunityCommentRequestDto(int communityCode, String userId, String userNickname, String content,
+	public CommunityCommentRequestDto(String code, int communityCode, String userId, String userNickname, String content,
 			Timestamp regDate) {
 		super();
+		this.code = code;
 		this.communityCode = communityCode;
 		this.userId = userId;
 		this.userNickname = userNickname;
 		this.content = content;
 		this.regDate = regDate;
 	}
+
+	public CommunityCommentRequestDto(int communityCode, String userId, String userNickname, String content) {
+		super();
+		this.communityCode = communityCode;
+		this.userId = userId;
+		this.userNickname = userNickname;
+		this.content = content;
+	}
+
+	public String getCode() { return code; }
 
 	public int getCommunityCode() {
 		return communityCode;
@@ -42,6 +54,8 @@ public class CommunityCommentRequestDto {
 	public Timestamp getRegDate() {
 		return regDate;
 	}
+
+	public void setCode(String code) { this.code = code; }
 
 	public void setCommunityCode(int communityCode) {
 		this.communityCode = communityCode;
