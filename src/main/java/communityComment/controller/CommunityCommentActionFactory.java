@@ -1,6 +1,7 @@
 package communityComment.controller;
 
 import community.controller.CommunityActionFactory;
+import communityComment.controller.action.CreateCommunityCommentAction;
 import util.Action;
 
 public class CommunityCommentActionFactory {
@@ -16,6 +17,10 @@ public class CommunityCommentActionFactory {
 
     public Action getAction(String command) {
         Action action = null;
+
+        if(command.equals("writeComment")) {
+            action = new CreateCommunityCommentAction();
+        }
         return action;
     }
 }
