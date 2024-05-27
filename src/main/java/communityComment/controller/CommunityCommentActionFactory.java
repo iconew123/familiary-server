@@ -1,0 +1,21 @@
+package communityComment.controller;
+
+import community.controller.CommunityActionFactory;
+import util.Action;
+
+public class CommunityCommentActionFactory {
+    private CommunityCommentActionFactory() {
+
+    }
+
+    private static CommunityCommentActionFactory instance = new CommunityCommentActionFactory();
+
+    public static CommunityCommentActionFactory getInstance() {
+        return instance;
+    }
+
+    public Action getAction(String command) {
+        Action action = null;
+        return action;
+    }
+}
