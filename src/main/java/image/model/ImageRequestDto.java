@@ -6,9 +6,9 @@ public class ImageRequestDto {
 	private String id;
 	private String type;
 	private boolean status;
-	private int code;
+	private String code;
 	
-	public ImageRequestDto(String url, String id, String type, boolean status, int code) {
+	public ImageRequestDto(String url, String id, String type, boolean status, String code) {
 		super();
 		this.url = url;
 		this.id = id;
@@ -17,7 +17,7 @@ public class ImageRequestDto {
 		this.code = code;
 	}
 
-	public ImageRequestDto(String url, String id, String type, int code) {
+	public ImageRequestDto(String url, String id, String type, String code) {
 		super();
 		this.url = url;
 		this.id = id;
@@ -41,7 +41,7 @@ public class ImageRequestDto {
 		return status;
 	}
 
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
 
@@ -61,7 +61,7 @@ public class ImageRequestDto {
 		this.status = status;
 	}
 
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 	

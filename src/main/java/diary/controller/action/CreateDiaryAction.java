@@ -96,7 +96,7 @@ public class CreateDiaryAction implements Action {
 
 					diary = diaryDao.findDiaryOfDate(sqlDate);
 					System.out.println(diary);
-					ImageRequestDto uploadImage = new ImageRequestDto(imageUrl, imageId, "diary", diary.getCode());
+					ImageRequestDto uploadImage = new ImageRequestDto(imageUrl, imageId, "diary", String.valueOf(diary.getCode()));
 					System.out.println(uploadImage);
 
 					boolean isUploadSuccess = imageDao.createImage(uploadImage);
