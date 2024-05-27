@@ -60,6 +60,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>CommunityCommentServiceServlet</servlet-name>
+		<servlet-class>communityComment.controller.CommunityCommentServiceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommunityCommentServiceServlet</servlet-name>
+		<url-pattern>/communityComment/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>DiaryServiceServlet</servlet-name>
 		<servlet-class>diary.controller.DiaryServiceServlet</servlet-class>
 	</servlet>
