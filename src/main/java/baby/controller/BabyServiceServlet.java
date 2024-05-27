@@ -27,8 +27,10 @@ public class BabyServiceServlet extends HttpServlet {
 		// 클라이언트 요청에서 command라는 이름의 파라미터 값을 가져옴
 		// 이 파라미터는 클라이언트가 어떤 작업을 요청했는지 나타냄
 		String command = request.getParameter("command");
+		String code = request.getParameter("code");
 		// 클라이언트가 어떤 작업을 요청했는지 확인
 		System.out.println("/baby?command=" + command);
+		System.out.println("code: " + code);
 		
 		// 요청된 URL 정보 경로 확인
 		System.out.println("request.getPathInfo() : " + request.getPathInfo());
