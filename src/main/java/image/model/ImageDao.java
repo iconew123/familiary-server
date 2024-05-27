@@ -12,7 +12,7 @@ public class ImageDao {
     private PreparedStatement pstmt;
     private ResultSet rs;
 
-    private ImageDao() {
+    public ImageDao() {
     }
 
     private static ImageDao instance = new ImageDao();
@@ -120,6 +120,38 @@ public class ImageDao {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+
+        return image;
+    }
+
+    public ImageResponseDto findImageByCode(String code) {
+
+        ImageResponseDto image = null;
+
+        try {
+            conn = DBManager.getConnection();
+
+            String sql = "SELECT * FROM image WHERE code = ?";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, code);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String url = rs.getString("url");
+                String type = rs.getString("type");
+                Timestamp regDate = rs.getTimestamp("reg_date");
+
+                image = new ImageResponseDto(code, url, type, regDate);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt, rs);
         }
 
         return image;
