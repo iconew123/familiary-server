@@ -1,6 +1,5 @@
 package diary.model;
 
-import java.sql.Blob;
 import java.sql.Date;
 
 public class DiaryRequestDto {
@@ -21,9 +20,7 @@ public class DiaryRequestDto {
 		this.content = content;
 		this.category = category;
 	}
-	
-	
-	
+
 	public DiaryRequestDto(String babyCode, String title, String content, String category) {
 		super();
 		this.babyCode = babyCode;
@@ -32,7 +29,14 @@ public class DiaryRequestDto {
 		this.category = category;
 	}
 
-
+	public DiaryRequestDto(String babyCode, Date date, String title, String content, String category) {
+		super();
+		this.babyCode = babyCode;
+		this.date = date;
+		this.title = title;
+		this.content = content;
+		this.category = category;
+	}
 
 	public int getCode() {
 		return code;

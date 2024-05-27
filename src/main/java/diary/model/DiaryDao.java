@@ -57,13 +57,14 @@ public class DiaryDao {
 
 		try {
 			conn = DBManager.getConnection();
-			String sql = "INSERT INTO diary(baby_code, title, content, category) VALUE(?,?,?,?);";
+			String sql = "INSERT INTO diary(baby_code, date ,title, content, category) VALUE(?,?,?,?,?);";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, diary.getBabyCode());
-			pstmt.setString(2, diary.getTitle());
-			pstmt.setString(3, diary.getContent());
-			pstmt.setString(4, diary.getCategory());
+			pstmt.setDate(2, diary.getDate());
+			pstmt.setString(3, diary.getTitle());
+			pstmt.setString(4, diary.getContent());
+			pstmt.setString(5, diary.getCategory());
 
 			int result = pstmt.executeUpdate();
 			System.out.println(result);

@@ -70,24 +70,24 @@ public class CreateDiaryAction implements Action {
 							throw new ServletException("image업로드 실패", e);
 						}
 					} else if (name.equals("babycode")) {
-					    babyCode = InputStreamParsor.parseToString(in).trim();
-					    System.out.println(babyCode);
+						babyCode = InputStreamParsor.parseToString(in).trim();
+						System.out.println(babyCode);
 					} else if (name.equals("title")) {
-					    title = InputStreamParsor.parseToString(in).trim();
-					    System.out.println(title);
+						title = InputStreamParsor.parseToString(in).trim();
+						System.out.println(title);
 					} else if (name.equals("content")) {
-					    content = InputStreamParsor.parseToString(in).trim();
-					    System.out.println(content);
+						content = InputStreamParsor.parseToString(in).trim();
+						System.out.println(content);
 					} else if (name.equals("category")) {
-					    category = InputStreamParsor.parseToString(in).trim();
-					    System.out.println(category);
+						category = InputStreamParsor.parseToString(in).trim();
+						System.out.println(category);
 					}
 
 					in.close();
 				}
 
 				// 오늘의 다이어리 생성
-				DiaryRequestDto toDayDiary = new DiaryRequestDto(babyCode, title, content, category);
+				DiaryRequestDto toDayDiary = new DiaryRequestDto(babyCode, sqlDate, title, content, category);
 				boolean isCorrect = diaryDao.createDiary(toDayDiary);
 
 				// 이미지가 있다면 , 이미지도 테이블에 저장

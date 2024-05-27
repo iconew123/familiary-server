@@ -1,6 +1,5 @@
 package diary.model;
 
-import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
 
