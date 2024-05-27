@@ -2,6 +2,7 @@ package image.model;
 
 import java.sql.Timestamp;
 
+
 public class ImageResponseDto {
 
 	private String url;
@@ -9,6 +10,15 @@ public class ImageResponseDto {
 	private String type;
 	private boolean status;
 	private String code;
+	private Timestamp regDate;
+
+	public ImageResponseDto(String code, String url, String type, Timestamp regDate) {
+		super();
+		this.code = code;
+		this.url = url;
+		this.type = type;
+		this.regDate = regDate;
+	}
 
 	public ImageResponseDto(String url, String id, String type, boolean status, String code) {
 		this.url = url;
@@ -56,5 +66,13 @@ public class ImageResponseDto {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public Timestamp getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Timestamp regDate) {
+		this.regDate = regDate;
 	}
 }

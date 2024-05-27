@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import javax.sql.rowset.serial.SerialBlob;
 
+import image.model.ImageDao;
+import image.model.ImageRequestDto;
 import org.json.JSONObject;
 
 import baby.model.Baby;
@@ -23,12 +25,13 @@ import baby.model.BabyResponseDto;
 import enroll.model.EnrollDao;
 import enroll.model.EnrollRequestDto;
 import util.Action;
+import util.InputStreamParsor;
 
 public class BabyCreateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String method = request.getMethod();
 		System.out.println("method : " + method);
 
@@ -37,10 +40,13 @@ public class BabyCreateAction implements Action {
 		String gender = null;
 		String expected_date = null;
 		String blood_type = null;
-		
+
+		String imageId = null;
+		String imageUrl = null;
+
 		String user_id = null;
 		String position = null;
-		
+
 		if (method.equals("POST")) {
 			// 요첨 값 받아오기
 			Collection<Part> parts = request.getParts();
@@ -48,50 +54,64 @@ public class BabyCreateAction implements Action {
 
 			// 각 Part 객체를 순회하며 이름과 내용을 출력
 			for (Part part : parts) {
-				System.out.print(part.getName() + " ");
-
+				String type = part.getContentType();
 				String partName = part.getName();
+
 				InputStream in = part.getInputStream();
 
-				BufferedReader br = new BufferedReader(new InputStreamReader(in));
-				String value = br.readLine();
+				if (partName.equals("photo")) {
+					try {
+						JSONObject jsonResponse = InputStreamParsor.uploadImage(in, type);
+						imageId = jsonResponse.getJSONObject("data").getString("id");
+						imageUrl = jsonResponse.getJSONObject("data").getString("url");
+						System.out.println("Image ID: " + imageId);
+						System.out.println("Image URL: " + imageUrl);
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new ServletException("이미지 업로드 실패", e);
+					}
+				} else {
+					BufferedReader br = new BufferedReader(new InputStreamReader(in));
+					String value = br.readLine();
 
-				switch (partName) {
-				case "nickname":
-					nickname = value;
-					break;
-				case "name":
-					name = value;
-					break;
-				case "gender":
-					gender = value;
-					break;
-				case "expected_date":
-					expected_date = value;
-					break;
-				case "blood_type":
-					blood_type = value;
-					break;
-				
-				case "user_id":
-					user_id = value;
-					break;
-				case "position":
-					position = value;
-					break;
+					switch (partName) {
+						case "nickname":
+							nickname = value;
+							break;
+						case "name":
+							name = value;
+							break;
+						case "gender":
+							gender = value;
+							break;
+						case "expected_date":
+							expected_date = value;
+							break;
+						case "blood_type":
+							blood_type = value;
+							break;
+
+						case "user_id":
+							user_id = value;
+							break;
+						case "position":
+							position = value;
+							break;
+					}
+
+					br.close();
 				}
-
-				br.close();
+				in.close();
 			}
 		}
 
 		// 생성 로직
-		// BabyDto 생성 -> DB에 insert
+		// BabyDto 생성 -> DB에 insertㅋㅋ
 
-		BabyRequestDto baby = new BabyRequestDto(nickname, name, gender, expected_date, blood_type);		
+		BabyRequestDto baby = new BabyRequestDto(nickname, name, gender, expected_date, blood_type);
 		BabyDao dao = new BabyDao();
 		dao.createBaby(baby);
-		
+
 		Baby sample = dao.readLatestBaby();
 		String baby_code = sample.getCode();
 
@@ -99,8 +119,23 @@ public class BabyCreateAction implements Action {
 		EnrollDao enrollDao = new EnrollDao();
 		enrollDao.createEnroll(enroll);
 
-		
-		// 결과를 응답하기ㅋㅋ
+		if ((imageId != null && imageUrl != null)) {
+			ImageDao imageDao = ImageDao.getInstance();
+
+			ImageRequestDto uploadImage = new ImageRequestDto(imageUrl, imageId, "baby", baby_code);
+			System.out.println(uploadImage);
+
+			boolean isUploadSuccess = imageDao.createImage(uploadImage);
+
+			if (isUploadSuccess) {
+				System.out.println("이미지 업로드 성공");
+			} else {
+				System.out.println("이미지 업로드 실패");
+			}
+		}
+
+
+		// 결과를 응답하기
 		JSONObject resObj = new JSONObject();
 		resObj.put("status", 200);
 		resObj.put("message", "아기가 성공적으로 등록되었습니다.");
