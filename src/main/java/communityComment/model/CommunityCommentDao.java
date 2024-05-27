@@ -78,4 +78,29 @@ public class CommunityCommentDao {
 		}
 		return communityComment;
 	}
+
+	public boolean deleteCommunityComment(CommunityCommentRequestDto communityCommentRequestDto) {
+		if (findCommunityCommentByCode(communityCommentRequestDto.getCode()) == null) {
+			return false;
+		}
+
+		try {
+			conn = DBManager.getConnection();
+
+			String sql = "DELETE FROM community_comment WHERE code=? AND user_id=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, communityCommentRequestDto.getCode());
+			pstmt.setString(2, communityCommentRequestDto.getUserId());
+
+			pstmt.execute();
+
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		return false;
+	}
 }
