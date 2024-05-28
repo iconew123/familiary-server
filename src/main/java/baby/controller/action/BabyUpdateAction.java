@@ -16,12 +16,20 @@ public class BabyUpdateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String baby_code = request.getParameter("baby_code");
+		response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
+		response.setHeader("Access-Control-Allosw-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+		response.setHeader("Access-Control-Max-Age", "3600");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+
+
+		String baby_code = request.getParameter("code");
 		String nickname = request.getParameter("nickname");
 		String name = request.getParameter("name");
 		String gender = request.getParameter("gender");
 		String expected_date = request.getParameter("expected_date");
 		String blood_type = request.getParameter("blood_type");
+
+		System.out.println(nickname);
 
 		BabyDao dao = new BabyDao();
 		BabyRequestDto baby = new BabyRequestDto(baby_code, nickname, name, gender, expected_date, blood_type);
