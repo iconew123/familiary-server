@@ -10,9 +10,10 @@ public class CommunityCommentResponseDto {
 	private String content;
 	private Timestamp regDate;
 
-	public CommunityCommentResponseDto(int communityCode, String userId, String userNickname, String content,
+	public CommunityCommentResponseDto(String code, int communityCode, String userId, String userNickname, String content,
 			Timestamp regDate) {
 		super();
+		this.code = code;
 		this.communityCode = communityCode;
 		this.userId = userId;
 		this.userNickname = userNickname;

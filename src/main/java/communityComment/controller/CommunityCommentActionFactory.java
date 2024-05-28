@@ -2,6 +2,8 @@ package communityComment.controller;
 
 import community.controller.CommunityActionFactory;
 import communityComment.controller.action.CreateCommunityCommentAction;
+import communityComment.controller.action.DeleteCommunityCommentAction;
+import communityComment.controller.action.ReadCommunityCommentAction;
 import util.Action;
 
 public class CommunityCommentActionFactory {
@@ -20,6 +22,10 @@ public class CommunityCommentActionFactory {
 
         if(command.equals("writeComment")) {
             action = new CreateCommunityCommentAction();
+        } else if(command.equals("deleteComment")) {
+            action = new DeleteCommunityCommentAction();
+        } else if(command.equals("readComment")) {
+            action = new ReadCommunityCommentAction();;
         }
         return action;
     }

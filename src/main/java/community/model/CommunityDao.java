@@ -31,7 +31,7 @@ public class CommunityDao {
 	public List<CommunityResponseDto> findCommunityAllByTalk() {
 		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
 		conn = DBManager.getConnection();
-		String sql = "SELECT code, user_id, user_nickname, title, content, category, reg_date FROM community WHERE category='잡담' order by reg_date desc";
+		String sql = "SELECT code, user_id, user_nickname, title, content, category, reg_date FROM community WHERE category='chat' order by reg_date desc";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -59,7 +59,7 @@ public class CommunityDao {
 	public List<CommunityResponseDto> findCommunityAllByNotice() {
 		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
 		conn = DBManager.getConnection();
-		String sql = "SELECT code, user_id, user_nickname, title, content, category, reg_date FROM community WHERE category='공지' order by reg_date desc";
+		String sql = "SELECT code, user_id, user_nickname, title, content, category, reg_date FROM community WHERE category='notice' order by reg_date desc";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -87,7 +87,7 @@ public class CommunityDao {
 	public List<CommunityResponseDto> findCommunityAllByRecommend() {
 		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
 		conn = DBManager.getConnection();
-		String sql = "SELECT code, user_id, user_nickname, title, content, category, reg_date FROM community WHERE category='정보' order by reg_date desc";
+		String sql = "SELECT code, user_id, user_nickname, title, content, category, reg_date FROM community WHERE category='recommend' order by reg_date desc";
 
 		try {
 			pstmt = conn.prepareStatement(sql);

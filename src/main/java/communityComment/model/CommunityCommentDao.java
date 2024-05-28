@@ -5,6 +5,8 @@ import community.model.CommunityResponseDto;
 import util.DBManager;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommunityCommentDao {
 	private Connection conn;
@@ -19,6 +21,34 @@ public class CommunityCommentDao {
 
 	public static CommunityCommentDao getInstance() {
 		return instance;
+	}
+
+	// 해당 글의 댓글 전체 보기
+	public List<CommunityCommentResponseDto> readAllCommunityComment(int communityCode) {
+		List<CommunityCommentResponseDto> list = new ArrayList<CommunityCommentResponseDto>();
+		conn = DBManager.getConnection();
+		String sql = "SELECT code, community_code, user_id, user_nickname, content, reg_date FROM community_comment WHERE community_code=? order by reg_date desc";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, communityCode);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				String code = rs.getString(1);
+				int communityCodeFromDB = rs.getInt(2);
+				String userId = rs.getString(3);
+				String userNickName = rs.getString(4);
+				String content = rs.getString(5);
+				Timestamp regDate = rs.getTimestamp(6);
+				CommunityCommentResponseDto communityComment = new CommunityCommentResponseDto(code, communityCodeFromDB, userId, userNickName, content, regDate);
+				list.add(communityComment);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	public CommunityCommentResponseDto createCommunityComment (CommunityCommentRequestDto communityCommentRequestDto) {
@@ -77,5 +107,30 @@ public class CommunityCommentDao {
 			DBManager.close(conn, pstmt, rs);
 		}
 		return communityComment;
+	}
+
+	public boolean deleteCommunityComment(CommunityCommentRequestDto communityCommentRequestDto) {
+		if (findCommunityCommentByCode(communityCommentRequestDto.getCode()) == null) {
+			return false;
+		}
+
+		try {
+			conn = DBManager.getConnection();
+
+			String sql = "DELETE FROM community_comment WHERE code=? AND user_id=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, communityCommentRequestDto.getCode());
+			pstmt.setString(2, communityCommentRequestDto.getUserId());
+
+			pstmt.execute();
+
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		return false;
 	}
 }
