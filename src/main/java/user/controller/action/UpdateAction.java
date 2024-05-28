@@ -56,11 +56,11 @@ public class UpdateAction implements Action {
 					user = userDao.updateUserNickname(userDto, newPassword);
 				}
 				if (!newEmail.equals(userDto.getEmail())) {
-					userDao.updateUserEmail(userDto, newEmail);
+					user = userDao.updateUserEmail(userDto, newEmail);
 				}
 
 				if (!newPhone.equals(userDto.getPhone()) || !newTelecom.equals(userDto.getTelecom())) {
-					userDao.updateUserPhone(userDto, newTelecom, newPhone);
+					user = userDao.updateUserPhone(userDto, newTelecom, newPhone);
 					resObj.put("telecom", newTelecom);
 					resObj.put("phone", newPhone);
 				}

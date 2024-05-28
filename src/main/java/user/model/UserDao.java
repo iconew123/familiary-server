@@ -42,7 +42,6 @@ public class UserDao {
 			pstmt.setString(5, userDto.getSecurity_number());
 			pstmt.setString(6, userDto.getTelecom());
 			pstmt.setString(7, userDto.getPhone());
-
 			String email = userDto.getEmail().equals("") ? null : userDto.getEmail();
 			pstmt.setString(8, email);
 

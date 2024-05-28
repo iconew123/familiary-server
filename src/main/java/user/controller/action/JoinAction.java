@@ -19,23 +19,33 @@ public class JoinAction implements Action {
    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
       String method = request.getMethod();
-
-
+      System.out.println("하이");
       if (method.equals("POST")) {
          String id = request.getParameter("id");
+         System.out.println("id"+id);
          String password = request.getParameter("password");
          String nickname = request.getParameter("nickname");
          String name = request.getParameter("name");
-         String securityNumber = request.getParameter("security_number");
+         String securityNumber = request.getParameter("securityNumber");
          String telecom = request.getParameter("telecom");
          String phone = request.getParameter("phone");
          String email = request.getParameter("email");
          String address = request.getParameter("address");
 
          boolean isValid = true;
+         System.out.println(id);
+         System.out.println(password);
+         System.out.println(nickname);
+         System.out.println(name);
+         System.out.println(securityNumber);
+         System.out.println(telecom);
+         System.out.println(phone);
+         System.out.println(email);
+         System.out.println(address);
 
-         if (id == null || id.equals(""))
+         if (id == null || id.equals("")) {
             isValid = false;
+         }
          else if (password == null || password.equals(""))
             isValid = false;
          else if (nickname == null || nickname.equals(""))
@@ -53,7 +63,7 @@ public class JoinAction implements Action {
 
          response.setCharacterEncoding("UTF-8");
          response.setContentType("application/json;charset=utf-8");
-
+         System.out.println(isValid);
          if (isValid) {
             UserRequestDto userDto = new UserRequestDto(id, password, nickname, name, securityNumber, telecom,
                   phone, email, address);

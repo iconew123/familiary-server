@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONObject;
 
 import user.model.UserDao;
@@ -23,6 +25,8 @@ public class LoginAction implements Action {
 
          boolean isValid = true;
 
+         System.out.println(id);
+
          if (id == null || id.equals(""))
             isValid = false;
          else if (password == null || password.equals(""))
@@ -38,6 +42,7 @@ public class LoginAction implements Action {
             UserDao userDao = UserDao.getInstance();
             UserResponseDto user = userDao.findUserById(id);
 
+            System.out.println(id);
 
             if (user != null) {
 
@@ -45,6 +50,8 @@ public class LoginAction implements Action {
                resObj.put("message", "User login successfully.");
                resObj.put("id", id);
                resObj.put("password", password);
+
+               String loginUser = "user";
 
             } else {
                resObj.put("status", 400);
