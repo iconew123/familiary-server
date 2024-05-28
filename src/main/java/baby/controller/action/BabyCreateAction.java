@@ -114,7 +114,7 @@ public class BabyCreateAction implements Action {
 		// BabyDto 생성 -> DB에 insert
 		System.out.println("닉네임: " + nickname);
 		System.out.println("날짜: " + expected_date);
-
+		System.out.println("관계: " + position);
 		BabyRequestDto baby = new BabyRequestDto(nickname, name, gender, expected_date, blood_type);
 		BabyDao dao = new BabyDao();
 		dao.createBaby(baby);
