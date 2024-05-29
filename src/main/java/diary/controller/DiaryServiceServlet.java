@@ -55,4 +55,9 @@ public class DiaryServiceServlet extends HttpServlet {
             response.sendError(404);
         }
     }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }

@@ -6,58 +6,60 @@ import java.sql.Timestamp;
 
 public class Diary {
 
-	private int code;
-	private String babyCode;
-	private Date date;
-	private String title;
-	private String content;
-	private String category;
-	private Timestamp regDate;
-	private Timestamp modDate;
+    public final static String diary = "diary";
 
-	public Diary(int code, String babyCode, Date date, String title, String content, String category, Timestamp regDate,
-			Timestamp modDate) {
-		super();
-		this.code = code;
-		this.babyCode = babyCode;
-		this.date = date;
-		this.title = title;
-		this.content = content;
-		this.category = category;
-		this.regDate = regDate;
-		this.modDate = modDate;
-	}
+    private int code;
+    private String babyCode;
+    private Date date;
+    private String title;
+    private String content;
+    private String category;
+    private Timestamp regDate;
+    private Timestamp modDate;
 
-	public int getCode() {
-		return code;
-	}
+    public Diary(int code, String babyCode, Date date, String title, String content, String category, Timestamp regDate,
+                 Timestamp modDate) {
+        super();
+        this.code = code;
+        this.babyCode = babyCode;
+        this.date = date;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.regDate = regDate;
+        this.modDate = modDate;
+    }
 
-	public String getBabyCode() {
-		return babyCode;
-	}
+    public int getCode() {
+        return code;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public String getBabyCode() {
+        return babyCode;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getCategory() {
-		return category;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public Timestamp getRegDate() {
-		return regDate;
-	}
+    public String getCategory() {
+        return category;
+    }
 
-	public Timestamp getModDate() {
-		return modDate;
-	}
+    public Timestamp getRegDate() {
+        return regDate;
+    }
+
+    public Timestamp getModDate() {
+        return modDate;
+    }
 
 }

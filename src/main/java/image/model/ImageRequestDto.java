@@ -1,70 +1,70 @@
 package image.model;
 
 public class ImageRequestDto {
-	
-	private String url;
-	private String id;
-	private String type;
-	private boolean status;
-	private String code;
-	
-	public ImageRequestDto(String url, String id, String type, boolean status, String code) {
-		super();
-		this.url = url;
-		this.id = id;
-		this.type = type;
-		this.status = status;
-		this.code = code;
-	}
 
-	public ImageRequestDto(String url, String id, String type, String code) {
-		super();
-		this.url = url;
-		this.id = id;
-		this.type = type;
-		this.code = code;
-	}
+    private int num;
+    private String url;
+    private String id;
+    private String type;
+    private boolean status;
+    private String code;
 
-	public String getUrl() {
-		return url;
-	}
+    public ImageRequestDto(String url, String id, String type, boolean status, String code) {
+        super();
+        this.url = url;
+        this.id = id;
+        this.type = type;
+        this.status = status;
+        this.code = code;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public ImageRequestDto(String url, String id, String type, String code) {
+        super();
+        this.url = url;
+        this.id = id;
+        this.type = type;
+        this.code = code;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public boolean getStatus() {
-		return status;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public boolean getStatus() {
+        return status;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
-	
-	
-	
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+
 }

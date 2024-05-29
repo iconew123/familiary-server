@@ -111,4 +111,27 @@ public class DiaryDao {
 
     }
 
+    public boolean deleteDiary(Date date) {
+
+        try {
+            conn = DBManager.getConnection();
+            String sql = "DELETE FROM diary WHERE date=?;";
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setDate(1, date);
+            int result = pstmt.executeUpdate();
+
+            if (result == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DBManager.close(conn, pstmt);
+        }
+
+    }
+
 }

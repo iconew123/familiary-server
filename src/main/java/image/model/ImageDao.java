@@ -77,6 +77,8 @@ public class ImageDao {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt);
         }
 
         return false;
@@ -86,12 +88,13 @@ public class ImageDao {
 
         try {
             conn = DBManager.getConnection();
-            String sql = "UPDATE image SET url=? , id =? WHERE code=?;";
+            String sql = "UPDATE image SET url=? , id =? WHERE code=? AND type=?;";
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, uploadImage.getUrl());
             pstmt.setString(2, uploadImage.getId());
             pstmt.setString(3, uploadImage.getCode());
+            pstmt.setString(4, uploadImage.getType());
 
             int result = pstmt.executeUpdate();
             if (result == 1) {
@@ -109,51 +112,67 @@ public class ImageDao {
         return false;
     }
 
-    public ImageResponseDto findImageByDateAndBabyCode(Date date , String babyCode){
-        ImageResponseDto image = null;
+    public boolean deleteImage(int num) {
 
         try {
             conn = DBManager.getConnection();
-            String sql = "";
+            String sql = "UPDATE backup SET status=0 WHERE num=?;";
             pstmt = conn.prepareStatement(sql);
 
+            pstmt.setInt(1, num);
+
+            int result = pstmt.executeUpdate();
+            if (result == 1) {
+                return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return image;
     }
 
-    public ImageResponseDto findImageByCode(String code) {
+    public ImageResponseDto findImageByCodeAndType(String code, String type) {
 
         ImageResponseDto image = null;
 
         try {
             conn = DBManager.getConnection();
-
-            String sql = "SELECT * FROM image WHERE code = ?";
-
+            String sql = "SELECT i.* , b.status FROM image i JOIN backup b ON i.num = b.num WHERE i.code=? AND type=?;";
             pstmt = conn.prepareStatement(sql);
+
             pstmt.setString(1, code);
+            pstmt.setString(2, type);
 
             rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int num = rs.getInt(1);
+                String url = rs.getString(2);
+                String id = rs.getString(3);
+                String getType = rs.getString(4);
+                Timestamp regDate = rs.getTimestamp(5);
+                Timestamp moddate = rs.getTimestamp(6);
+                String getCode = rs.getString(7);
+                boolean status = rs.getBoolean(8);
 
-            if (rs.next()) {
-                String url = rs.getString("url");
-                String type = rs.getString("type");
-                Timestamp regDate = rs.getTimestamp("reg_date");
+                image = new ImageResponseDto(num, url, id, getType, getCode, status, regDate, moddate);
+            }
 
-                image = new ImageResponseDto(code, url, type, regDate);
-
+            if (image == null) {
+                System.out.println("이미지 READ 실패");
+            } else {
+                System.out.println("이미지 READ 성공");
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             DBManager.close(conn, pstmt, rs);
         }
 
         return image;
     }
+
 }
