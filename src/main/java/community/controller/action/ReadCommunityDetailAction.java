@@ -34,7 +34,18 @@ public class ReadCommunityDetailAction implements Action {
 		if (community != null) {
 			resObj.put("status", 200);
 			resObj.put("message", "게시물 조회 성공");
-			resObj.put("community", new JSONObject(community));
+
+			// CommunityResponseDto를 JSONObject로 변환하여 추가
+			JSONObject communityJson = new JSONObject();
+			communityJson.put("code", community.getCode());
+			communityJson.put("userId", community.getUserId());
+			communityJson.put("userNickname", community.getUserNickname());
+			communityJson.put("title", community.getTitle());
+			communityJson.put("content", community.getContent());
+			communityJson.put("category", community.getCategory());
+
+			// 필요한 속성들을 모두 추가
+			resObj.put("community", communityJson);
 		} else {
 			resObj.put("status", 404);
 			resObj.put("message", "게시물을 찾을 수 없습니다.");
