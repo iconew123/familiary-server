@@ -39,7 +39,7 @@ public class UserDao {
 			pstmt.setString(2, userDto.getPassword());
 			pstmt.setString(3, userDto.getNickname());
 			pstmt.setString(4, userDto.getName());
-			pstmt.setString(5, userDto.getSecurity_number());
+			pstmt.setString(5, userDto.getSecurityNumber());
 			pstmt.setString(6, userDto.getTelecom());
 			pstmt.setString(7, userDto.getPhone());
 
@@ -52,7 +52,7 @@ public class UserDao {
 			pstmt.execute();
 
 			return new UserResponseDto(userDto.getId(), userDto.getNickname(), userDto.getName(),
-					userDto.getSecurity_number(), userDto.getTelecom(), userDto.getPhone(), email, adress);
+					userDto.getSecurityNumber(), userDto.getTelecom(), userDto.getPhone(), email, adress);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -65,7 +65,8 @@ public class UserDao {
 		UserResponseDto user = null;
 
 		try {
-			String sql = "SELECT id, nickname, name, security_number, telecom, phone, email, adress, position  FROM users WHERE id=?";
+			conn = DBManager.getConnection();
+			String sql = "SELECT id, nickname, name, security_number, telecom, phone, email, adress FROM users WHERE id=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -75,13 +76,13 @@ public class UserDao {
 			if (rs.next()) {
 				String nickname = rs.getString(2);
 				String name = rs.getString(3);
-				String security_number = rs.getString(4);
+				String securityNumber = rs.getString(4);
 				String telecom = rs.getString(5);
 				String phone = rs.getString(6);
 				String email = rs.getString(7);
 				String adress = rs.getString(8);
 
-				user = new UserResponseDto(id, name, nickname, email, adress, security_number, telecom, phone);
+				user = new UserResponseDto(id, name, nickname, email, adress, securityNumber, telecom, phone);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -93,6 +94,7 @@ public class UserDao {
 		UserResponseDto user = null;
 
 		try {
+			conn = DBManager.getConnection();
 			String sql = "SELECT id, nickname, name, security_number, telecom, phone, email, adress, position FROM users WHERE id=? AND password=?";
 
 			pstmt = conn.prepareStatement(sql);
@@ -104,13 +106,13 @@ public class UserDao {
 			if (rs.next()) {
 				String nickname = rs.getString(2);
 				String name = rs.getString(3);
-				String security_number = rs.getString(4);
+				String securityNumber = rs.getString(4);
 				String telecom = rs.getString(5);
 				String phone = rs.getString(6);
 				String email = rs.getString(7);
 				String adress = rs.getString(8);
 
-				user = new UserResponseDto(id, name, nickname, email, adress, security_number, telecom, phone);
+				user = new UserResponseDto(id, name, nickname, email, adress, securityNumber, telecom, phone);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -123,6 +125,7 @@ public class UserDao {
 			return false;
 
 		try {
+			conn = DBManager.getConnection();
 			String sql = "DELETE FROM users WHERE id=? AND password=?";
 			pstmt = conn.prepareStatement(sql);
 
@@ -147,6 +150,7 @@ public class UserDao {
 		}
 		
 		try {
+			conn = DBManager.getConnection();
 			String sql = "UPDATE users SET password=? WHERE id=? AND password=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -168,6 +172,7 @@ public class UserDao {
 	public UserResponseDto updateUserNickname(UserRequestDto userDto, String newNickname) {
 		UserResponseDto user = null;
 		try {
+			conn = DBManager.getConnection();
 			String sql = "UPDATE users SET nickname=? WHERE id=? AND password=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userDto.getNickname());
@@ -186,6 +191,7 @@ public class UserDao {
 	public UserResponseDto updateUserEmail(UserRequestDto userDto, String newEamil) {
 		UserResponseDto user = null;
 		try {
+			conn = DBManager.getConnection();
 			String sql = "UPDATE users SET email=? WHERE id=? AND password=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userDto.getEmail());
@@ -204,6 +210,7 @@ public class UserDao {
 	public UserResponseDto updateUserPhone(UserRequestDto userDto, String newTelecom, String newPhone) {
 		UserResponseDto user = null;
 		try {
+			conn = DBManager.getConnection();
 			String sql = "UPDATE users SET telecom=?, phone=? WHERE id=? AND password=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userDto.getTelecom());
@@ -223,6 +230,7 @@ public class UserDao {
 	public UserResponseDto updateUserAdress(UserRequestDto userDto, String newAdress) {
 		UserResponseDto user = null;
 		try {
+			conn = DBManager.getConnection();
 			String sql = "UPDATE users SET adress=? WHERE id=? AND password=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userDto.getAdress());
