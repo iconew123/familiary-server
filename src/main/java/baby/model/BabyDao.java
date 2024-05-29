@@ -39,21 +39,14 @@ public class BabyDao {
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, babyDto.getNickname());
-
-			String name = babyDto.getName().equals("") ? null : babyDto.getName();
-			pstmt.setString(2, name);
-
-			String gender = babyDto.getGender().equals("") ? null : babyDto.getGender();
-			pstmt.setString(3, gender);
-
+			pstmt.setString(2, babyDto.getName());
+			pstmt.setString(3, babyDto.getGender());
 			pstmt.setString(4, babyDto.getExpected_date());
-
-			String blood_type = babyDto.getBlood_type().equals("") ? null : babyDto.getBlood_type();
-			pstmt.setString(5, blood_type);
+			pstmt.setString(5, babyDto.getBlood_type());
 
 			pstmt.execute();
 
-			return new BabyResponseDto(babyDto.getNickname(), name, gender, babyDto.getExpected_date(), blood_type);
+			return new BabyResponseDto(babyDto.getNickname(), babyDto.getName(), babyDto.getGender(), babyDto.getExpected_date(), babyDto.getBlood_type());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -91,6 +84,8 @@ public class BabyDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
 		}
 
 		return baby;
@@ -127,6 +122,8 @@ public class BabyDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
 		}
 
 		return baby;
@@ -142,14 +139,20 @@ public class BabyDao {
 
 	        pstmt = conn.prepareStatement(sql); 
 	        pstmt.setString(1, babyDto.getNickname());
+			System.out.println("1 : " + babyDto.getNickname());
 	        pstmt.setString(2, babyDto.getName());
+			System.out.println("2 : " + babyDto.getName());
 	        pstmt.setString(3, babyDto.getGender());
+			System.out.println("3 : " + babyDto.getGender());
 	        pstmt.setString(4, babyDto.getExpected_date());
+			System.out.println("4 : " + babyDto.getExpected_date());
 	        pstmt.setString(5, babyDto.getBlood_type());
+			System.out.println("5 : " + babyDto.getBlood_type());
 	        pstmt.setString(6, babyDto.getCode());
+			System.out.println("6 : " + babyDto.getCode());
 	        
 	        int rowsAffected = pstmt.executeUpdate();
-	        
+			System.out.println(rowsAffected);
 	        success = (rowsAffected > 0);
 	    } catch (SQLException e) {
 	        e.printStackTrace();

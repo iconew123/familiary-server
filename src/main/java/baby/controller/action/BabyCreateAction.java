@@ -31,6 +31,10 @@ public class BabyCreateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+		response.setHeader("Access-Control-Max-Age", "3600");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
 
 		String method = request.getMethod();
 		System.out.println("method : " + method);
@@ -59,7 +63,8 @@ public class BabyCreateAction implements Action {
 
 				InputStream in = part.getInputStream();
 
-				if (partName.equals("photo")) {
+				if (partName.equals("photo") && type != null) {
+
 					try {
 						JSONObject jsonResponse = InputStreamParsor.uploadImage(in, type);
 						imageId = jsonResponse.getJSONObject("data").getString("id");
@@ -106,8 +111,10 @@ public class BabyCreateAction implements Action {
 		}
 
 		// 생성 로직
-		// BabyDto 생성 -> DB에 insertㅋㅋ
-
+		// BabyDto 생성 -> DB에 insert
+		System.out.println("닉네임: " + nickname);
+		System.out.println("날짜: " + expected_date);
+		System.out.println("관계: " + position);
 		BabyRequestDto baby = new BabyRequestDto(nickname, name, gender, expected_date, blood_type);
 		BabyDao dao = new BabyDao();
 		dao.createBaby(baby);
