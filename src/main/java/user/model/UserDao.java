@@ -31,7 +31,7 @@ public class UserDao {
 		try {
 			conn = DBManager.getConnection();
 
-			String sql = "INSERT INTO users(id, password,nickname, name, security_number , telecom, phone,  email, adress ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO users(id, password,nickname, name, security_number , telecom, phone, email, adress ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -51,8 +51,7 @@ public class UserDao {
 
 			pstmt.execute();
 
-			return new UserResponseDto(userDto.getId(), userDto.getNickname(), userDto.getName(),
-					userDto.getSecurityNumber(), userDto.getTelecom(), userDto.getPhone(), email, adress);
+			return findUserByIdAndPassword(userDto.getId(), userDto.getPassword());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -61,8 +60,8 @@ public class UserDao {
 		return null;
 	}
 
-	public UserResponseDto findUserById(String id) {
-		UserResponseDto user = null;
+		public User findUserById(String id) {
+			User user = null;
 
 		try {
 			conn = DBManager.getConnection();
@@ -82,7 +81,7 @@ public class UserDao {
 				String email = rs.getString(7);
 				String adress = rs.getString(8);
 
-				user = new UserResponseDto(id, name, nickname, email, adress, securityNumber, telecom, phone);
+				user = new User(id, name, nickname, email, adress, securityNumber, telecom, phone);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,7 +94,7 @@ public class UserDao {
 
 		try {
 			conn = DBManager.getConnection();
-			String sql = "SELECT id, nickname, name, security_number, telecom, phone, email, adress, position FROM users WHERE id=? AND password=?";
+			String sql = "SELECT id, nickname, name, security_number, telecom, phone, email, adress FROM users WHERE id=? AND password=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -119,6 +118,38 @@ public class UserDao {
 		}
 		return user;
 	}
+
+	public UserResponseDto findUserByPassword(String id, String password) {
+		UserResponseDto user = null;
+
+		try {
+			conn = DBManager.getConnection();
+			String sql = "SELECT id, nickname, name, security_number, telecom, phone, email, adress FROM users WHERE id=? AND password=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String nickname = rs.getString(2);
+				String name = rs.getString(3);
+				String securityNumber = rs.getString(4);
+				String telecom = rs.getString(5);
+				String phone = rs.getString(6);
+				String email = rs.getString(7);
+				String adress = rs.getString(8);
+
+				user = new UserResponseDto(id, name, nickname, email, adress, securityNumber, telecom, phone);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
+
 
 	public boolean deleteUser(UserRequestDto userDto) {
 		if (findUserByIdAndPassword(userDto.getId(), userDto.getPassword()) == null)
@@ -159,10 +190,10 @@ public class UserDao {
 			pstmt.setString(3, userDto.getPassword());
 			
 			pstmt.execute();
-			
-			UserResponseDto userVo = findUserById(userDto.getId());
-			
-			return userVo;
+
+			User userVo = findUserById(userDto.getId());
+			user = new UserResponseDto(userVo);
+			return user;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -200,7 +231,7 @@ public class UserDao {
 
 			pstmt.execute();
 
-			user = findUserById(userDto.getId());
+			user = findUserByIdAndPassword(userDto.getId(), userDto.getPassword());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
