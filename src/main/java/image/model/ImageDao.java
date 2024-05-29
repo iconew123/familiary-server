@@ -125,6 +125,44 @@ public class ImageDao {
         return image;
     }
 
+    public ImageResponseDto findImageByCodeAndType(String code , String type){
+
+        ImageResponseDto image = null;
+
+        try {
+            conn = DBManager.getConnection();
+            String sql = "SELECT * FROM image WHERE code=? AND type=?;";
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, code);
+            pstmt.setString(2, type);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                String url = rs.getString(1);
+                String id = rs.getString(2);
+                type = rs.getString(3);
+                boolean status = rs.getBoolean(4);
+                Timestamp regDate = rs.getTimestamp(5);
+                Timestamp updateDate = rs.getTimestamp(6);
+                code = rs.getString(7);
+
+                image = new ImageResponseDto(url , id , type , status , regDate , updateDate , code );
+            }
+
+            if(image == null){
+                System.out.println("이미지 READ 실패");
+            }else{
+                System.out.println("이미지 READ 성공");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return image;
+    }
+
     public ImageResponseDto findImageByCode(String code) {
 
         ImageResponseDto image = null;

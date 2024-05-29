@@ -11,6 +11,7 @@ public class ImageResponseDto {
 	private boolean status;
 	private String code;
 	private Timestamp regDate;
+	private Timestamp modDate;
 
 	public ImageResponseDto(String code, String url, String type, Timestamp regDate) {
 		super();
@@ -26,6 +27,16 @@ public class ImageResponseDto {
 		this.type = type;
 		this.status = status;
 		this.code = code;
+	}
+
+	public ImageResponseDto(String url, String id, String type, boolean status, Timestamp regDate, Timestamp modDate, String code) {
+		this.url = url;
+		this.type = type;
+		this.id = id;
+		this.status = status;
+		this.regDate = regDate;
+		this.code = code;
+		this.modDate = modDate;
 	}
 
 	public String getUrl() {
@@ -74,5 +85,13 @@ public class ImageResponseDto {
 
 	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
+	}
+
+	public Timestamp getModDate() {
+		return modDate;
+	}
+
+	public void setModDate(Timestamp modDate) {
+		this.modDate = modDate;
 	}
 }

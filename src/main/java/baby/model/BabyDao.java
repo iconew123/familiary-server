@@ -139,14 +139,20 @@ public class BabyDao {
 
 	        pstmt = conn.prepareStatement(sql); 
 	        pstmt.setString(1, babyDto.getNickname());
+			System.out.println("1 : " + babyDto.getNickname());
 	        pstmt.setString(2, babyDto.getName());
+			System.out.println("2 : " + babyDto.getName());
 	        pstmt.setString(3, babyDto.getGender());
+			System.out.println("3 : " + babyDto.getGender());
 	        pstmt.setString(4, babyDto.getExpected_date());
+			System.out.println("4 : " + babyDto.getExpected_date());
 	        pstmt.setString(5, babyDto.getBlood_type());
+			System.out.println("5 : " + babyDto.getBlood_type());
 	        pstmt.setString(6, babyDto.getCode());
+			System.out.println("6 : " + babyDto.getCode());
 	        
 	        int rowsAffected = pstmt.executeUpdate();
-	        
+			System.out.println(rowsAffected);
 	        success = (rowsAffected > 0);
 	    } catch (SQLException e) {
 	        e.printStackTrace();

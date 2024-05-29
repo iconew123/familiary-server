@@ -28,6 +28,7 @@ public class BabyInfoAction implements Action {
 
         // 요청에서 아기 코드 가져오기
         String babyCode = request.getParameter("code");
+        String type = "baby";
         // 아기 정보를 JSON 형식으로 변환하여 응답 보내기
         JSONObject jsonObj = new JSONObject();
 
@@ -51,7 +52,7 @@ public class BabyInfoAction implements Action {
             }
 
             ImageDao imageDao = new ImageDao();
-            ImageResponseDto image = imageDao.findImageByCode(babyCode);
+            ImageResponseDto image = imageDao.findImageByCodeAndType(babyCode, type);
 
 
             jsonObj.put("status", 200);
@@ -64,7 +65,6 @@ public class BabyInfoAction implements Action {
             jsonObj.put("expected_date", baby.getExpected_date());
             jsonObj.put("blood_type", baby.getBlood_type());
             jsonObj.put("url", image != null ? image.getUrl() : null);
-            System.out.println("image: " + image.getUrl());
         } catch (Exception e){
             jsonObj.put("status", 500);
             jsonObj.put("message", "서버에서 에러가 발생했습니다.");

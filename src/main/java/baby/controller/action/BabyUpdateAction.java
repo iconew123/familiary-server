@@ -17,19 +17,18 @@ public class BabyUpdateAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
-		response.setHeader("Access-Control-Allosw-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
 		response.setHeader("Access-Control-Max-Age", "3600");
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
 
 
 		String baby_code = request.getParameter("code");
 		String nickname = request.getParameter("nickname");
+		System.out.println("nickname: " + nickname);
 		String name = request.getParameter("name");
 		String gender = request.getParameter("gender");
 		String expected_date = request.getParameter("expected_date");
 		String blood_type = request.getParameter("blood_type");
-
-		System.out.println(nickname);
 
 		BabyDao dao = new BabyDao();
 		BabyRequestDto baby = new BabyRequestDto(baby_code, nickname, name, gender, expected_date, blood_type);
@@ -45,10 +44,10 @@ public class BabyUpdateAction implements Action {
 			jsonResponse.put("message", "아기 정보 업데이트에 실패했습니다.");
 		}
 		
-        // 클라이언트로 응답 전송ㅋㅋ
+        // 클라이언트로 응답 전송
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=utf-8");
-        response.getWriter().append(jsonResponse.toString());
+        response.getWriter().write(jsonResponse.toString());
 
 	}
 
