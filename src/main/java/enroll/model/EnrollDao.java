@@ -1,10 +1,8 @@
 package enroll.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
+import baby.model.Baby;
 import util.DBManager;
 
 public class EnrollDao {
@@ -52,5 +50,93 @@ public class EnrollDao {
 		return null;
 	}
 	
-	
+	public boolean checkMother(String baby_code){
+		boolean isExist = false;
+
+		try {
+			conn = DBManager.getConnection();
+
+			String sql = "SELECT count(*) FROM enroll WHERE baby_code = ? AND position = 'mother'";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, baby_code);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				if (count > 0) {
+					isExist = true;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+
+		return isExist;
+	}
+
+
+public boolean checkFather(String baby_code){
+	boolean isExist = false;
+
+	try {
+		conn = DBManager.getConnection();
+
+		String sql = "SELECT count(*) FROM enroll WHERE baby_code = ? AND position = 'father'";
+
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, baby_code);
+
+
+		rs = pstmt.executeQuery();
+
+		if (rs.next()) {
+			int count = rs.getInt(1);
+			if (count > 0) {
+				isExist = true;
+			}
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		DBManager.close(conn, pstmt);
+	}
+
+	return isExist;
 }
+
+	public boolean checkDupl(String baby_code, String user_id){
+		boolean isDupl = false;
+
+		try {
+			conn = DBManager.getConnection();
+
+			String sql = "SELECT count(*) FROM enroll WHERE baby_code = ? AND user_id= ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, baby_code);
+			pstmt.setString(2, user_id);
+
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				if (count > 0) {
+					isDupl = true;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+
+		return isDupl;
+	}
+
+}
+
