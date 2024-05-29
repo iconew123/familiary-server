@@ -34,20 +34,11 @@
 
 	<servlet>
 		<servlet-name>UserServiceServlet</servlet-name>
-		<servlet-class>user.controller.ServiceServlet</servlet-class>
+		<servlet-class>user.controller.UserServiceServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>UserServiceServlet</servlet-name>
 		<url-pattern>/user/service</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>CreateBabyAction</servlet-name>
-		<servlet-class>baby.controller.CreateBabyAction</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CreateBabyAction</servlet-name>
-		<url-pattern>/addBaby</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -85,6 +76,17 @@
 		<servlet-name>BabyServiceServlet</servlet-name>
 		<url-pattern>/baby/*</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BabyInfoServiceServlet</servlet-name>
+		<servlet-class>babyInfo.controller.BabyInfoServiceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BabyInfoServiceServlet</servlet-name>
+		<url-pattern>/babyInfo/*</url-pattern>
+	</servlet-mapping>
+
+
 
 	<servlet>
 		<servlet-name>image</servlet-name>
