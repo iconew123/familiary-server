@@ -1,7 +1,6 @@
 package babyInfo.controller;
 
 import baby.controller.BabyActionFactory;
-import diary.controller.DiaryActionFactory;
 import util.Action;
 
 import javax.servlet.ServletException;
@@ -11,11 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class BabyInfoServiceServlet {
-
     // 멀티파트 요청을 처리할 수 있도록 지정
     @MultipartConfig
-    public class BabyServiceServlet extends HttpServlet {
+    public class BabyInfoServiceServlet extends HttpServlet {
 
         // doGet : 클라이언트로부터의 HTTP GET 요청을 처리하는 메서드
         // 클라이언트로부터 전송된 command 파라미터를 확인하여 해당하는 액션을 실행함
@@ -36,7 +33,7 @@ public class BabyInfoServiceServlet {
             // command가 업석나 잘못된 경우 처리
             if (command != null) {
                 // BabyActionFactory를 가져와 액션을 생성할 수 있음
-                BabyActionFactory af = BabyActionFactory.getInstance();
+                BabyInfoActionFactory af = BabyInfoActionFactory.getInstance();
                 // BabyActionFactory를 사용해 요청된 command에 해당하는 액션을 가져옴
                 Action action = af.getAction(command);
 
@@ -66,4 +63,4 @@ public class BabyInfoServiceServlet {
             doGet(request, response);
         }
     }
-}
+

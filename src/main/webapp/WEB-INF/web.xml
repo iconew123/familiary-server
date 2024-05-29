@@ -34,7 +34,7 @@
 
 	<servlet>
 		<servlet-name>UserServiceServlet</servlet-name>
-		<servlet-class>user.controller.ServiceServlet</servlet-class>
+		<servlet-class>user.controller.UserServiceServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>UserServiceServlet</servlet-name>
