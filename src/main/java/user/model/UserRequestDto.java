@@ -6,37 +6,36 @@ public class UserRequestDto {
 	private String password;
 	private String nickname;
 	private String name;
-	private String security_number;
+	private String securityNumber;
 	private String telecom;
 	private String phone;
 	private String adress;
 	private String email;
-	private String position;
 
 	public UserRequestDto() {
 
 	}
 
-	public UserRequestDto(String id, String password, String nickname, String name, String security_number,
+	public UserRequestDto(String id, String password, String nickname, String name, String securityNumber,
 			String telecom, String phone) {
 		super();
 		this.id = id;
 		this.password = password;
 		this.nickname = nickname;
 		this.name = name;
-		this.security_number = security_number;
+		this.securityNumber = securityNumber;
 		this.telecom = telecom;
 		this.phone = phone;
 	}
 
-	public UserRequestDto(String id, String password, String nickname, String name, String security_number,
+	public UserRequestDto(String id, String password, String nickname, String name, String securityNumber,
 			String telecom, String phone, String adress, String email) {
 		super();
 		this.id = id;
 		this.password = password;
 		this.nickname = nickname;
 		this.name = name;
-		this.security_number = security_number;
+		this.securityNumber = securityNumber;
 		this.telecom = telecom;
 		this.phone = phone;
 		this.adress = adress;
@@ -75,12 +74,12 @@ public class UserRequestDto {
 		this.name = name;
 	}
 
-	public String getSecurity_number() {
-		return security_number;
+	public String getSecurityNumber() {
+		return securityNumber;
 	}
 
-	public void setSecurity_number(String security_number) {
-		this.security_number = security_number;
+	public void setSecurityNumber(String securityNumber) {
+		this.securityNumber = securityNumber;
 	}
 
 	public String getTelecom() {
@@ -114,14 +113,4 @@ public class UserRequestDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-
 }

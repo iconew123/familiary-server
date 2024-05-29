@@ -4,13 +4,13 @@ public class UserResponseDto {
 	private String id;
 	private String nickname;
 	private String name;
-	private String security_number;
+	private String securityNumber;
 	private String telecom;
 	private String phone;
 	private String adress;
 	private String email;
 
-	public UserResponseDto(String id, String name, String email, String nickname, String adress, String security_number,
+	public UserResponseDto(String id, String name, String email, String nickname, String adress, String securityNumber,
 			String telecom, String phone) {
 		super();
 		this.id = id;
@@ -18,7 +18,7 @@ public class UserResponseDto {
 		this.email = email;
 		this.nickname = nickname;
 		this.adress = adress;
-		this.security_number = security_number;
+		this.securityNumber = securityNumber;
 		this.telecom = telecom;
 		this.phone = phone;
 
@@ -30,7 +30,7 @@ public class UserResponseDto {
 		this.email = user.getEmail();
 		this.nickname = user.getNickname();
 		this.adress = user.getAdress();
-		this.security_number = user.getSecurity_number();
+		this.securityNumber = user.getSecurityNumber();
 		this.telecom = user.getTelecom();
 		this.phone = user.getPhone();
 
@@ -76,12 +76,12 @@ public class UserResponseDto {
 		this.adress = adress;
 	}
 
-	public String getSecurity_number() {
-		return security_number;
+	public String getSecurityNunber() {
+		return securityNumber;
 	}
 
-	public void setSecurity_number(String security_number) {
-		this.security_number = security_number;
+	public void setSecurity_number(String securityNumber) {
+		this.securityNumber = securityNumber;
 	}
 
 	public String getTelecom() {
@@ -99,5 +99,4 @@ public class UserResponseDto {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 }

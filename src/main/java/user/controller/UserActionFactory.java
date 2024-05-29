@@ -1,9 +1,6 @@
 package user.controller;
 
-import user.controller.action.JoinAction;
-import user.controller.action.LoginAction;
-import user.controller.action.LogoutAction;
-import user.controller.action.UpdateAction;
+import user.controller.action.*;
 import util.Action;
 
 public class UserActionFactory {
@@ -35,6 +32,9 @@ public class UserActionFactory {
 		} 
 		else if (command.equals("delete")) {
 			action = new LoginAction();
+		}
+		else if (command.equals("session")) {
+			action = new SessionAction();
 		}
 
 		

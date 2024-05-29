@@ -17,7 +17,10 @@ public class JoinAction implements Action {
 
    @Override
    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+      response.setHeader("Access-Control-Allow-Origin", "*");
+      response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+      response.setHeader("Access-Control-Max-Age", "3600");
+      response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
       String method = request.getMethod();
       System.out.println("하이");
       if (method.equals("POST")) {
@@ -75,11 +78,12 @@ public class JoinAction implements Action {
                resObj.put("message", "User created successfully.");
                resObj.put("id", id);
                resObj.put("nickname", nickname);
-               resObj.put("security_number", securityNumber);
+               resObj.put("securityNumber", securityNumber);
                resObj.put("telecom", telecom);
                resObj.put("phone", phone);
                resObj.put("email", email);
                resObj.put("address", address);
+
 
             } else {
                resObj.put("status", 400);

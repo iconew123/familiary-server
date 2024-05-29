@@ -17,13 +17,17 @@ import util.Action;
 public class UpdateAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+		response.setHeader("Access-Control-Max-Age", "3600");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
 		String method = request.getMethod();
-		System.out.println("method : " + method);
+
 
 		if (method.equals("POST")) {
 
 			String password = request.getParameter("password");
-			String newPassword = request.getParameter("new-password");
+			String newPassword = request.getParameter("newPassword");
 			String newNickname = request.getParameter("nickname");
 			String newTelecom = request.getParameter("telecom");
 			String newPhone = request.getParameter("phone");
@@ -48,6 +52,7 @@ public class UpdateAction implements Action {
 
 				HttpSession session = request.getSession();
 				UserResponseDto user = (UserResponseDto) session.getAttribute("user");
+
 
 				if (!newPassword.equals("") && !newPassword.equals(password)) {
 					user = userDao.updateUserPassword(userDto, newPassword);

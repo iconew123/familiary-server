@@ -16,22 +16,24 @@ import util.Action;
 public class LoginAction implements Action {
    @Override
    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+      response.setHeader("Access-Control-Allow-Origin", "*");
+      response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+      response.setHeader("Access-Control-Max-Age", "3600");
+      response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
       String method = request.getMethod();
 
       if (method.equals("POST")) {
+
          String id = request.getParameter("id");
          String password = request.getParameter("password");
 
          boolean isValid = true;
 
-         System.out.println(id);
-
          if (id == null || id.equals(""))
             isValid = false;
          else if (password == null || password.equals(""))
             isValid = false;
-         
+
          JSONObject resObj = new JSONObject();
 
          response.setCharacterEncoding("UTF-8");
@@ -40,9 +42,7 @@ public class LoginAction implements Action {
          if (isValid) {
 
             UserDao userDao = UserDao.getInstance();
-            UserResponseDto user = userDao.findUserById(id);
-
-            System.out.println(id);
+            UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
 
             if (user != null) {
 
@@ -50,8 +50,6 @@ public class LoginAction implements Action {
                resObj.put("message", "User login successfully.");
                resObj.put("id", id);
                resObj.put("password", password);
-
-               String loginUser = "user";
 
             } else {
                resObj.put("status", 400);
