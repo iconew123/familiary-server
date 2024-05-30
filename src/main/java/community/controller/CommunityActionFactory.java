@@ -25,7 +25,7 @@ public class CommunityActionFactory {
 
 		if (command.equals("write")) {
 			action = new CreateCommunityAction();
-		} else if (command.equals("read/talk")) {
+		} else if (command.equals("read/chat")) {
 			action = new ReadCommunityByTalkAction();
 		} else if (command.equals("read/notice")) {
 			action = new ReadCommunityByNoticeAction();
