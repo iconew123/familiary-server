@@ -1,8 +1,6 @@
 package diary.controller;
 
-import diary.controller.action.CreateDiaryAction;
-import diary.controller.action.DeleteDiaryAction;
-import diary.controller.action.UpdateDiaryAction;
+import diary.controller.action.*;
 import util.Action;
 
 public class DiaryActionFactory {
@@ -27,6 +25,12 @@ public class DiaryActionFactory {
             action = new UpdateDiaryAction();
         else if (command.equals("delete"))
             action = new DeleteDiaryAction();
+        else if (command.equals("find"))
+            action = new FindOneDiary();
+        else if (command.equals("diarylist"))
+            action = new SearchAllDiaries();
+        else if (command.equals("imagelist"))
+            action = new SearchAllImages();
 
         return action;
     }

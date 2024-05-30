@@ -51,7 +51,7 @@ public class BabyInfoAction implements Action {
                 return;
             }
 
-            ImageDao imageDao = new ImageDao();
+            ImageDao imageDao = ImageDao.getInstance();
             ImageResponseDto image = imageDao.findImageByCodeAndType(babyCode, type);
 
 

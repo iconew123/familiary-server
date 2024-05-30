@@ -12,7 +12,7 @@ public class ImageDao {
     private PreparedStatement pstmt;
     private ResultSet rs;
 
-    public ImageDao() {
+    private ImageDao() {
     }
 
     private static ImageDao instance = new ImageDao();
@@ -173,6 +173,38 @@ public class ImageDao {
         }
 
         return image;
+    }
+
+    public List<ImageResponseDto> findAllImage(String babycode, String type) {
+        List<ImageResponseDto> list = new ArrayList<>();
+
+        try {
+            conn = DBManager.getConnection();
+            String sql = "SELECT i.*, b.status FROM image i JOIN diary d ON d.code=i.code JOIN backup b ON b.num=i.num WHERE d.baby_code=? AND i.type=?;";
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, babycode);
+            pstmt.setString(2, type);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int num = rs.getInt(1);
+                String url = rs.getString(2);
+                String id = rs.getString(3);
+                String getType = rs.getString(4);
+                Timestamp regDate = rs.getTimestamp(5);
+                Timestamp modDate = rs.getTimestamp(6);
+                String code = rs.getString(7);
+                boolean status = rs.getBoolean(8);
+
+                ImageResponseDto image = new ImageResponseDto(num, url, id, getType, code, status, regDate, modDate);
+                list.add(image);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return list;
     }
 
 }
