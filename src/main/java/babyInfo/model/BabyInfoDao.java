@@ -110,5 +110,28 @@ public class BabyInfoDao {
 
         return success;
     }
+
+    public boolean deleteBabyInfo(String baby_code, String date){
+
+        try {
+            conn = DBManager.getConnection();
+
+            String sql = "DELETE FROM babyinfo WHERE baby_code=? AND date=?";
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, baby_code);
+            pstmt.setString(2, date);
+
+            pstmt.execute();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBManager.close(conn, pstmt);
+        }
+
+        return false;
+    }
 }
 
