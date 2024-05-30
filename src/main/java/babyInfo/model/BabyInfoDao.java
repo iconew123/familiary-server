@@ -1,12 +1,11 @@
 package babyInfo.model;
 
+
 import baby.model.BabyDao;
+import baby.model.BabyRequestDto;
 import util.DBManager;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class BabyInfoDao {
     private Connection conn;
@@ -47,6 +46,69 @@ public class BabyInfoDao {
             DBManager.close(conn, pstmt);
         }
         return null;
+    }
+
+    public BabyInfo findBabyInfoByCodeAndDate(String babyCode, String date) {
+
+        BabyInfo info = null;
+
+        try {
+            conn = DBManager.getConnection();
+
+            String sql = "SELECT * FROM babyinfo WHERE baby_code = ? AND date = ?";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, babyCode);
+            pstmt.setString(2, date);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                int height = rs.getInt("height");
+                int weight = rs.getInt("weight");
+                String spec_note = rs.getString("spec_note");
+                Timestamp regDate = rs.getTimestamp("reg_date");
+                Timestamp modDate = rs.getTimestamp("mod_date");
+
+                info = new BabyInfo(babyCode, date, height, weight, spec_note, regDate, modDate);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBManager.close(conn, pstmt);
+        }
+
+        return info;
+    }
+
+    public boolean updateBabyInfo(BabyInfoRequestDto info) {
+        boolean success = false;
+
+        try {
+            conn = DBManager.getConnection(); // 데이터베이스 연결 가져오기
+
+            String sql = "UPDATE babyinfo SET height=?, weight=?, spec_note=? WHERE baby_code=? AND date=?";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, info.getHeight());
+            pstmt.setInt(2, info.getWeight());
+            pstmt.setString(3, info.getSpec_note());
+            pstmt.setString(4, info.getBaby_code());
+            pstmt.setString(5, info.getDate());
+
+            int rowsAffected = pstmt.executeUpdate();
+            System.out.println(rowsAffected);
+            success = (rowsAffected > 0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // 리소스 해제
+            DBManager.close(conn, pstmt);
+        }
+
+        return success;
     }
 }
 
