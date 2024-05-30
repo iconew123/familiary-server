@@ -40,11 +40,9 @@ public class ReadCommunityDetailAction implements Action {
 			// CommunityResponseDto를 JSONObject로 변환하여 추가
 			JSONObject communityJson = new JSONObject();
 			communityJson.put("code", community.getCode());
-			communityJson.put("userId", community.getUserId());
 			communityJson.put("userNickname", community.getUserNickname());
 			communityJson.put("title", community.getTitle());
 			communityJson.put("content", community.getContent());
-			communityJson.put("category", community.getCategory());
 
 			// 필요한 속성들을 모두 추가
 			resObj.put("community", communityJson);
