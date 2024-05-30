@@ -45,16 +45,21 @@ public class LoginAction implements Action {
             UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
 
             if (user != null) {
-
+               System.out.println("user");
                resObj.put("status", 200);
                resObj.put("message", "User login successfully.");
                resObj.put("id", id);
                resObj.put("password", password);
-
+               resObj.put("nickname", user.getNickname());
+               resObj.put("name", user.getName());
+               resObj.put("securityNumber", user.getSecurityNumber());
+               resObj.put("telecom", user.getTelecom());
+               resObj.put("phone", user.getPhone());
+               resObj.put("adress", user.getAdress());
+               resObj.put("email", user.getEmail());
             } else {
                resObj.put("status", 400);
                resObj.put("message", "No Existed User");
-
             }
 
          }else {

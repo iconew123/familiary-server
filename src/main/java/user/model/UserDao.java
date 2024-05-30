@@ -80,7 +80,7 @@ public class UserDao {
 				String email = rs.getString(7);
 				String adress = rs.getString(8);
 
-				user = new User(id, name, nickname, email, adress, securityNumber, telecom, phone);
+				user = new User(id, nickname, name,  securityNumber, telecom, phone, email, adress );
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,7 +110,8 @@ public class UserDao {
 				String email = rs.getString(7);
 				String adress = rs.getString(8);
 
-				user = new UserResponseDto(id, name, nickname, email, adress, securityNumber, telecom, phone);
+				user = new UserResponseDto(id, nickname, name, securityNumber, telecom, phone, email, adress );
+				System.out.println(user.getNickname());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
