@@ -1,16 +1,14 @@
 package user.controller;
 
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import java.io.IOException;
+import util.Action;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import util.Action;
+import java.io.IOException;
 
 @MultipartConfig
 @WebServlet("/User")
@@ -49,24 +47,7 @@ public class UserServiceServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
-		String command = request.getParameter("command");
-		System.out.println("GET command" + command);
-
-		if (command != null) {
-			UserActionFactory daf = UserActionFactory.getInstance();
-			Action action = daf.getAction(command);
-
-			if (action != null) {
-				action.execute(request, response);
-			} else {
-				response.sendError(400);
-				System.out.println("No Existed User");
-			}
-		} else {
-			response.sendError(500);
-			System.out.println("Database Error");
-		}
+		doGet(request, response);
 
 	}
 
@@ -74,25 +55,7 @@ public class UserServiceServlet extends HttpServlet {
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
-		String command = request.getParameter("command");
-		System.out.println("GET command" + command);
-
-		if (command != null) {
-			UserActionFactory daf = UserActionFactory.getInstance();
-			Action action = daf.getAction(command);
-
-			if (action != null) {
-				action.execute(request, response);
-			} else {
-				response.sendError(400);
-				System.out.println("No Existed User");
-			}
-		} else {
-			response.sendError(500);
-			System.out.println("Database Error");
-		}
-
+		doGet(request, response);
 	}
 
 }

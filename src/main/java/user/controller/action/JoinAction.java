@@ -1,17 +1,15 @@
 package user.controller.action;
 
-import java.io.IOException;
+import org.json.JSONObject;
+import user.model.UserDao;
+import user.model.UserRequestDto;
+import user.model.UserResponseDto;
+import util.Action;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONObject;
-
-import util.Action;
-import user.model.UserDao;
-import user.model.UserRequestDto;
-import user.model.UserResponseDto;
+import java.io.IOException;
 
 public class JoinAction implements Action {
 
@@ -36,15 +34,6 @@ public class JoinAction implements Action {
          String address = request.getParameter("address");
 
          boolean isValid = true;
-         System.out.println(id);
-         System.out.println(password);
-         System.out.println(nickname);
-         System.out.println(name);
-         System.out.println(securityNumber);
-         System.out.println(telecom);
-         System.out.println(phone);
-         System.out.println(email);
-         System.out.println(address);
 
          if (id == null || id.equals("")) {
             isValid = false;
@@ -66,7 +55,7 @@ public class JoinAction implements Action {
 
          response.setCharacterEncoding("UTF-8");
          response.setContentType("application/json;charset=utf-8");
-         System.out.println(isValid);
+
          if (isValid) {
             UserRequestDto userDto = new UserRequestDto(id, password, nickname, name, securityNumber, telecom,
                   phone, email, address);

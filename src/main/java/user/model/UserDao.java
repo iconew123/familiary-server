@@ -1,15 +1,11 @@
 package user.model;
 
+import util.DBManager;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import baby.model.Baby;
-import baby.model.BabyRequestDto;
-import user.model.UserRequestDto;
-import user.model.UserResponseDto;
-import util.DBManager;
 
 public class UserDao {
 	private Connection conn;
@@ -200,7 +196,7 @@ public class UserDao {
 		return user;
 	}
 	
-	public UserResponseDto updateUserNickname(UserRequestDto userDto, String newNickname) {
+	public UserResponseDto updateUserNickname(UserRequestDto userDto) {
 		UserResponseDto user = null;
 		try {
 			conn = DBManager.getConnection();
@@ -219,7 +215,7 @@ public class UserDao {
 		return user;
 	}
 	
-	public UserResponseDto updateUserEmail(UserRequestDto userDto, String newEamil) {
+	public UserResponseDto updateUserEmail(UserRequestDto userDto) {
 		UserResponseDto user = null;
 		try {
 			conn = DBManager.getConnection();
@@ -238,7 +234,7 @@ public class UserDao {
 		return user;
 	}
 
-	public UserResponseDto updateUserPhone(UserRequestDto userDto, String newTelecom, String newPhone) {
+	public UserResponseDto updateUserPhone(UserRequestDto userDto) {
 		UserResponseDto user = null;
 		try {
 			conn = DBManager.getConnection();
@@ -258,7 +254,7 @@ public class UserDao {
 		return user;
 	}
 	
-	public UserResponseDto updateUserAdress(UserRequestDto userDto, String newAdress) {
+	public UserResponseDto updateUserAdress(UserRequestDto userDto) {
 		UserResponseDto user = null;
 		try {
 			conn = DBManager.getConnection();

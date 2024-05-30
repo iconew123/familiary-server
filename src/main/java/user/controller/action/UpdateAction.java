@@ -1,18 +1,15 @@
 package user.controller.action;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.json.JSONObject;
-
 import user.model.UserDao;
 import user.model.UserRequestDto;
 import user.model.UserResponseDto;
 import util.Action;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class UpdateAction implements Action {
 	@Override
@@ -23,16 +20,15 @@ public class UpdateAction implements Action {
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
 		String method = request.getMethod();
 
-
 		if (method.equals("POST")) {
-
+			String id = request.getParameter("id");
 			String password = request.getParameter("password");
 			String newPassword = request.getParameter("newPassword");
-			String newNickname = request.getParameter("nickname");
-			String newTelecom = request.getParameter("telecom");
-			String newPhone = request.getParameter("phone");
-			String newEmail = request.getParameter("email");
-			String newAdress = request.getParameter("adress");
+			String newNickname = request.getParameter("newNickname");
+			String newTelecom = request.getParameter("newTelecom");
+			String newPhone = request.getParameter("newPhone");
+			String newEmail = request.getParameter("newEmail");
+			String newAddress = request.getParameter("newAddress");
 
 			boolean isValid = true;
 
@@ -41,45 +37,61 @@ public class UpdateAction implements Action {
 			else if (newPassword == null || newPassword.equals(""))
 				isValid = false;
 
-			JSONObject resObj = new JSONObject();
-
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("application/json;charset=utf-8");
-
 			if (isValid) {
+				response.setCharacterEncoding("UTF-8");
+				response.setContentType("application/json;charset=utf-8");
+				JSONObject resObj = new JSONObject();
+
 				UserDao userDao = UserDao.getInstance();
+
+				UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
 				UserRequestDto userDto = new UserRequestDto();
 
-				HttpSession session = request.getSession();
-				UserResponseDto user = (UserResponseDto) session.getAttribute("user");
 
 
-				if (!newPassword.equals("") && !newPassword.equals(password)) {
-					user = userDao.updateUserPassword(userDto, newPassword);
+				System.out.println(user.getNickname());
+				System.out.println(newNickname);
+
+					if (!newPassword.equals(password)) {
+						user = userDao.updateUserPassword(userDto, newPassword);
+					}
+					if (!newNickname.equals(user.getNickname())) {
+						userDto.setEmail(newNickname);
+						user = userDao.updateUserNickname(userDto);
+					}
+					if (!newEmail.equals(user.getEmail())) {
+						userDto.setEmail(newEmail);
+						user = userDao.updateUserNickname(userDto);
+					}
+					if (!newPhone.equals(user.getPhone()) || !newTelecom.equals(user.getTelecom())) {
+						userDto.setEmail(newPhone);
+						userDto.setEmail(newTelecom);
+						user = userDao.updateUserPhone(userDto);
+					}
+					if (!newAddress.equals(user)) {
+						userDto.setEmail(newAddress);
+						user = userDao.updateUserAdress(userDto);
+					}
+
+					if (user!=null) {
+
+						resObj.put("status", 200);
+						resObj.put("message", "User updated successfully.");
+						resObj.put("id", user.getId());
+						resObj.put("password", newPassword);
+						resObj.put("nickname", user.getNickname());
+						resObj.put("name", user.getName());
+						resObj.put("securityNumber", user.getSecurityNumber());
+						resObj.put("telecom", user.getTelecom());
+						resObj.put("phone", user.getPhone());
+						resObj.put("adress", user.getAdress());
+						resObj.put("email", user.getEmail());
+					} else {
+						resObj.put("status", 500);
+						resObj.put("message", "Failed to update user.");
+					}
 				}
-				if (!newNickname.equals("") && !newNickname.equals(userDto.getNickname())) {
-					user = userDao.updateUserNickname(userDto, newPassword);
-				}
-				if (!newEmail.equals(userDto.getEmail())) {
-					user = userDao.updateUserEmail(userDto, newEmail);
-				}
-
-				if (!newPhone.equals(userDto.getPhone()) || !newTelecom.equals(userDto.getTelecom())) {
-					user = userDao.updateUserPhone(userDto, newTelecom, newPhone);
-					resObj.put("telecom", newTelecom);
-					resObj.put("phone", newPhone);
-				}
-
-				if (!newAdress.equals("") && !newAdress.equals(userDto.getAdress())) {
-					user = userDao.updateUserAdress(userDto, newPassword);
-				}
-
-
-
 			}
 
 		}
-
 	}
-
-}
