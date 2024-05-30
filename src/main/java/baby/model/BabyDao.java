@@ -139,17 +139,11 @@ public class BabyDao {
 
 	        pstmt = conn.prepareStatement(sql); 
 	        pstmt.setString(1, babyDto.getNickname());
-			System.out.println("1 : " + babyDto.getNickname());
 	        pstmt.setString(2, babyDto.getName());
-			System.out.println("2 : " + babyDto.getName());
 	        pstmt.setString(3, babyDto.getGender());
-			System.out.println("3 : " + babyDto.getGender());
 	        pstmt.setString(4, babyDto.getExpected_date());
-			System.out.println("4 : " + babyDto.getExpected_date());
 	        pstmt.setString(5, babyDto.getBlood_type());
-			System.out.println("5 : " + babyDto.getBlood_type());
 	        pstmt.setString(6, babyDto.getCode());
-			System.out.println("6 : " + babyDto.getCode());
 	        
 	        int rowsAffected = pstmt.executeUpdate();
 			System.out.println(rowsAffected);
@@ -181,6 +175,27 @@ public class BabyDao {
 		}
 		
 		return false;
+	}
+
+	public void DeleteImageStatus(BabyRequestDto baby){
+
+		try {
+			conn = DBManager.getConnection(); // 데이터베이스 연결 가져오기
+
+			String sql = "UPDATE backup AS b JOIN image AS i ON b.num = i.num SET b.status = 0 WHERE i.code = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, baby.getCode());
+
+			pstmt.executeUpdate();
+			conn.commit();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 리소스 해제
+			DBManager.close(conn, pstmt);
+		}
 	}
 
 }

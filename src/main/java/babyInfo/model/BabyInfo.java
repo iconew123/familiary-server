@@ -5,14 +5,14 @@ import java.util.Date;
 
 public class BabyInfo {
     private String baby_code;
-    private Date date;
+    private String date;
     private int height;
     private int weight;
     private String spec_note;
     private Timestamp reg_date;
     private Timestamp mode_date;
 
-    public BabyInfo(String baby_code, Date date, int height, int weight, String spec_note, Timestamp reg_date, Timestamp mode_date) {
+    public BabyInfo(String baby_code, String date, int height, int weight, String spec_note, Timestamp reg_date, Timestamp mode_date) {
         super();
 
         this.baby_code = baby_code;
@@ -29,7 +29,7 @@ public class BabyInfo {
         return baby_code;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 

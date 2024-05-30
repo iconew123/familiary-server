@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class BabyInfoRequestDto {
     private String baby_code;
-    private Date date;
+    private String date;
     private int height;
     private int weight;
     private String spec_note;
@@ -27,11 +27,11 @@ public class BabyInfoRequestDto {
         this.baby_code = baby_code;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
