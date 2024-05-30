@@ -33,7 +33,6 @@ public class UserActionFactory {
 		else if (command.equals("delete")) {
 			action = new LoginAction();
 		}
-
 		
 		return action;
 		

@@ -10,18 +10,17 @@ public class UserResponseDto {
 	private String adress;
 	private String email;
 
-	public UserResponseDto(String id, String name, String email, String nickname, String adress, String securityNumber,
-			String telecom, String phone) {
+	public UserResponseDto(String id,String nickname, String name, String securityNumber,String telecom, String phone, String email,  String adress
+			) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.email = email;
 		this.nickname = nickname;
-		this.adress = adress;
+		this.name = name;
 		this.securityNumber = securityNumber;
 		this.telecom = telecom;
 		this.phone = phone;
-
+		this.email = email;
+		this.adress = adress;
 	}
 
 	public UserResponseDto(User user) {
@@ -35,29 +34,12 @@ public class UserResponseDto {
 		this.phone = user.getPhone();
 
 	}
-
 	public String getId() {
 		return id;
 	}
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getNickname() {
@@ -68,15 +50,15 @@ public class UserResponseDto {
 		this.nickname = nickname;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getName() {
+		return name;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getSecurityNunber() {
+	public String getSecurityNumber() {
 		return securityNumber;
 	}
 
@@ -98,5 +80,21 @@ public class UserResponseDto {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAdress() {
+		return adress;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
 	}
 }
