@@ -27,9 +27,6 @@ public class ReadCommunityDetailAction implements Action {
 
 		CommunityResponseDto community = communityDao.findCommunityByCode(code);
 
-		request.setAttribute("userId", id);
-		request.setAttribute("community", community);
-
 		JSONObject resObj = new JSONObject();
 		if (community != null) {
 			resObj.put("status", 200);
@@ -50,7 +47,8 @@ public class ReadCommunityDetailAction implements Action {
 			resObj.put("status", 404);
 			resObj.put("message", "게시물을 찾을 수 없습니다.");
 		}
-
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json;charset=UTF-8");
 		response.getWriter().append(resObj.toString());
 	}
 }
