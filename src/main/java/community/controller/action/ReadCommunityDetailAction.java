@@ -17,6 +17,11 @@ public class ReadCommunityDetailAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
+		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+		response.setHeader("Access-Control-Max-Age", "3600");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+
 		String communityCode = request.getParameter("code");
 
 		HttpSession session = request.getSession();
