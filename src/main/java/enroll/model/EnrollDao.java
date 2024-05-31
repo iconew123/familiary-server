@@ -1,8 +1,11 @@
 package enroll.model;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import baby.model.Baby;
+import babyInfo.model.BabyInfoResponseDto;
 import util.DBManager;
 
 public class EnrollDao {
@@ -49,7 +52,61 @@ public class EnrollDao {
 		}
 		return null;
 	}
-	
+
+	public List<String> findBabyCodeByNickName(String user_id) {
+		List<String> babyNicknames = new ArrayList<>();
+
+		try {
+			conn = DBManager.getConnection();
+
+			String sql = "SELECT b.nickname FROM enroll e JOIN baby b ON e.baby_code = b.code WHERE e.user_id = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+
+			rs = pstmt.executeQuery();
+
+			while(rs.next()){
+				String nickname = rs.getString("nickname");
+				babyNicknames.add(nickname);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+
+		return babyNicknames;
+	}
+
+	public List<String> findBabyCodeByCode(String user_id) {
+		List<String> babyCodes = new ArrayList<>();
+
+		try {
+			conn = DBManager.getConnection();
+
+			String sql = "SELECT b.code FROM enroll e JOIN baby b ON e.baby_code = b.code WHERE e.user_id = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+
+			rs = pstmt.executeQuery();
+
+			while(rs.next()){
+				String code = rs.getString("code");
+				babyCodes.add(code);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+
+		return babyCodes;
+	}
+
 	public boolean checkMother(String baby_code){
 		boolean isExist = false;
 

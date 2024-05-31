@@ -19,6 +19,17 @@ public class BabyInfoRequestDto {
 
     }
 
+    public BabyInfoRequestDto(String baby_code, String date, int height, int weight, String spec_note) {
+        super();
+
+        this.baby_code = baby_code;
+        this.date = date;
+        this.height = height;
+        this.weight = weight;
+        this.spec_note = spec_note;
+
+    }
+
     public String getBaby_code() {
         return baby_code;
     }
