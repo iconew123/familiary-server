@@ -15,6 +15,11 @@ public class DiaryServiceServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+
         request.setCharacterEncoding("UTF-8");
 
         String command = request.getParameter("command");
@@ -37,6 +42,11 @@ public class DiaryServiceServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+
         request.setCharacterEncoding("UTF-8");
 
         String command = request.getParameter("command");

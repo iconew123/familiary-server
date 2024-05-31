@@ -161,7 +161,7 @@ public class ImageDao {
             }
 
             if (image == null) {
-                System.out.println("이미지 READ 실패");
+                System.out.println("이미지 READ 실패 또는 READ할 이미지가 없음");
             } else {
                 System.out.println("이미지 READ 성공");
             }
