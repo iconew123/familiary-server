@@ -1,35 +1,33 @@
 package user.controller.action;
 
-import java.io.IOException;
+import org.json.JSONObject;
+import user.model.UserDao;
+import user.model.UserRequestDto;
+import util.Action;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.json.JSONObject;
-
-import baby.model.Baby;
-import baby.model.BabyDao;
-import user.model.UserDao;
-import user.model.UserRequestDto;
-import user.model.UserResponseDto;
-import util.Action;
+import java.io.IOException;
 
 public class DeleteAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
 		response.setHeader("Access-Control-Max-Age", "3600");
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+
 		String method = request.getMethod();
-
 		if (method.equals("DELETE")) {
-
+			String id = request.getParameter("id");
 			String password = request.getParameter("password");
 			boolean isValid = true;
+			System.out.println("id : " + id);
+			System.out.println("password : " + password);
+
 
 			if (password == null || password.equals(""))
 				isValid = false;
@@ -41,9 +39,6 @@ public class DeleteAction implements Action {
 			System.out.println(password);
 			if (isValid) {
 				UserDao userDao = UserDao.getInstance();
-				HttpSession session = request.getSession();
-				UserResponseDto user = (UserResponseDto) session.getAttribute("user");
-				String id = user.getId();
 
 				UserRequestDto userDto = new UserRequestDto();
 
