@@ -1,15 +1,13 @@
 package user.controller.action;
 
-import java.io.IOException;
+import org.json.JSONObject;
+import util.Action;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.json.JSONObject;
-
-import util.Action;
+import java.io.IOException;
 
 public class LogoutAction implements Action {
    @Override
@@ -33,5 +31,6 @@ public class LogoutAction implements Action {
          HttpSession session = request.getSession();
          session.removeAttribute("user");
       }
+      response.getWriter().append(resObj.toString());
    }
 }

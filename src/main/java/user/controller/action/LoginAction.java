@@ -1,25 +1,18 @@
 package user.controller.action;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.json.JSONObject;
-
 import user.model.UserDao;
 import user.model.UserResponseDto;
 import util.Action;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 public class LoginAction implements Action {
    @Override
    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      response.setHeader("Access-Control-Allow-Origin", "*");
-      response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-      response.setHeader("Access-Control-Max-Age", "3600");
-      response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
       String method = request.getMethod();
 
       if (method.equals("POST")) {
@@ -40,7 +33,6 @@ public class LoginAction implements Action {
          response.setContentType("application/json;charset=utf-8");
          
          if (isValid) {
-
             UserDao userDao = UserDao.getInstance();
             UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
 
@@ -66,9 +58,7 @@ public class LoginAction implements Action {
             resObj.put("status", 500);
             resObj.put("message", "Database Error");
          }
-
          response.getWriter().append(resObj.toString());
-
       }
    }
 }
