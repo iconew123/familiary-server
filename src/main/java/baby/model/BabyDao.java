@@ -137,7 +137,7 @@ public class BabyDao {
 
 	        String sql = "UPDATE baby SET nickname=?, name=?, gender=?, expected_date=?, blood_type=? WHERE code=?";
 
-	        pstmt = conn.prepareStatement(sql); 
+			pstmt = conn.prepareStatement(sql);
 	        pstmt.setString(1, babyDto.getNickname());
 	        pstmt.setString(2, babyDto.getName());
 	        pstmt.setString(3, babyDto.getGender());
@@ -160,6 +160,8 @@ public class BabyDao {
 	
 	public boolean deleteBaby(Baby baby) {
 		try {
+			conn = DBManager.getConnection();
+
 			String sql = "DELETE FROM baby WHERE code=?";
 			pstmt = conn.prepareStatement(sql);
 			

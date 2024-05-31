@@ -95,10 +95,12 @@ public class BabyUpdateAction implements Action {
 				in.close();
 			}
 		}
-
+		System.out.println("변경닉네임: " + nickname);
+		System.out.println("베이비코드: " + code);
 		BabyDao dao = new BabyDao();
 		BabyRequestDto baby = new BabyRequestDto(code, nickname, name, gender, expected_date, blood_type);
 		boolean success = dao.updateBaby(baby);
+		System.out.println("변경 여부: " + success);
 
 		if ((imageId != null && imageUrl != null)) {
 			ImageDao imageDao = ImageDao.getInstance();

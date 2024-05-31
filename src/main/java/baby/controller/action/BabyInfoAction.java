@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import enroll.model.EnrollDao;
 import image.model.ImageDao;
 import image.model.ImageResponseDto;
 import org.json.JSONArray;
@@ -27,7 +28,8 @@ public class BabyInfoAction implements Action {
         response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
 
         // 요청에서 아기 코드 가져오기
-        String babyCode = request.getParameter("code");
+        String babyCode = request.getParameter("baby_code");
+        String userId = request.getParameter("user_id");
         String type = "baby";
         // 아기 정보를 JSON 형식으로 변환하여 응답 보내기
         JSONObject jsonObj = new JSONObject();
@@ -54,6 +56,8 @@ public class BabyInfoAction implements Action {
             ImageDao imageDao = ImageDao.getInstance();
             ImageResponseDto image = imageDao.findImageByCodeAndType(babyCode, type);
 
+            EnrollDao enrollDao = EnrollDao.getInstance();
+            String position = enrollDao.checkPosition(babyCode, userId);
 
             jsonObj.put("status", 200);
             jsonObj.put("message", "아기 정보를 성공적으로 가져왔습니다.");
@@ -64,6 +68,7 @@ public class BabyInfoAction implements Action {
             jsonObj.put("gender", baby.getGender());
             jsonObj.put("expected_date", baby.getExpected_date());
             jsonObj.put("blood_type", baby.getBlood_type());
+            jsonObj.put("position", position);
             jsonObj.put("url", image != null ? image.getUrl() : null);
         } catch (Exception e){
             jsonObj.put("status", 500);
