@@ -111,16 +111,15 @@ public class BabyCreateAction implements Action {
 		}
 
 		// 생성 로직
-		// BabyDto 생성 -> DB에 insert
-		System.out.println("닉네임: " + nickname);
-		System.out.println("날짜: " + expected_date);
-		System.out.println("관계: " + position);
 		BabyRequestDto baby = new BabyRequestDto(nickname, name, gender, expected_date, blood_type);
 		BabyDao dao = new BabyDao();
 		dao.createBaby(baby);
 
 		Baby sample = dao.readLatestBaby();
 		String baby_code = sample.getCode();
+
+		System.out.println("유저: " + user_id);
+		System.out.println("아기: " + baby_code);
 
 		EnrollRequestDto enroll = new EnrollRequestDto(user_id, baby_code, position);
 		EnrollDao enrollDao = new EnrollDao();

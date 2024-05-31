@@ -107,6 +107,36 @@ public class EnrollDao {
 		return babyCodes;
 	}
 
+	public String checkPosition(String baby_code, String user_id){
+		String position = null;
+
+		try {
+			conn = DBManager.getConnection();
+
+			String sql = "SELECT position FROM enroll WHERE baby_code = ? AND user_id = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			System.out.println("baby_code: " + baby_code);
+			System.out.println("user_id: " + user_id);
+			pstmt.setString(1, baby_code);
+			pstmt.setString(2, user_id);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) { // 결과 집합에 데이터가 있는지 확인
+				position = rs.getString("position");
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+
+		return position;
+	}
+
 	public boolean checkMother(String baby_code){
 		boolean isExist = false;
 
