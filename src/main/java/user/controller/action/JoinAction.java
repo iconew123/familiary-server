@@ -15,15 +15,10 @@ public class JoinAction implements Action {
 
    @Override
    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      response.setHeader("Access-Control-Allow-Origin", "*");
-      response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-      response.setHeader("Access-Control-Max-Age", "3600");
-      response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
       String method = request.getMethod();
-      System.out.println("하이");
+
       if (method.equals("POST")) {
          String id = request.getParameter("id");
-         System.out.println("id"+id);
          String password = request.getParameter("password");
          String nickname = request.getParameter("nickname");
          String name = request.getParameter("name");
@@ -75,7 +70,7 @@ public class JoinAction implements Action {
 
 
             } else {
-               resObj.put("status", 400);
+               response.sendError(400);
                resObj.put("message", "No Existed User");
             }
          } else {

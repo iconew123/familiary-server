@@ -84,6 +84,93 @@ public class UserDao {
 		return user;
 	}
 
+	public User findUserByNickname(String nickname) {
+		User user = null;
+
+		try {
+			conn = DBManager.getConnection();
+			String sql = "SELECT id, name, security_number, telecom, phone, email, adress FROM users WHERE nickname=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nickname);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String id = rs.getString(2);
+				String name = rs.getString(3);
+				String securityNumber = rs.getString(4);
+				String telecom = rs.getString(5);
+				String phone = rs.getString(6);
+				String email = rs.getString(7);
+				String adress = rs.getString(8);
+
+				user = new User(id, nickname, name,  securityNumber, telecom, phone, email, adress );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
+	public User findUserByphone(String phone) {
+		User user = null;
+
+		try {
+			conn = DBManager.getConnection();
+			String sql = "SELECT id,nickname, name, security_number, telecom,email, adress FROM users WHERE phone=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, phone);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String id = rs.getString(2);
+				String nickname = rs.getString(3);
+				String name = rs.getString(4);
+				String securityNumber = rs.getString(5);
+				String telecom = rs.getString(6);
+				String email = rs.getString(7);
+				String adress = rs.getString(8);
+
+				user = new User(id, nickname, name,  securityNumber, telecom, phone, email, adress );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
+	public User findUserByEamil(String email) {
+		User user = null;
+
+		try {
+			conn = DBManager.getConnection();
+			String sql = "SELECT id, nickname, name, security_number, telecom, phone, adress FROM users WHERE email=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String id = rs.getString(2);
+				String nickname = rs.getString(3);
+				String name = rs.getString(4);
+				String securityNumber = rs.getString(5);
+				String telecom = rs.getString(6);
+				String phone = rs.getString(7);
+				String adress = rs.getString(8);
+
+				user = new User(id, nickname, name,  securityNumber, telecom, phone, email, adress );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
 	public UserResponseDto findUserByIdAndPassword(String id, String password) {
 		UserResponseDto user = null;
 
@@ -107,7 +194,6 @@ public class UserDao {
 				String adress = rs.getString(8);
 
 				user = new UserResponseDto(id, nickname, name, securityNumber, telecom, phone, email, adress );
-				System.out.println(user.getNickname());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -155,7 +241,6 @@ public class UserDao {
 			conn = DBManager.getConnection();
 			String sql = "DELETE FROM users WHERE id=? AND password=?";
 			pstmt = conn.prepareStatement(sql);
-
 			pstmt.setString(1, userDto.getId());
 			pstmt.setString(2, userDto.getPassword());
 
@@ -207,8 +292,8 @@ public class UserDao {
 			pstmt.setString(3, userDto.getPassword());
 
 			pstmt.execute();
-
 			user = findUserByIdAndPassword(userDto.getId(), userDto.getPassword());
+			System.out.println(user.getNickname());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

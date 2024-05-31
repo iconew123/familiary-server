@@ -31,7 +31,10 @@ public class UserActionFactory {
 			action = new UpdateAction();
 		} 
 		else if (command.equals("delete")) {
-			action = new LoginAction();
+			action = new DeleteAction();
+		}
+		else if (command.equals("checkDuplicate")) {
+			action = new CheckDuplicate();
 		}
 		
 		return action;
