@@ -14,10 +14,6 @@ import java.io.IOException;
 public class UpdateAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
 		String method = request.getMethod();
 
 		if (method.equals("POST")) {
@@ -31,67 +27,88 @@ public class UpdateAction implements Action {
 			String newAddress = request.getParameter("newAddress");
 
 			boolean isValid = true;
-
 			if (password == null || password.equals(""))
 				isValid = false;
-			else if (newPassword == null || newPassword.equals(""))
+			if (newPassword == null || newPassword.equals(""))
 				isValid = false;
 
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json;charset=utf-8");
+			JSONObject resObj = new JSONObject();
+
+			System.out.println(isValid);
+
 			if (isValid) {
-				response.setCharacterEncoding("UTF-8");
-				response.setContentType("application/json;charset=utf-8");
-				JSONObject resObj = new JSONObject();
-
 				UserDao userDao = UserDao.getInstance();
-
 				UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
 				UserRequestDto userDto = new UserRequestDto();
+				userDto.setId(user.getId());
+				userDto.setPassword(password);
 
 
+				System.out.println("id : " + id);
+				System.out.println("password : " + password);
+				System.out.println("newPassword : " + newPassword);
+				System.out.println("newNickname : "+ newNickname);
 
-				System.out.println(user.getNickname());
-				System.out.println(newNickname);
 
-					if (!newPassword.equals(password)) {
-						user = userDao.updateUserPassword(userDto, newPassword);
-					}
-					if (!newNickname.equals(user.getNickname())) {
-						userDto.setEmail(newNickname);
-						user = userDao.updateUserNickname(userDto);
-					}
-					if (!newEmail.equals(user.getEmail())) {
-						userDto.setEmail(newEmail);
-						user = userDao.updateUserNickname(userDto);
-					}
-					if (!newPhone.equals(user.getPhone()) || !newTelecom.equals(user.getTelecom())) {
-						userDto.setEmail(newPhone);
-						userDto.setEmail(newTelecom);
-						user = userDao.updateUserPhone(userDto);
-					}
-					if (!newAddress.equals(user)) {
-						userDto.setEmail(newAddress);
-						user = userDao.updateUserAdress(userDto);
-					}
-
-					if (user!=null) {
-
-						resObj.put("status", 200);
-						resObj.put("message", "User updated successfully.");
-						resObj.put("id", user.getId());
-						resObj.put("password", newPassword);
-						resObj.put("nickname", user.getNickname());
-						resObj.put("name", user.getName());
-						resObj.put("securityNumber", user.getSecurityNumber());
-						resObj.put("telecom", user.getTelecom());
-						resObj.put("phone", user.getPhone());
-						resObj.put("adress", user.getAdress());
-						resObj.put("email", user.getEmail());
-					} else {
-						resObj.put("status", 500);
-						resObj.put("message", "Failed to update user.");
-					}
+				if(!password.equals(newPassword)) {
+					user = userDao.updateUserPassword(userDto, newPassword);
+					userDto.setPassword(newPassword);
 				}
+
+
+				if (!newNickname.equals(user.getNickname())) {
+					userDto.setNickname(newNickname);
+					user = userDao.updateUserNickname(userDto);
+				}
+
+				if (!newEmail.equals(user.getEmail())) {
+					userDto.setEmail(newEmail);
+					user = userDao.updateUserEmail(userDto);
+				}
+
+				if (!newPhone.equals(user.getPhone()) || !newTelecom.equals(user.getTelecom())) {
+					userDto.setPhone(newPhone);
+					userDto.setTelecom(newTelecom);
+					user = userDao.updateUserPhone(userDto);
+
+				}
+				if (!newAddress.equals(user)) {
+					userDto.setAdress(newAddress);
+					user = userDao.updateUserAdress(userDto);
+				}
+
+
+
+				System.out.println("user : " + user.getId());
+				if (user!=null) {
+					resObj.put("status", 200);
+					resObj.put("message", "User updated successfully.");
+					resObj.put("id", user.getId());
+					resObj.put("password", newPassword);
+					resObj.put("nickname", user.getNickname());
+					resObj.put("name", user.getName());
+					resObj.put("securityNumber", user.getSecurityNumber());
+					resObj.put("telecom", user.getTelecom());
+					resObj.put("phone", user.getPhone());
+					resObj.put("adress", user.getAdress());
+					resObj.put("email", user.getEmail());
+				} else {
+					response.sendError(400);
+					resObj.put("status", 400);
+					resObj.put("message", "No Existed User");
+				}
+
+			} else {
+				response.sendError(500);
+				resObj.put("status", 500);
+				resObj.put("message", "Database Error");
 			}
+			response.getWriter().append(resObj.toString());
+
+			}
+
 
 		}
 	}
