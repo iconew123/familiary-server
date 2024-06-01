@@ -1,7 +1,6 @@
 package user.controller.action;
 
 import org.json.JSONObject;
-import user.model.User;
 import user.model.UserDao;
 import user.model.UserRequestDto;
 import util.Action;
@@ -36,34 +35,7 @@ public class CheckDuplicate implements Action {
                 UserDao userDao = UserDao.getInstance();
                 UserRequestDto userDto = new UserRequestDto();
 
-                boolean result = false;
-
-                if (field.equals("id") ) {
-                    User user = userDao.findUserById(value);
-                    if (user!=null) {
-                        result = true;
-                    }
-                }
-
-                else if (field.equals(("nickname"))) {
-                    User user = userDao.findUserByNickname(value);
-                    if (user!=null) {
-                        result = true;
-                    }
-                }
-                else if (field.equals(("phone"))) {
-                    User user = userDao.findUserByphone(value);
-                    if (user!=null) {
-                        result = true;
-                    }
-                }
-
-                else if (field.equals(("email"))) {
-                    User user = userDao.findUserByEamil(value);
-                    if (user!=null) {
-                        result = true;
-                    }
-                }
+                boolean result = userDao.isDuplicate(field, value);
 
                 if (result) {
                     resObj.put("status", 200);
