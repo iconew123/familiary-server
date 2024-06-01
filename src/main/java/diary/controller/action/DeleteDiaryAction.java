@@ -47,7 +47,7 @@ public class DeleteDiaryAction implements Action {
 
             // 제대로 된 값이 넘어왔을 때,
             if (isGet) {
-                DiaryResponseDto diary = diaryDao.findDiaryOfDate(date);
+                DiaryResponseDto diary = diaryDao.findDiaryOfDateAndCode(date,babyCode);
 
                 // 해당 날짜에 다이어리가 작성이 되었으면
                 if (diary != null) {

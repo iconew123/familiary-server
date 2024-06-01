@@ -105,7 +105,7 @@ public class UpdateDiaryAction implements Action {
 
             if (isGet) {
                 Date date = Date.valueOf(dateStr);
-                DiaryResponseDto diary = diaryDao.findDiaryOfDate(date);
+                DiaryResponseDto diary = diaryDao.findDiaryOfDateAndCode(date,babyCode);
 
                 if (diary != null) {
                     DiaryRequestDto updateDiary = new DiaryRequestDto(diary.getCode(), babyCode, date, title, content, category);

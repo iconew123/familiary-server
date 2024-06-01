@@ -24,16 +24,27 @@ public class FindOneDiary implements Action {
         String method = request.getMethod();
 
         String dateStr = null;
+        String babycode = null;
 
         if (method.equals("GET")) {
 
             dateStr = request.getParameter("date");
+            babycode = request.getParameter("babycode");
 
-            if (dateStr != null && !dateStr.isEmpty()) {
+            boolean isVaild = true;
+
+            if(dateStr == null && dateStr.isEmpty())
+                isVaild = false;
+            if(babycode == null && babycode.isEmpty())
+                isVaild = false;
+
+
+            if (isVaild) {
                 Date date = Date.valueOf(dateStr);
-                DiaryResponseDto diary = diaryDao.findDiaryOfDate(date);
+                DiaryResponseDto diary = diaryDao.findDiaryOfDateAndCode(date,babycode);
 
                 if (diary != null) {
+
                     ImageDao imageDao = ImageDao.getInstance();
                     ImageResponseDto image = imageDao.findImageByCodeAndType(String.valueOf(diary.getCode()), Diary.diary);
 

@@ -22,15 +22,49 @@ public class DiaryDao {
         return instance;
     }
 
-    public DiaryResponseDto findDiaryOfDate(Date date) {
+//    public DiaryResponseDto findDiaryOfDate(Date date) {
+//        DiaryResponseDto readDiary = null;
+//
+//        try {
+//            conn = DBManager.getConnection();
+//            String sql = "SELECT * FROM diary WHERE date=?;";
+//            pstmt = conn.prepareStatement(sql);
+//
+//            pstmt.setDate(1, date);
+//
+//            rs = pstmt.executeQuery();
+//            while (rs.next()) {
+//                int diarycode = rs.getInt(1);
+//                String babyCode = rs.getString(2);
+//                Date getDate = rs.getDate(3);
+//                String title = rs.getString(4);
+//                String content = rs.getString(5);
+//                String category = rs.getString(6);
+//                Timestamp readDate = rs.getTimestamp(7);
+//                Timestamp updateDate = rs.getTimestamp(8);
+//
+//                readDiary = new DiaryResponseDto(diarycode, babyCode, getDate, title, content, category, readDate, updateDate);
+//            }
+//        } catch (SQLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } finally {
+//            DBManager.close(conn, pstmt, rs);
+//        }
+//
+//        return readDiary;
+//    }
+
+    public DiaryResponseDto findDiaryOfDateAndCode(Date date, String babycode) {
         DiaryResponseDto readDiary = null;
 
         try {
             conn = DBManager.getConnection();
-            String sql = "SELECT * FROM diary WHERE date=?;";
+            String sql = "SELECT * FROM diary WHERE date=? AND baby_code=?;";
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setDate(1, date);
+            pstmt.setString(2, babycode);
 
             rs = pstmt.executeQuery();
             while (rs.next()) {

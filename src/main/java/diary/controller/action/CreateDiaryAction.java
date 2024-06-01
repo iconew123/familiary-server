@@ -31,7 +31,7 @@ public class CreateDiaryAction implements Action {
         DiaryDao diaryDao = DiaryDao.getInstance();
 
         String method = request.getMethod();
-        String babyCode = null;
+        String babyCode = request.getParameter("babycode");
         String title = null;
         String content = null;
         String category = null;
@@ -44,7 +44,7 @@ public class CreateDiaryAction implements Action {
         boolean isGet = true;
 
         // 오늘날짜 다이어리를 이미 작성했는지 유효성 검사
-        DiaryResponseDto diary = diaryDao.findDiaryOfDate(sqlDate);
+        DiaryResponseDto diary = diaryDao.findDiaryOfDateAndCode(sqlDate,babyCode);
 
         if (diary == null) {
             isVaild = true;
@@ -120,7 +120,7 @@ public class CreateDiaryAction implements Action {
                         if (imageId != null && imageUrl != null) {
                             ImageDao imageDao = ImageDao.getInstance();
 
-                            diary = diaryDao.findDiaryOfDate(sqlDate);
+                            diary = diaryDao.findDiaryOfDateAndCode(sqlDate,babyCode);
                             System.out.println(diary);
                             ImageRequestDto uploadImage = new ImageRequestDto(imageUrl, imageId, Diary.diary, String.valueOf(diary.getCode()));
                             System.out.println(uploadImage);
