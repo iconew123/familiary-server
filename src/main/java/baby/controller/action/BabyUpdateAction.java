@@ -87,7 +87,6 @@ public class BabyUpdateAction implements Action {
 						case "blood_type":
 							blood_type = value;
 							break;
-
 					}
 
 					br.close();
@@ -97,6 +96,9 @@ public class BabyUpdateAction implements Action {
 		}
 		System.out.println("변경닉네임: " + nickname);
 		System.out.println("베이비코드: " + code);
+		System.out.println("baby name: " + name);
+
+		System.out.println("성별: " + gender);
 		BabyDao dao = new BabyDao();
 		BabyRequestDto baby = new BabyRequestDto(code, nickname, name, gender, expected_date, blood_type);
 		boolean success = dao.updateBaby(baby);
