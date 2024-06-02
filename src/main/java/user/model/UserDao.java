@@ -55,6 +55,25 @@ public class UserDao {
 		return null;
 	}
 
+	public boolean isDuplicate(String field, String value) {
+
+		try  {
+			conn = DBManager.getConnection();
+
+			String sql = "SELECT COUNT(*) FROM users WHERE " + field + " = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, value);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1) > 0;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 		public User findUserById(String id) {
 			User user = null;
 

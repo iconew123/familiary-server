@@ -16,7 +16,7 @@ public class DeleteAction implements Action {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String method = request.getMethod();
 
-        if (method.equals("DELETE")) {
+        if (method.equals("POST")) {
             String id = request.getParameter("id");
             String password = request.getParameter("password");
 
