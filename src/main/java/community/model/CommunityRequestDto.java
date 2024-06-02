@@ -32,10 +32,9 @@ public class CommunityRequestDto {
 		this.category = category;
 	}
 	
-	public CommunityRequestDto(int code, String userId) {
+	public CommunityRequestDto(int code) {
 		super();
 		this.code = code;
-		this.userId = userId;
 	}
 
 	public int getCode() {
