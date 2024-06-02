@@ -23,8 +23,9 @@ public class UpdateAction implements Action {
 			String nickname = request.getParameter("nickname");
 			String telecom = request.getParameter("telecom");
 			String phone = request.getParameter("phone");
+			String address = request.getParameter("address");
 			String email = request.getParameter("email");
-			String adress = request.getParameter("adress");
+
 
 			boolean isValid = true;
 			if (password == null || password.equals(""))
@@ -55,25 +56,22 @@ public class UpdateAction implements Action {
 					user = userDao.updateUserNickname(userDto);
 				}
 
+				if (!phone.equals(user.getPhone()) || !telecom.equals(user.getTelecom())) {
+					userDto.setPhone(phone);
+					userDto.setTelecom(telecom);
+					user = userDao.updateUserPhone(userDto);
+				}
+
+				if (!address.equals(user.getAddress())) {
+					userDto.setAddress(address);
+					user = userDao.updateUserAddress(userDto);
+				}
+
 				if (!email.equals(user.getEmail())) {
 					userDto.setEmail(email);
 					user = userDao.updateUserEmail(userDto);
 				}
 
-				if (!phone.equals(user.getPhone()) || !telecom.equals(user.getTelecom())) {
-					userDto.setPhone(phone);
-					userDto.setTelecom(telecom);
-					user = userDao.updateUserPhone(userDto);
-
-				}
-				if (!adress.equals(user)) {
-					userDto.setAdress(adress);
-					user = userDao.updateUserAdress(userDto);
-				}
-
-
-
-				System.out.println("user : " + user.getId());
 				if (user!=null) {
 					resObj.put("status", 200);
 					resObj.put("message", "User updated successfully.");
@@ -84,8 +82,8 @@ public class UpdateAction implements Action {
 					resObj.put("securityNumber", user.getSecurityNumber());
 					resObj.put("telecom", user.getTelecom());
 					resObj.put("phone", user.getPhone());
+					resObj.put("address", user.getAddress());
 					resObj.put("email", user.getEmail());
-					resObj.put("adress", user.getAdress());
 
 				} else {
 					response.sendError(400);
@@ -100,8 +98,8 @@ public class UpdateAction implements Action {
 			}
 			response.getWriter().append(resObj.toString());
 
-			}
-
-
 		}
+
+
 	}
+}

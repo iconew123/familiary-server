@@ -9,7 +9,7 @@ public class UserRequestDto {
 	private String securityNumber;
 	private String telecom;
 	private String phone;
-	private String adress;
+	private String address;
 	private String email;
 
 	public UserRequestDto() {
@@ -17,7 +17,7 @@ public class UserRequestDto {
 	}
 
 	public UserRequestDto(String id, String password, String nickname, String name, String securityNumber,
-			String telecom, String phone) {
+						  String telecom, String phone) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -29,7 +29,7 @@ public class UserRequestDto {
 	}
 
 	public UserRequestDto(String id, String password, String nickname, String name, String securityNumber,
-			String telecom, String phone, String adress, String email) {
+						  String telecom, String phone, String address, String email) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -38,7 +38,7 @@ public class UserRequestDto {
 		this.securityNumber = securityNumber;
 		this.telecom = telecom;
 		this.phone = phone;
-		this.adress = adress;
+		this.address = address;
 		this.email = email;
 	}
 
@@ -98,12 +98,12 @@ public class UserRequestDto {
 		this.phone = phone;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getEmail() {

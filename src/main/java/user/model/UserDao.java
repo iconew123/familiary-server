@@ -27,7 +27,7 @@ public class UserDao {
 		try {
 			conn = DBManager.getConnection();
 
-			String sql = "INSERT INTO users(id, password,nickname, name, security_number , telecom, phone, email, adress ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO users(id, password,nickname, name, security_number , telecom, phone, address, email ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -38,11 +38,10 @@ public class UserDao {
 			pstmt.setString(5, userDto.getSecurityNumber());
 			pstmt.setString(6, userDto.getTelecom());
 			pstmt.setString(7, userDto.getPhone());
+			String address = userDto.getAddress().equals("") ? null : userDto.getAddress();
+			pstmt.setString(8, address);
 			String email = userDto.getEmail().equals("") ? null : userDto.getEmail();
-			pstmt.setString(8, email);
-
-			String adress = userDto.getAdress().equals("") ? null : userDto.getAdress();
-			pstmt.setString(9, adress);
+			pstmt.setString(9, email);
 
 			pstmt.execute();
 
@@ -74,12 +73,12 @@ public class UserDao {
 		return false;
 	}
 
-		public User findUserById(String id) {
-			User user = null;
+	public User findUserById(String id) {
+		User user = null;
 
 		try {
 			conn = DBManager.getConnection();
-			String sql = "SELECT id, nickname, name, security_number, telecom, phone, email, adress FROM users WHERE id=?";
+			String sql = "SELECT id, nickname, name, security_number, telecom, phone,  address , emailFROM users WHERE id=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -92,10 +91,11 @@ public class UserDao {
 				String securityNumber = rs.getString(4);
 				String telecom = rs.getString(5);
 				String phone = rs.getString(6);
-				String email = rs.getString(7);
-				String adress = rs.getString(8);
+				String address = rs.getString(7);
+				String email = rs.getString(8);
 
-				user = new User(id, nickname, name,  securityNumber, telecom, phone, email, adress );
+
+				user = new User(id, nickname, name,  securityNumber, telecom, phone, address,  email);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -108,7 +108,7 @@ public class UserDao {
 
 		try {
 			conn = DBManager.getConnection();
-			String sql = "SELECT id, name, security_number, telecom, phone, email, adress FROM users WHERE nickname=?";
+			String sql = "SELECT id, name, security_number, telecom, phone, address, email FROM users WHERE nickname=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, nickname);
@@ -121,10 +121,11 @@ public class UserDao {
 				String securityNumber = rs.getString(4);
 				String telecom = rs.getString(5);
 				String phone = rs.getString(6);
-				String email = rs.getString(7);
-				String adress = rs.getString(8);
+				String address = rs.getString(7);
+				String email = rs.getString(8);
 
-				user = new User(id, nickname, name,  securityNumber, telecom, phone, email, adress );
+
+				user = new User(id, nickname, name,  securityNumber, telecom, phone, address, email );
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -137,7 +138,7 @@ public class UserDao {
 
 		try {
 			conn = DBManager.getConnection();
-			String sql = "SELECT id,nickname, name, security_number, telecom,email, adress FROM users WHERE phone=?";
+			String sql = "SELECT id,nickname, name, security_number, telecom, address, email FROM users WHERE phone=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, phone);
@@ -150,10 +151,11 @@ public class UserDao {
 				String name = rs.getString(4);
 				String securityNumber = rs.getString(5);
 				String telecom = rs.getString(6);
-				String email = rs.getString(7);
-				String adress = rs.getString(8);
+				String address = rs.getString(7);
+				String email = rs.getString(8);
 
-				user = new User(id, nickname, name,  securityNumber, telecom, phone, email, adress );
+
+				user = new User(id, nickname, name,  securityNumber, telecom, phone, address,  email );
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -166,7 +168,7 @@ public class UserDao {
 
 		try {
 			conn = DBManager.getConnection();
-			String sql = "SELECT id, nickname, name, security_number, telecom, phone, adress FROM users WHERE email=?";
+			String sql = "SELECT id, nickname, name, security_number, telecom, phone, address FROM users WHERE email=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, email);
@@ -180,9 +182,9 @@ public class UserDao {
 				String securityNumber = rs.getString(5);
 				String telecom = rs.getString(6);
 				String phone = rs.getString(7);
-				String adress = rs.getString(8);
+				String address = rs.getString(8);
 
-				user = new User(id, nickname, name,  securityNumber, telecom, phone, email, adress );
+				user = new User(id, nickname, name,  securityNumber, telecom, phone, address,  email );
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -195,7 +197,7 @@ public class UserDao {
 
 		try {
 			conn = DBManager.getConnection();
-			String sql = "SELECT id, nickname, name, security_number, telecom, phone, email, adress FROM users WHERE id=? AND password=?";
+			String sql = "SELECT id, nickname, name, security_number, telecom, phone, address ,email FROM users WHERE id=? AND password=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -209,10 +211,11 @@ public class UserDao {
 				String securityNumber = rs.getString(4);
 				String telecom = rs.getString(5);
 				String phone = rs.getString(6);
-				String email = rs.getString(7);
-				String adress = rs.getString(8);
+				String address = rs.getString(7);
+				String email = rs.getString(8);
 
-				user = new UserResponseDto(id, nickname, name, securityNumber, telecom, phone, email, adress );
+
+				user = new UserResponseDto(id, nickname, name, securityNumber, telecom, phone, address,  email);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -225,7 +228,7 @@ public class UserDao {
 
 		try {
 			conn = DBManager.getConnection();
-			String sql = "SELECT id, nickname, name, security_number, telecom, phone, email, adress FROM users WHERE id=? AND password=?";
+			String sql = "SELECT id, nickname, name, security_number, telecom, phone, address , email FROM users WHERE id=? AND password=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -239,10 +242,10 @@ public class UserDao {
 				String securityNumber = rs.getString(4);
 				String telecom = rs.getString(5);
 				String phone = rs.getString(6);
-				String email = rs.getString(7);
-				String adress = rs.getString(8);
+				String address = rs.getString(7);
+				String email = rs.getString(8);
 
-				user = new UserResponseDto(id, name, nickname, email, adress, securityNumber, telecom, phone);
+				user = new UserResponseDto(id, nickname, name, securityNumber, telecom, phone, address, email);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -275,20 +278,20 @@ public class UserDao {
 
 	public UserResponseDto updateUserPassword(UserRequestDto userDto, String newPassword) {
 		UserResponseDto user = null;
-		
+
 		if(newPassword == null || newPassword.equals("")) {
 			return user;
 		}
-		
+
 		try {
 			conn = DBManager.getConnection();
 			String sql = "UPDATE users SET password=? WHERE id=? AND password=?";
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, newPassword);
 			pstmt.setString(2, userDto.getId());
 			pstmt.setString(3, userDto.getPassword());
-			
+
 			pstmt.execute();
 
 			User userVo = findUserById(userDto.getId());
@@ -299,7 +302,7 @@ public class UserDao {
 		}
 		return user;
 	}
-	
+
 	public UserResponseDto updateUserNickname(UserRequestDto userDto) {
 		UserResponseDto user = null;
 		try {
@@ -318,25 +321,7 @@ public class UserDao {
 		}
 		return user;
 	}
-	
-	public UserResponseDto updateUserEmail(UserRequestDto userDto) {
-		UserResponseDto user = null;
-		try {
-			conn = DBManager.getConnection();
-			String sql = "UPDATE users SET email=? WHERE id=? AND password=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userDto.getEmail());
-			pstmt.setString(2, userDto.getId());
-			pstmt.setString(3, userDto.getPassword());
 
-			pstmt.execute();
-
-			user = findUserByIdAndPassword(userDto.getId(), userDto.getPassword());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return user;
-	}
 
 	public UserResponseDto updateUserPhone(UserRequestDto userDto) {
 		UserResponseDto user = null;
@@ -357,14 +342,34 @@ public class UserDao {
 		}
 		return user;
 	}
-	
-	public UserResponseDto updateUserAdress(UserRequestDto userDto) {
+
+	public UserResponseDto updateUserAddress(UserRequestDto userDto) {
 		UserResponseDto user = null;
 		try {
 			conn = DBManager.getConnection();
-			String sql = "UPDATE users SET adress=? WHERE id=? AND password=?";
+			String sql = "UPDATE users SET address=? WHERE id=? AND password=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userDto.getAdress());
+			pstmt.setString(1, userDto.getAddress());
+			pstmt.setString(2, userDto.getId());
+			pstmt.setString(3, userDto.getPassword());
+
+			pstmt.execute();
+
+			user = findUserByIdAndPassword(userDto.getId(), userDto.getPassword());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
+
+	public UserResponseDto updateUserEmail(UserRequestDto userDto) {
+		UserResponseDto user = null;
+		try {
+			conn = DBManager.getConnection();
+			String sql = "UPDATE users SET email=? WHERE id=? AND password=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userDto.getEmail());
 			pstmt.setString(2, userDto.getId());
 			pstmt.setString(3, userDto.getPassword());
 

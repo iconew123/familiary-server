@@ -7,11 +7,11 @@ public class UserResponseDto {
 	private String securityNumber;
 	private String telecom;
 	private String phone;
-	private String adress;
+	private String address;
 	private String email;
 
-	public UserResponseDto(String id,String nickname, String name, String securityNumber,String telecom, String phone, String email,  String adress
-			) {
+	public UserResponseDto(String id,String nickname, String name, String securityNumber,String telecom, String phone, String address , String email
+	) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -19,8 +19,8 @@ public class UserResponseDto {
 		this.securityNumber = securityNumber;
 		this.telecom = telecom;
 		this.phone = phone;
+		this.address = address;
 		this.email = email;
-		this.adress = adress;
 	}
 
 	public UserResponseDto(User user) {
@@ -28,11 +28,12 @@ public class UserResponseDto {
 		this.name = user.getName();
 		this.email = user.getEmail();
 		this.nickname = user.getNickname();
-		this.adress = user.getAdress();
+		this.address = user.getAddress();
 		this.securityNumber = user.getSecurityNumber();
 		this.telecom = user.getTelecom();
 		this.phone = user.getPhone();
-
+		this.address = user.getAddress();
+		this.email = user.getEmail();
 	}
 	public String getId() {
 		return id;
@@ -90,11 +91,11 @@ public class UserResponseDto {
 		this.email = email;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }

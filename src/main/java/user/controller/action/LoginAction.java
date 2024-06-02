@@ -31,7 +31,7 @@ public class LoginAction implements Action {
 
          response.setCharacterEncoding("UTF-8");
          response.setContentType("application/json;charset=utf-8");
-         
+
          if (isValid) {
             UserDao userDao = UserDao.getInstance();
             UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
@@ -47,7 +47,7 @@ public class LoginAction implements Action {
                resObj.put("securityNumber", user.getSecurityNumber());
                resObj.put("telecom", user.getTelecom());
                resObj.put("phone", user.getPhone());
-               resObj.put("adress", user.getAdress());
+               resObj.put("address", user.getAddress());
                resObj.put("email", user.getEmail());
             } else {
                resObj.put("status", 400);

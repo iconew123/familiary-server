@@ -1,7 +1,5 @@
 package user.model;
 
-import java.sql.Timestamp;
-
 public class User {
 
 	private String id;
@@ -10,11 +8,11 @@ public class User {
 	private String securityNumber;
 	private String telecom;
 	private String phone;
-	private String adress;
+	private String address;
 	private String email;
 
 	public User(String id, String nickname, String name, String securityNumber,
-			String telecom, String phone, String adress, String email) {
+				String telecom, String phone, String address, String email) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -22,7 +20,7 @@ public class User {
 		this.securityNumber = securityNumber;
 		this.telecom = telecom;
 		this.phone = phone;
-		this.adress = adress;
+		this.address = address;
 		this.email = email;
 	}
 
@@ -51,8 +49,8 @@ public class User {
 		return phone;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
 	public String getEmail() {
