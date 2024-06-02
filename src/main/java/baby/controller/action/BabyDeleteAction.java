@@ -18,11 +18,6 @@ public class BabyDeleteAction implements Action{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
-		response.setHeader("Access-Control-Allosw-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-
 		String baby_code = request.getParameter("code");
 		BabyDao dao = new BabyDao();
 		Baby baby = dao.findBabyByCode(baby_code);
