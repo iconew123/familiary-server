@@ -26,9 +26,8 @@ public class DeleteCommunityAction implements Action {
 		
 		String communityCode = request.getParameter("code");
 		int code = Integer.parseInt(communityCode);
-		String userId = request.getParameter("userId");
 		
-		CommunityRequestDto community = new CommunityRequestDto(code, userId);
+		CommunityRequestDto community = new CommunityRequestDto(code);
 		boolean success = communityDao.deleteCommunity(community);
 		
 		JSONObject resObj = new JSONObject();

@@ -206,11 +206,10 @@ public class CommunityDao {
 		try {
 			conn = DBManager.getConnection();
 			
-			String sql = "DELETE FROM community WHERE code=? AND user_id=?";
+			String sql = "DELETE FROM community WHERE code=?";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, communityRequestDto.getCode());
-			pstmt.setString(2, communityRequestDto.getUserId());
 
 			pstmt.execute();
 
