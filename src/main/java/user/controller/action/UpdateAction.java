@@ -46,12 +46,6 @@ public class UpdateAction implements Action {
 				userDto.setPassword(password);
 
 
-				System.out.println("id : " + id);
-				System.out.println("password : " + password);
-				System.out.println("newPassword : " + newPassword);
-				System.out.println("newNickname : "+ newNickname);
-
-
 				if(!password.equals(newPassword)) {
 					user = userDao.updateUserPassword(userDto, newPassword);
 					userDto.setPassword(newPassword);
@@ -92,8 +86,9 @@ public class UpdateAction implements Action {
 					resObj.put("securityNumber", user.getSecurityNumber());
 					resObj.put("telecom", user.getTelecom());
 					resObj.put("phone", user.getPhone());
-					resObj.put("adress", user.getAdress());
 					resObj.put("email", user.getEmail());
+					resObj.put("adress", user.getAdress());
+
 				} else {
 					response.sendError(400);
 					resObj.put("status", 400);

@@ -2,7 +2,6 @@ package user.controller.action;
 
 import org.json.JSONObject;
 import user.model.UserDao;
-import user.model.UserRequestDto;
 import util.Action;
 
 import javax.servlet.ServletException;
@@ -24,6 +23,8 @@ public class CheckDuplicate implements Action {
 
             if (field == null || field.equals(""))
                 isValid = false;
+            if (value == null || value.equals(""))
+                isValid = false;
 
 
             response.setCharacterEncoding("UTF-8");
@@ -33,29 +34,19 @@ public class CheckDuplicate implements Action {
 
             if (isValid) {
                 UserDao userDao = UserDao.getInstance();
-                UserRequestDto userDto = new UserRequestDto();
+                boolean isDuplicate = userDao.isDuplicate(field, value);
 
-                boolean result = userDao.isDuplicate(field, value);
-
-                if (result) {
-                    resObj.put("status", 200);
-                    resObj.put("message", "Duplicate checked successfully.");
-
-                } else {
-                    response.sendError(400);
-                    resObj.put("status", 400);
-                    resObj.put("message", "No Existed User");
-                }
-
+                resObj.put("status", 200);
+                resObj.put("message", "중복 체크가 성공적으로 완료되었습니다.");
+                resObj.put("isDuplicate", isDuplicate);
             } else {
-                response.sendError(500);
-                resObj.put("status", 500);
-                resObj.put("message", "Database Error");
+                resObj.put("status", 400);
+                resObj.put("message", "잘못된 요청입니다.");
             }
+
             response.getWriter().append(resObj.toString());
 
         }
-
-
     }
+
 }

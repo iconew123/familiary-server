@@ -24,7 +24,7 @@ public class LoginAction implements Action {
 
          if (id == null || id.equals(""))
             isValid = false;
-         else if (password == null || password.equals(""))
+         if (password == null || password.equals(""))
             isValid = false;
 
          JSONObject resObj = new JSONObject();
