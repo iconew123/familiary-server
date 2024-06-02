@@ -20,11 +20,11 @@ public class UpdateAction implements Action {
 			String id = request.getParameter("id");
 			String password = request.getParameter("password");
 			String newPassword = request.getParameter("newPassword");
-			String newNickname = request.getParameter("newNickname");
-			String newTelecom = request.getParameter("newTelecom");
-			String newPhone = request.getParameter("newPhone");
-			String newEmail = request.getParameter("newEmail");
-			String newAddress = request.getParameter("newAddress");
+			String nickname = request.getParameter("nickname");
+			String telecom = request.getParameter("telecom");
+			String phone = request.getParameter("phone");
+			String email = request.getParameter("email");
+			String adress = request.getParameter("adress");
 
 			boolean isValid = true;
 			if (password == null || password.equals(""))
@@ -35,8 +35,6 @@ public class UpdateAction implements Action {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json;charset=utf-8");
 			JSONObject resObj = new JSONObject();
-
-			System.out.println(isValid);
 
 			if (isValid) {
 				UserDao userDao = UserDao.getInstance();
@@ -52,24 +50,24 @@ public class UpdateAction implements Action {
 				}
 
 
-				if (!newNickname.equals(user.getNickname())) {
-					userDto.setNickname(newNickname);
+				if (!nickname.equals(user.getNickname())) {
+					userDto.setNickname(nickname);
 					user = userDao.updateUserNickname(userDto);
 				}
 
-				if (!newEmail.equals(user.getEmail())) {
-					userDto.setEmail(newEmail);
+				if (!email.equals(user.getEmail())) {
+					userDto.setEmail(email);
 					user = userDao.updateUserEmail(userDto);
 				}
 
-				if (!newPhone.equals(user.getPhone()) || !newTelecom.equals(user.getTelecom())) {
-					userDto.setPhone(newPhone);
-					userDto.setTelecom(newTelecom);
+				if (!phone.equals(user.getPhone()) || !telecom.equals(user.getTelecom())) {
+					userDto.setPhone(phone);
+					userDto.setTelecom(telecom);
 					user = userDao.updateUserPhone(userDto);
 
 				}
-				if (!newAddress.equals(user)) {
-					userDto.setAdress(newAddress);
+				if (!adress.equals(user)) {
+					userDto.setAdress(adress);
 					user = userDao.updateUserAdress(userDto);
 				}
 
