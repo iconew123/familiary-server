@@ -225,5 +225,34 @@ public boolean checkFather(String baby_code){
 		return isDupl;
 	}
 
+
+	public boolean checkBaby(String user_id){
+		boolean isExist = false;
+
+		try {
+			conn = DBManager.getConnection();
+
+			String sql = "SELECT count(*) FROM enroll WHERE user_id = ? AND position IN ('mother', 'father');";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				if (count > 0) {
+					isExist = true;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+
+		return isExist;
+	}
+
 }
 
