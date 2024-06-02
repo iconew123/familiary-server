@@ -16,6 +16,7 @@ import diary.model.DiaryRequestDto;
 import diary.model.DiaryResponseDto;
 import image.model.ImageDao;
 import image.model.ImageRequestDto;
+import image.model.ImageResponseDto;
 import org.json.JSONObject;
 import util.Action;
 import util.InputStreamParsor;
@@ -130,8 +131,22 @@ public class UpdateDiaryAction implements Action {
                     if (imageId != null && imageUrl != null) {
                         ImageDao imageDao = ImageDao.getInstance();
 
-                        ImageRequestDto updateImage = new ImageRequestDto(imageUrl, imageId, Diary.diary, String.valueOf(diary.getCode()));
-                        isValid = imageDao.updateImage(updateImage);
+                        ImageResponseDto findimage = imageDao.findImageByCodeAndType(String.valueOf(diary.getCode()), Diary.diary);
+
+                        if(findimage != null) {
+                            ImageRequestDto updateImage = new ImageRequestDto(imageUrl, imageId, Diary.diary, String.valueOf(diary.getCode()));
+                            isValid = imageDao.updateImage(updateImage);
+
+                        }else{
+                            ImageRequestDto newImage = new ImageRequestDto(imageUrl, imageId , Diary.diary, String.valueOf(diary.getCode()));
+
+                            if(newImage != null){
+                                isValid = imageDao.createImage(newImage);
+                            }else{
+                                isValid = false;
+                            }
+                        }
+
 
                         /*
                         if (isValid) {

@@ -180,7 +180,7 @@ public class ImageDao {
 
         try {
             conn = DBManager.getConnection();
-            String sql = "SELECT i.*, b.status FROM image i JOIN diary d ON d.code=i.code JOIN backup b ON b.num=i.num WHERE d.baby_code=? AND i.type=?;";
+            String sql = "SELECT i.*, b.status FROM image i JOIN diary d ON d.code=i.code JOIN backup b ON b.num=i.num WHERE d.baby_code=? AND i.type=? AND b.status=1;";
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, babycode);
