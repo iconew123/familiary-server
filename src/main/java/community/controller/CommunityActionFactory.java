@@ -23,7 +23,7 @@ public class CommunityActionFactory {
 	public Action getAction(String command) {
 		Action action = null;
 
-		if (command.equals("write")) {
+		if (command.equals("create")) {
 			action = new CreateCommunityAction();
 		} else if (command.equals("read/chat")) {
 			action = new ReadCommunityByTalkAction();
