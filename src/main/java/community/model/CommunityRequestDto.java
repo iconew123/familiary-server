@@ -22,6 +22,16 @@ public class CommunityRequestDto {
 		this.content = content;
 		this.category = category;
 	}
+
+	public CommunityRequestDto(int code, String userNickname, String title, String content,
+							   String category) {
+		super();
+		this.code = code;
+		this.userNickname = userNickname;
+		this.title = title;
+		this.content = content;
+		this.category = category;
+	}
 	
 	public CommunityRequestDto(String userId, String userNickname, String title, String content, String category) {
 		super();

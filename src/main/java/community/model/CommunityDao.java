@@ -182,12 +182,13 @@ public class CommunityDao {
 		try {
 			conn = DBManager.getConnection();
 
-			String sql = "UPDATE community SET title=?, content=? WHERE code=?";
+			String sql = "UPDATE community SET title=?, content=?, category=? WHERE code=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, communityDto.getTitle());
 			pstmt.setString(2, communityDto.getContent());
-			pstmt.setInt(3, communityDto.getCode());
+			pstmt.setString(3, communityDto.getCategory());
+			pstmt.setInt(4, communityDto.getCode());
 
 			pstmt.execute();
 
