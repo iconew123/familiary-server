@@ -78,7 +78,7 @@ public class UserDao {
 
 		try {
 			conn = DBManager.getConnection();
-			String sql = "SELECT id, nickname, name, security_number, telecom, phone,  address , emailFROM users WHERE id=?";
+			String sql = "SELECT id, nickname, name, security_number, telecom, phone,  address , email FROM users WHERE id=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -95,7 +95,7 @@ public class UserDao {
 				String email = rs.getString(8);
 
 
-				user = new User(id, nickname, name,  securityNumber, telecom, phone, address,  email);
+				user = new User(id, nickname, name,  securityNumber, telecom, phone, address, email);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

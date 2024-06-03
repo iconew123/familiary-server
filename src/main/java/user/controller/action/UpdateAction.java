@@ -71,7 +71,7 @@ public class UpdateAction implements Action {
 					userDto.setEmail(email);
 					user = userDao.updateUserEmail(userDto);
 				}
-
+				System.out.println("newPW : " + newPassword);
 				if (user!=null) {
 					resObj.put("status", 200);
 					resObj.put("message", "User updated successfully.");
