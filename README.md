@@ -1,3 +1,5 @@
+FAMILIARY
+
 요구사항 정의서 - https://docs.google.com/spreadsheets/d/1rbcw7myThzqLoL2FxhxpT_1o7t-XeOQS_jAKuTZBYmY/edit?usp=drive_link
 
 인터페이스 정의서 - https://docs.google.com/spreadsheets/d/1LbNl-WeZ9B9Y3sj1i3FLD27nFV7FWz2WmgviOELu5-8/edit?usp=drive_link
