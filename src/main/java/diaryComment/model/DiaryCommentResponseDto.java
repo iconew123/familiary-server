@@ -3,7 +3,7 @@ package diaryComment.model;
 import java.sql.Timestamp;
 
 public class DiaryCommentResponseDto {
-	private int code; // 다이어리 댓글 번호
+	private String code; // 다이어리 댓글 번호
 	private int diaryCode;
 	private String userId;
 	private String nickName;
@@ -11,7 +11,7 @@ public class DiaryCommentResponseDto {
 	private Timestamp regDate;
 	private Timestamp modDate;
 
-	public DiaryCommentResponseDto(int code, int diaryCode, String userId, String nickName, String content,
+	public DiaryCommentResponseDto(String code, int diaryCode, String userId, String nickName, String content,
 			Timestamp regDate, Timestamp modDate) {
 		super();
 		this.code = code;
@@ -23,7 +23,7 @@ public class DiaryCommentResponseDto {
 		this.modDate = modDate;
 	}
 
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
 
@@ -51,7 +51,7 @@ public class DiaryCommentResponseDto {
 		return modDate;
 	}
 
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 

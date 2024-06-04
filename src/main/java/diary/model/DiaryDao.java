@@ -167,14 +167,15 @@ public class DiaryDao {
 
     }
 
-    public boolean deleteDiary(Date date) {
+    public boolean deleteDiary(Date date, String babyCode) {
 
         try {
             conn = DBManager.getConnection();
-            String sql = "DELETE FROM diary WHERE date=?;";
+            String sql = "DELETE FROM diary WHERE date=? AND baby_code=?;";
             pstmt = conn.prepareStatement(sql);
 
             pstmt.setDate(1, date);
+            pstmt.setString(2, babyCode);
             int result = pstmt.executeUpdate();
 
             if (result == 1) {
