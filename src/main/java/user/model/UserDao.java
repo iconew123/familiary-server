@@ -325,6 +325,7 @@ public class UserDao {
 			pstmt.execute();
 			User userVo = findUserById(userDto.getId());
 			user = new UserResponseDto(userVo);
+			System.out.println();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

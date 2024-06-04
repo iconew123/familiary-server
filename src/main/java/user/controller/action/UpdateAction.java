@@ -40,9 +40,9 @@ public class UpdateAction implements Action {
 			if (isValid) {
 				UserDao userDao = UserDao.getInstance();
 
-				UserRequestDto userDto = new UserRequestDto(id, nickname, telecom, phone,address, email);
+				UserRequestDto userDto = new UserRequestDto(id, password, nickname, telecom, phone,address, email);
 				UserResponseDto user = userDao.updateUser(userDto, newPassword);
-
+				System.out.println(user!=null);
 				if (user!=null) {
 					resObj.put("status", 200);
 					resObj.put("message", "User updated successfully.");
@@ -54,7 +54,7 @@ public class UpdateAction implements Action {
 					resObj.put("phone", user.getPhone());
 					resObj.put("address", user.getAddress());
 					resObj.put("email", user.getEmail());
-
+					System.out.println(newPassword);
 				} else {
 					response.sendError(400);
 					resObj.put("status", 400);

@@ -43,7 +43,6 @@ public class DeleteAction implements Action {
 
                 boolean result = userDao.deleteUser(userDto);
 
-
                 if (result) {
                     resObj.put("status", 200);
                     resObj.put("message", "User updated successfully.");

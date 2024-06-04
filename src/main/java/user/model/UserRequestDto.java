@@ -16,11 +16,11 @@ public class UserRequestDto {
 
 	}
 
-	public UserRequestDto(String id, String nickname,
+	public UserRequestDto(String id, String password, String nickname,
 						  String telecom, String phone,String address, String email) {
 		super();
 		this.id = id;
-
+		this.password = password;
 		this.nickname = nickname;
 		this.telecom = telecom;
 		this.phone = phone;
