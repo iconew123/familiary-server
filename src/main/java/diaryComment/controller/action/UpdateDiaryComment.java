@@ -51,12 +51,12 @@ public class UpdateDiaryComment implements Action {
                 }
             }else{
                 resObj.put("status", 400);
-                resObj.put("message", "요소가 누락됐습니다.");
+                resObj.put("message", "잘못된 요청");
             }
 
         }else{
             resObj.put("status" , 404);
-            resObj.put("message" , "요청방법을 확인해주세요");
+            resObj.put("message" , "잘못된 요청");
         }
 
         response.setCharacterEncoding("UTF-8");

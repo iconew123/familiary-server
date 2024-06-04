@@ -57,7 +57,7 @@ public class CreateDiaryComment implements Action {
                 }
             }else{
                 resObj.put("status", 400);
-                resObj.put("message", "요청 값 누락");
+                resObj.put("message", "잘못된 요청");
             }
         }else{
             resObj.put("status", 404);
