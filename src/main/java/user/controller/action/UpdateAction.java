@@ -31,7 +31,7 @@ public class UpdateAction implements Action {
 			if (password == null || password.equals(""))
 				isValid = false;
 			if (newPassword == null || newPassword.equals(""))
-				isValid = false;
+				newPassword = password;
 
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json;charset=utf-8");
@@ -40,7 +40,7 @@ public class UpdateAction implements Action {
 			if (isValid) {
 				UserDao userDao = UserDao.getInstance();
 
-				UserRequestDto userDto = new UserRequestDto(id, password, nickname, telecom, phone,address, email);
+				UserRequestDto userDto = new UserRequestDto(id, password, nickname, telecom, phone, address, email);
 				UserResponseDto user = userDao.updateUser(userDto, newPassword);
 				System.out.println(user!=null);
 				if (user!=null) {

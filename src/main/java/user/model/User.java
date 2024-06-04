@@ -3,6 +3,7 @@ package user.model;
 public class User {
 
 	private String id;
+	private String password;
 	private String nickname;
 	private String name;
 	private String securityNumber;
@@ -11,10 +12,11 @@ public class User {
 	private String address;
 	private String email;
 
-	public User(String id, String nickname, String name, String securityNumber,
+	public User(String id, String password, String nickname, String name, String securityNumber,
 				String telecom, String phone, String address, String email) {
 		super();
 		this.id = id;
+		this.password = password;
 		this.nickname = nickname;
 		this.name = name;
 		this.securityNumber = securityNumber;
@@ -26,6 +28,9 @@ public class User {
 
 	public String getId() {
 		return id;
+	}
+	public String getPassword() {
+		return password;
 	}
 
 
