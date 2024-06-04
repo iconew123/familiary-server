@@ -24,8 +24,6 @@ public class DeleteAction implements Action {
             if (password == null || password.equals(""))
                 isValid = false;
 
-            System.out.println("id : " + id);
-            System.out.println("password : " + password);
 
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json;charset=utf-8");
@@ -38,7 +36,7 @@ public class DeleteAction implements Action {
                 UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
                 UserRequestDto userDto = new UserRequestDto();
 
-                userDto.setId(id);
+                userDto.setId(user.getId());
                 userDto.setPassword(password);
 
                 boolean result = userDao.deleteUser(userDto);
