@@ -1,6 +1,7 @@
 package user.model;
 
 import util.DBManager;
+import util.PasswordCrypto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,7 +33,7 @@ public class UserDao {
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, userDto.getId());
-			pstmt.setString(2, userDto.getPassword());
+			pstmt.setString(2, PasswordCrypto.encrypt(userDto.getPassword()));
 			pstmt.setString(3, userDto.getNickname());
 			pstmt.setString(4, userDto.getName());
 			pstmt.setString(5, userDto.getSecurityNumber());
@@ -71,6 +72,36 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public UserResponseDto findUserDtoById(String id) {
+		UserResponseDto user = null;
+
+		try {
+			conn = DBManager.getConnection();
+			String sql = "SELECT id, nickname, name, security_number, telecom, phone,  address , email FROM users WHERE id=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String nickname = rs.getString(2);
+				String name = rs.getString(3);
+				String securityNumber = rs.getString(4);
+				String telecom = rs.getString(5);
+				String phone = rs.getString(6);
+				String address = rs.getString(7);
+				String email = rs.getString(8);
+
+
+				user = new UserResponseDto(id, nickname, name,  securityNumber, telecom, phone, address, email);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 	public User findUserById(String id) {

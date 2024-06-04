@@ -54,7 +54,7 @@ public class JoinAction implements Action {
 
          if (isValid) {
             UserRequestDto userDto = new UserRequestDto(id, password, nickname, name, securityNumber, telecom,
-                    phone,address, email);
+                    phone, address, email);
             UserDao userDao = UserDao.getInstance();
             UserResponseDto user = userDao.createUser(userDto);
 
