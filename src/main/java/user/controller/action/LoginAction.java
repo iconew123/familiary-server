@@ -34,7 +34,7 @@ public class LoginAction implements Action {
 
          if (isValid) {
             UserDao userDao = UserDao.getInstance();
-            UserResponseDto user = userDao.findUserDtoById(id);
+            UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
 
             if (user != null) {
                System.out.println("user");

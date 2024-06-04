@@ -39,44 +39,14 @@ public class UpdateAction implements Action {
 
 			if (isValid) {
 				UserDao userDao = UserDao.getInstance();
-				UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
-				UserRequestDto userDto = new UserRequestDto();
-				userDto.setId(user.getId());
-				userDto.setPassword(password);
 
+				UserRequestDto userDto = new UserRequestDto(id, nickname, telecom, phone,address, email);
+				UserResponseDto user = userDao.updateUser(userDto, newPassword);
 
-				if(!password.equals(newPassword)) {
-					user = userDao.updateUserPassword(userDto, newPassword);
-					userDto.setPassword(newPassword);
-				}
-
-
-				if (!nickname.equals(user.getNickname())) {
-					userDto.setNickname(nickname);
-					user = userDao.updateUserNickname(userDto);
-				}
-
-				if (!phone.equals(user.getPhone()) || !telecom.equals(user.getTelecom())) {
-					userDto.setPhone(phone);
-					userDto.setTelecom(telecom);
-					user = userDao.updateUserPhone(userDto);
-				}
-
-				if (!address.equals(user.getAddress())) {
-					userDto.setAddress(address);
-					user = userDao.updateUserAddress(userDto);
-				}
-
-				if (!email.equals(user.getEmail())) {
-					userDto.setEmail(email);
-					user = userDao.updateUserEmail(userDto);
-				}
-				System.out.println("newPW : " + newPassword);
 				if (user!=null) {
 					resObj.put("status", 200);
 					resObj.put("message", "User updated successfully.");
 					resObj.put("id", user.getId());
-					resObj.put("password", newPassword);
 					resObj.put("nickname", user.getNickname());
 					resObj.put("name", user.getName());
 					resObj.put("securityNumber", user.getSecurityNumber());

@@ -36,9 +36,13 @@ public class UserActionFactory {
 		else if (command.equals("checkDuplicate")) {
 			action = new CheckDuplicate();
 		}
+		else if (command.equals("verifyPassword")) {
+			action = new VerifyPassword();
+		}
 		else if (command.equals("checkDeleteBaby")) {
 			action = new CheckDeleteBabyAction();
 		}
+
 
 		return action;
 		

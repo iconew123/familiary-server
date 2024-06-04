@@ -16,16 +16,16 @@ public class UserRequestDto {
 
 	}
 
-	public UserRequestDto(String id, String password, String nickname, String name, String securityNumber,
-						  String telecom, String phone) {
+	public UserRequestDto(String id, String nickname,
+						  String telecom, String phone,String address, String email) {
 		super();
 		this.id = id;
-		this.password = password;
+
 		this.nickname = nickname;
-		this.name = name;
-		this.securityNumber = securityNumber;
 		this.telecom = telecom;
 		this.phone = phone;
+		this.address = address;
+		this.email = email;
 	}
 
 	public UserRequestDto(String id, String password, String nickname, String name, String securityNumber,
