@@ -2,13 +2,13 @@ package diaryComment.model;
 
 public class DiaryCommentRequestDto {
 
-	private int code; // 다이어리 댓글 번호
+	private String code; // 다이어리 댓글 번호
 	private int diaryCode;
 	private String userId;
 	private String nickName;
 	private String content;
 
-	public DiaryCommentRequestDto(int code, int diaryCode, String userId, String nickName, String content) {
+	public DiaryCommentRequestDto(String code, int diaryCode, String userId, String nickName, String content) {
 		super();
 		this.code = code;
 		this.diaryCode = diaryCode;
@@ -24,7 +24,7 @@ public class DiaryCommentRequestDto {
 		this.nickName = nickName;
 	}
 
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
 
@@ -44,7 +44,7 @@ public class DiaryCommentRequestDto {
 		return content;
 	}
 
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 

@@ -1,6 +1,7 @@
 package diaryComment.controller;
 
 import diaryComment.controller.action.CreateDiaryComment;
+import diaryComment.controller.action.UpdateDiaryComment;
 import util.Action;
 
 public class DiaryCommentActionFactory {
@@ -20,6 +21,8 @@ public class DiaryCommentActionFactory {
 
         if(command.equals("create"))
             action = new CreateDiaryComment();
+        else if(command.equals("update"))
+            action = new UpdateDiaryComment();
 
         return action;
     }

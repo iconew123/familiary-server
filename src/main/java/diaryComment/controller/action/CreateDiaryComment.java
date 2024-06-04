@@ -17,20 +17,20 @@ public class CreateDiaryComment implements Action {
         DiaryCommentDao diaryCommentDao = DiaryCommentDao.getInstance();
 
         String method = request.getMethod();
-        String strDiaryCode = null;
+        String diaryCode = null;
         String userId = null;
         String userNickName = null;
         String content = null;
 
         if(method.equals("POST")){
-            strDiaryCode = request.getParameter("diaryCode");
+            diaryCode = request.getParameter("diaryCode");
             userId = request.getParameter("userId");
             userNickName = request.getParameter("userNickName");
             content = request.getParameter("content");
 
             boolean isVaild = true;
 
-            if(strDiaryCode == null || strDiaryCode.isEmpty())
+            if(diaryCode == null || diaryCode.isEmpty())
                 isVaild = false;
             if (userId == null || userId.isEmpty())
                 isVaild = false;
@@ -40,9 +40,8 @@ public class CreateDiaryComment implements Action {
                 isVaild = false;
 
             if(isVaild){
-                int diaryCode = Integer.parseInt(strDiaryCode);
 
-                DiaryCommentRequestDto comment = new DiaryCommentRequestDto(diaryCode, userId, content, userNickName);
+                DiaryCommentRequestDto comment = new DiaryCommentRequestDto(Integer.valueOf(diaryCode), userId, content, userNickName);
 
                 if(comment != null){
                     boolean create = diaryCommentDao.createComment(comment);

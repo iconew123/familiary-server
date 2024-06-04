@@ -58,7 +58,7 @@ public class DeleteDiaryAction implements Action {
                         checkImg = imageDao.deleteImage(image.getNum());
                     }
 
-                    checkDiary = diaryDao.deleteDiary(diary.getDate());
+                    checkDiary = diaryDao.deleteDiary(diary.getDate(), diary.getBabyCode());
                     if (checkDiary && checkImg) {
                         resObj.put("status", 200);
                         resObj.put("message_diary", "다이어리 삭제 완료");
