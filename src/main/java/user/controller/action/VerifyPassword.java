@@ -2,8 +2,8 @@ package user.controller.action;
 
 import org.json.JSONObject;
 import user.model.UserDao;
+import user.model.UserResponseDto;
 import util.Action;
-import util.PasswordCrypto;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,23 +24,23 @@ public class VerifyPassword implements Action {
 
         if (id != null && !id.isEmpty() && password != null && !password.isEmpty()) {
             UserDao userDao = UserDao.getInstance();
-            String encryptedPassword = userDao.getPasswordById(id);;
+            UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
+            boolean isVerity = false;
 
-            if (encryptedPassword != null && PasswordCrypto.decrypt(password, encryptedPassword)) {
-                resObj.put("isValid", true);
+            if (user !=null) {
+                isVerity = true;
                 resObj.put("status", 200);
-                resObj.put("message", "Password verified successfully.");
+                resObj.put("isVerity", isVerity);
             } else {
-                resObj.put("isValid", false);
                 resObj.put("status", 400);
                 resObj.put("message", "Invalid password.");
+                resObj.put("isVerity", isVerity);
             }
         } else {
             resObj.put("isValid", false);
             resObj.put("status", 400);
             resObj.put("message", "Invalid request.");
         }
-
         response.getWriter().append(resObj.toString());
     }
 }
