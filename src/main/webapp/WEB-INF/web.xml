@@ -69,6 +69,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>DiaryCommentServiceServlet</servlet-name>
+		<servlet-class>diaryComment.controller.DiaryCommentServiceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DiaryCommentServiceServlet</servlet-name>
+		<url-pattern>/diaryComment/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>EnrollServiceServlet</servlet-name>
 		<servlet-class>enroll.controller.EnrollServiceServlet</servlet-class>
 	</servlet>

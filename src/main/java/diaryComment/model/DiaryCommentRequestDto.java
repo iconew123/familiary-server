@@ -17,6 +17,13 @@ public class DiaryCommentRequestDto {
 		this.content = content;
 	}
 
+	public DiaryCommentRequestDto(int diaryCode, String userId, String content, String nickName) {
+		this.diaryCode = diaryCode;
+		this.userId = userId;
+		this.content = content;
+		this.nickName = nickName;
+	}
+
 	public int getCode() {
 		return code;
 	}
