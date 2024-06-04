@@ -25,7 +25,7 @@ public class CommunityCommentActionFactory {
         } else if(command.equals("deleteComment")) {
             action = new DeleteCommunityCommentAction();
         } else if(command.equals("readComment")) {
-            action = new ReadCommunityCommentAction();;
+            action = new ReadCommunityCommentAction();
         }
         return action;
     }
