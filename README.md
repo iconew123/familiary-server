@@ -25,5 +25,5 @@
 5. [화면설계서](https://drive.google.com/file/d/1E_uTQvctvmOBdXes3DbKaJ13d_8YqUut/view?usp=drive_link)
 6. [WBS](https://docs.google.com/spreadsheets/d/128qu0fl6bdxIbF27ZLxJ9pl_UIwAxATd7azqcxNJEhE/edit?usp=drive_link)
 
-7. 
+7. 데모 (준비중)
 
