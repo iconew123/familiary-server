@@ -27,7 +27,7 @@ public class CommunityCommentDao {
 	public List<CommunityCommentResponseDto> readAllCommunityComment(int communityCode) {
 		List<CommunityCommentResponseDto> list = new ArrayList<CommunityCommentResponseDto>();
 		conn = DBManager.getConnection();
-		String sql = "SELECT code, community_code, user_id, user_nickname, content, reg_date FROM community_comment WHERE community_code=? order by reg_date desc";
+		String sql = "SELECT code, community_code, user_id, user_nickname, content, reg_date FROM community_comment WHERE community_code=? order by reg_date asc";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -78,8 +78,6 @@ public class CommunityCommentDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			DBManager.close(conn, pstmt, rs);
 		}
 		return communityComment;
 	}

@@ -33,6 +33,13 @@ public class CommunityCommentRequestDto {
 		this.content = content;
 	}
 
+	public CommunityCommentRequestDto(int communityCode, String userNickname, String content) {
+		super();
+		this.communityCode = communityCode;
+		this.userNickname = userNickname;
+		this.content = content;
+	}
+
 	public CommunityCommentRequestDto(String code, String userId) {
 		super();
 		this.code = code;

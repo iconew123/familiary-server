@@ -16,6 +16,11 @@ public class CreateCommunityCommentAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+
         request.setCharacterEncoding("UTF-8");
         String method = request.getMethod();
         System.out.println("method : " + method);
@@ -37,15 +42,21 @@ public class CreateCommunityCommentAction implements Action {
             }
 
             String jsonString = jsonBuilder.toString();
+            System.out.println("Received JSON: " + jsonString); // JSON 문자열 로그 출력
 
             try {
                 JSONObject jsonObject = new JSONObject(jsonString);
-                int code = jsonObject.getInt("communityCode");
+                int communityCode = jsonObject.getInt("code");
                 String userId = jsonObject.getString("userId");
                 String userNickname = jsonObject.getString("userNickname");
                 String content = jsonObject.getString("content");
 
-                CommunityCommentRequestDto communityComment = new CommunityCommentRequestDto(code, userId, userNickname, content);
+                System.out.println(communityCode);
+                System.out.println(userId);
+                System.out.println(userNickname);
+                System.out.println(content);
+
+                CommunityCommentRequestDto communityComment = new CommunityCommentRequestDto(communityCode, userId, userNickname, content);
                 communityCommentDao.createCommunityComment(communityComment);
 
                 System.out.println("Community comment created: " + communityComment);
@@ -54,6 +65,7 @@ public class CreateCommunityCommentAction implements Action {
                 JSONObject resObj = new JSONObject();
                 resObj.put("status", 200);
                 resObj.put("message", "댓글 등록 완료");
+                resObj.put("comment", communityComment); // 새로 추가된 댓글 정보도 함께 응답
 
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");
