@@ -12,8 +12,12 @@
 
 ### 활용 기술
 * Back-End
+  *  JAVA
+  *  JSP
 * [Front-End](https://github.com/iconew123/familiary.git)
 * Database
+  * MySQL
+  * imgbb
 
 
 ### 문서
