@@ -1,6 +1,7 @@
 package user.model;
 
 import util.DBManager;
+import util.PasswordCrypto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,7 +33,7 @@ public class UserDao {
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, userDto.getId());
-			pstmt.setString(2, userDto.getPassword());
+			pstmt.setString(2, PasswordCrypto.encrypt(userDto.getPassword()));
 			pstmt.setString(3, userDto.getNickname());
 			pstmt.setString(4, userDto.getName());
 			pstmt.setString(5, userDto.getSecurityNumber());
@@ -71,6 +72,59 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public String getPasswordById(String id) {
+		String password = null;
+		try {
+			conn = DBManager.getConnection();
+			String sql = "SELECT password FROM users WHERE id=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				password = rs.getString(2);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return password;
+	}
+
+	public UserResponseDto findUserByIdAndPassword(String id, String password) {
+		UserResponseDto user = null;
+
+		try {
+			conn = DBManager.getConnection();
+			String sql = "SELECT id,password, nickname, name, security_number, telecom, phone, address ,email FROM users WHERE id=? ";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String encryptedPassword = rs.getString(2);
+				String nickname = rs.getString(3);
+				String name = rs.getString(4);
+				String securityNumber = rs.getString(5);
+				String telecom = rs.getString(6);
+				String phone = rs.getString(7);
+				String address = rs.getString(8);
+				String email = rs.getString(9);
+
+				if (PasswordCrypto.decrypt(password, encryptedPassword))
+					user = new UserResponseDto(id, nickname, name, securityNumber, telecom, phone, address,  email);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 	public User findUserById(String id) {
@@ -192,36 +246,7 @@ public class UserDao {
 		return user;
 	}
 
-	public UserResponseDto findUserByIdAndPassword(String id, String password) {
-		UserResponseDto user = null;
 
-		try {
-			conn = DBManager.getConnection();
-			String sql = "SELECT id, nickname, name, security_number, telecom, phone, address ,email FROM users WHERE id=? AND password=?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, password);
-
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				String nickname = rs.getString(2);
-				String name = rs.getString(3);
-				String securityNumber = rs.getString(4);
-				String telecom = rs.getString(5);
-				String phone = rs.getString(6);
-				String address = rs.getString(7);
-				String email = rs.getString(8);
-
-
-				user = new UserResponseDto(id, nickname, name, securityNumber, telecom, phone, address,  email);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return user;
-	}
 
 	public UserResponseDto findUserByPassword(String id, String password) {
 		UserResponseDto user = null;
@@ -274,6 +299,40 @@ public class UserDao {
 		}
 
 		return false;
+	}
+
+	public UserResponseDto updateUser(UserRequestDto userDto, String newPassword) {
+		UserResponseDto user = null;
+		user = findUserByIdAndPassword(userDto.getId(), userDto.getPassword());
+
+		if (user == null) {
+			return null;
+		}
+		conn = DBManager.getConnection();
+
+		String sql = "UPDATE users SET password = ?, nickname = ? ,telecom = ? , phone = ?, adress = ? , email=? WHERE id = ?";
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, PasswordCrypto.encrypt(newPassword));
+			pstmt.setString(2, userDto.getNickname());
+			pstmt.setString(3, userDto.getTelecom());
+			pstmt.setString(4, userDto.getPhone());
+			pstmt.setString(5, userDto.getAddress());
+			pstmt.setString(6, userDto.getEmail());
+			pstmt.setString(7, userDto.getId());
+
+			pstmt.execute();
+			User userVo = findUserById(userDto.getId());
+			user = new UserResponseDto(userVo);
+			System.out.println();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		return user;
 	}
 
 	public UserResponseDto updateUserPassword(UserRequestDto userDto, String newPassword) {

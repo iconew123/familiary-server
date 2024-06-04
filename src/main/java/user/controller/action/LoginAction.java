@@ -41,7 +41,6 @@ public class LoginAction implements Action {
                resObj.put("status", 200);
                resObj.put("message", "User login successfully.");
                resObj.put("id", id);
-               resObj.put("password", password);
                resObj.put("nickname", user.getNickname());
                resObj.put("name", user.getName());
                resObj.put("securityNumber", user.getSecurityNumber());
