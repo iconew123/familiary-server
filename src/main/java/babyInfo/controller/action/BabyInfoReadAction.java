@@ -27,7 +27,7 @@ public class BabyInfoReadAction implements Action {
         System.out.println("진입1");
         String babyCode = request.getParameter("code");
         String date = request.getParameter("date");
-
+        System.out.println("date: " + date);
 
         System.out.println("진입4");
         System.out.println("date" + date);
