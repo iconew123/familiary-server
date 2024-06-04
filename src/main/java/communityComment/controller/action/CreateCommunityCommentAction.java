@@ -37,15 +37,21 @@ public class CreateCommunityCommentAction implements Action {
             }
 
             String jsonString = jsonBuilder.toString();
+            System.out.println("Received JSON: " + jsonString); // JSON 문자열 로그 출력
 
             try {
                 JSONObject jsonObject = new JSONObject(jsonString);
-                int code = jsonObject.getInt("communityCode");
+                String code = jsonObject.getString("code");
+                int communityCode = Integer.parseInt(code);
                 String userId = jsonObject.getString("userId");
                 String userNickname = jsonObject.getString("userNickname");
                 String content = jsonObject.getString("content");
+                System.out.println(communityCode);
+                System.out.println(userId);
+                System.out.println(userNickname);
+                System.out.println(content);
 
-                CommunityCommentRequestDto communityComment = new CommunityCommentRequestDto(code, userId, userNickname, content);
+                CommunityCommentRequestDto communityComment = new CommunityCommentRequestDto(communityCode, userId, userNickname, content);
                 communityCommentDao.createCommunityComment(communityComment);
 
                 System.out.println("Community comment created: " + communityComment);
@@ -54,6 +60,7 @@ public class CreateCommunityCommentAction implements Action {
                 JSONObject resObj = new JSONObject();
                 resObj.put("status", 200);
                 resObj.put("message", "댓글 등록 완료");
+                resObj.put("comment", communityComment); // 새로 추가된 댓글 정보도 함께 응답
 
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");
