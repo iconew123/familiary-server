@@ -16,10 +16,8 @@ public class ReadCommunityCommentAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // HttpSession session = request.getSession();
         CommunityCommentDao communityCommentDao = CommunityCommentDao.getInstance();
 
-        // String communityCode = session.getAttribute("communityCode");
         String communityCode = request.getParameter("communityCode");
         int code = Integer.parseInt(communityCode);
         List<CommunityCommentResponseDto> commentList = communityCommentDao.readAllCommunityComment(code);
