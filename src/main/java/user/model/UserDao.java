@@ -74,12 +74,11 @@ public class UserDao {
 		return false;
 	}
 
-	public UserResponseDto findUserDtoById(String id) {
-		UserResponseDto user = null;
-
+	public String getPasswordById(String id) {
+		String password = null;
 		try {
 			conn = DBManager.getConnection();
-			String sql = "SELECT id, nickname, name, security_number, telecom, phone,  address , email FROM users WHERE id=?";
+			String sql = "SELECT password FROM users WHERE id=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -87,21 +86,14 @@ public class UserDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				String nickname = rs.getString(2);
-				String name = rs.getString(3);
-				String securityNumber = rs.getString(4);
-				String telecom = rs.getString(5);
-				String phone = rs.getString(6);
-				String address = rs.getString(7);
-				String email = rs.getString(8);
+				password = rs.getString(2);
 
-
-				user = new UserResponseDto(id, nickname, name,  securityNumber, telecom, phone, address, email);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return user;
+
+		return password;
 	}
 
 	public User findUserById(String id) {

@@ -34,14 +34,13 @@ public class LoginAction implements Action {
 
          if (isValid) {
             UserDao userDao = UserDao.getInstance();
-            UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
+            UserResponseDto user = userDao.findUserDtoById(id);
 
             if (user != null) {
                System.out.println("user");
                resObj.put("status", 200);
                resObj.put("message", "User login successfully.");
                resObj.put("id", id);
-               resObj.put("password", password);
                resObj.put("nickname", user.getNickname());
                resObj.put("name", user.getName());
                resObj.put("securityNumber", user.getSecurityNumber());
