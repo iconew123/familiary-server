@@ -12,7 +12,7 @@
 
 ### 활용 기술
 * Back-End
-* [Front-End](프론트깃헙주소)
+* [Front-End](https://github.com/iconew123/familiary.git)
 * Database
 
 
