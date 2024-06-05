@@ -21,12 +21,6 @@ public class BabyInfoAction implements Action {
     	response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-//        // CORS 설정
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-//        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-//        response.setHeader("Access-Control-Max-Age", "3600");
-//        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-
         // 요청에서 아기 코드 가져오기
         String babyCode = request.getParameter("baby_code");
         String userId = request.getParameter("user_id");
