@@ -51,41 +51,53 @@
 5. [화면설계서](https://drive.google.com/file/d/1E_uTQvctvmOBdXes3DbKaJ13d_8YqUut/view?usp=drive_link)
 6. [WBS](https://docs.google.com/spreadsheets/d/128qu0fl6bdxIbF27ZLxJ9pl_UIwAxATd7azqcxNJEhE/edit?usp=drive_link)
 
-7. 데모
-   * 회원관리
+### 데모
+* 회원관리
       
-      * 회원가입<br/>
+  * 회원가입<br/>
    <p align="center">
   <img src="https://github.com/iconew123/familiary-server/assets/163233482/d9899d35-a681-4fae-886d-97b52f1a1969">
 </p>
 
-      * 회원정보 수정 & 탈퇴<br/>
+  * 회원정보 수정 & 탈퇴<br/>
    <p align="center">
   <img src="">
 </p>
 
-
-
-   * 아기등록<br/>
+* 아기 관리
+  * 아기등록<br/>
  <p align="center">
   <img src="">
 </p>
-  
+  * 아기 수정 & 삭제<br/>
+ <p align="center">
+  <img src="">
+
+* 다이어리 관리
   * 다이어리 작성<br/>
  <p align="center">
   <img src="">
 </p>
 
-   * 다이어리 보기<br/>
- <p align="center">
-  <img src="">
-</p>
-   * 다이어리 삭제  <br/>
+  * 다이어리 보기<br/>
  <p align="center">
   <img src="">
 </p>
 
+  * 다이어리 수정 & 삭제  <br/>
+ <p align="center">
+  <img src="">
+</p>
+  * 다이어리 댓글 달기
+
+* 커뮤니티 관리
   * 커뮤니티 글 작성 
-  * 커뮤니티 글 수정 삭제
-  * 
+  * 커뮤니티 글 수정 & 삭제
+  * 커뮤니티 댓글 달기
+
+* INFO 관리
+  * 임산부 가이드
+  * 정부 지원사업
+  * 병원 정보
+  * 태교&운동
 
