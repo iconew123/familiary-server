@@ -1,7 +1,5 @@
 package communityComment.controller.action;
 
-import community.model.CommunityDao;
-import community.model.CommunityRequestDto;
 import communityComment.model.CommunityCommentDao;
 import communityComment.model.CommunityCommentRequestDto;
 import org.json.JSONObject;
@@ -10,22 +8,25 @@ import util.Action;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class DeleteCommunityCommentAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
         CommunityCommentDao communityCommentDao = CommunityCommentDao.getInstance();
 
-        // String code = session.getAttribute("code");
-        String code = request.getParameter("code");
-        String userId = request.getParameter("userId");
+        String code = request.getParameter("commentCode");
+        // commentCode가 잘 들어오는지 확인
+        System.out.println("Received commentCode: " + code);
 
-        CommunityCommentRequestDto communityComment = new CommunityCommentRequestDto(code, userId);
+        CommunityCommentRequestDto communityComment = new CommunityCommentRequestDto(code);
         boolean success = communityCommentDao.deleteCommunityComment(communityComment);
 
         JSONObject resObj = new JSONObject();
