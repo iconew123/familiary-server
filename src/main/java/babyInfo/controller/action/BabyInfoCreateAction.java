@@ -25,7 +25,7 @@ public class BabyInfoCreateAction implements Action {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
 
-        String baby_code = request.getParameter("baby_code");
+        String baby_code = request.getParameter("code");
         String height = request.getParameter("height");
         String weight = request.getParameter("weight");
         String spec_note = request.getParameter("spec_note");
