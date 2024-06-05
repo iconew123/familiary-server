@@ -24,12 +24,10 @@ public class DeleteAction implements Action {
             if (password == null || password.equals(""))
                 isValid = false;
 
-
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json;charset=utf-8");
             JSONObject resObj = new JSONObject();
 
-            System.out.println(isValid);
 
             if (isValid) {
                 UserDao userDao = UserDao.getInstance();
@@ -57,9 +55,6 @@ public class DeleteAction implements Action {
                 resObj.put("message", "Database Error");
             }
             response.getWriter().append(resObj.toString());
-
         }
-
-
     }
 }
