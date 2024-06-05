@@ -1,14 +1,39 @@
 # FAMILIARY
-[요구사항 정의서](https://docs.google.com/spreadsheets/d/1rbcw7myThzqLoL2FxhxpT_1o7t-XeOQS_jAKuTZBYmY/edit?usp=drive_link)
-<br>
-[인터페이스 정의서](https://docs.google.com/spreadsheets/d/1LbNl-WeZ9B9Y3sj1i3FLD27nFV7FWz2WmgviOELu5-8/edit?usp=drive_link)
-<br>
-[테이블 정의서](https://docs.google.com/spreadsheets/d/1JYVlx6xnDEShnV2gC2NdtsCRumgcWUS1kBApFnKXUSc/edit?usp=drive_link)
-<br>
-[프로젝트 기획서](https://drive.google.com/file/d/10bvzlfkyeM6y1bJCUw26Z2F1ZyjxQp8o/view?usp=drive_link
+
+### 프로젝트 개요
+
+
+* 다이어리 기능을 통해 아기의 사진과 그날의 기록을 가족들과 공유하고 댓글을 통해 소통할 수 있습니다.
+  * 부모가 등록한 다이어리와 사진을 모아보기로 한눈에 볼 수 있습니다.
+  * 아이 코드를 받은 가족들은 열람은 물론 다이어리에 댓글을 달 수 있게 하였습니다.
+* 커뮤니티 기능을 통해 서로 정보를 공유하고 도움을 요청할 수 있습니다.
+  * 자신의 육아에 대한 경험을 바탕으로 추천과 비추천 정보를 공유 할 수 있습니다.
+  * 사람들끼리 소통하며 친분을 쌓기도 하고, 자유롭게 도움을 요청할 수 있습니다.
+
+
+### 활용 기술
+* Back-End
+  *  JAVA
+  *  Servlel
+  *  Tomcat
+* [Front-End](https://github.com/iconew123/familiary.git)
+  * JS (React)
+  * HTML/CSS
+* Database
+  * MySQL
+
+* 3 Party App
+  * imgbb
+
+
+### 문서
+1. [요구사항 정의서](https://docs.google.com/spreadsheets/d/1rbcw7myThzqLoL2FxhxpT_1o7t-XeOQS_jAKuTZBYmY/edit?usp=drive_link)
+2. [인터페이스 정의서](https://docs.google.com/spreadsheets/d/1LbNl-WeZ9B9Y3sj1i3FLD27nFV7FWz2WmgviOELu5-8/edit?usp=drive_link)
+3. [테이블 정의서](https://docs.google.com/spreadsheets/d/1JYVlx6xnDEShnV2gC2NdtsCRumgcWUS1kBApFnKXUSc/edit?usp=drive_link)
+4. [프로젝트 기획서](https://drive.google.com/file/d/10bvzlfkyeM6y1bJCUw26Z2F1ZyjxQp8o/view?usp=drive_link
 )
-<br>
-[화면설계서](https://drive.google.com/file/d/1E_uTQvctvmOBdXes3DbKaJ13d_8YqUut/view?usp=drive_link)
-<br>
-[WBS](https://docs.google.com/spreadsheets/d/128qu0fl6bdxIbF27ZLxJ9pl_UIwAxATd7azqcxNJEhE/edit?usp=drive_link)
+5. [화면설계서](https://drive.google.com/file/d/1E_uTQvctvmOBdXes3DbKaJ13d_8YqUut/view?usp=drive_link)
+6. [WBS](https://docs.google.com/spreadsheets/d/128qu0fl6bdxIbF27ZLxJ9pl_UIwAxATd7azqcxNJEhE/edit?usp=drive_link)
+
+7. 데모 (준비중)
 
