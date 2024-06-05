@@ -115,11 +115,10 @@ public class CommunityCommentDao {
 		try {
 			conn = DBManager.getConnection();
 
-			String sql = "DELETE FROM community_comment WHERE code=? AND user_id=?";
+			String sql = "DELETE FROM community_comment WHERE code=?";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, communityCommentRequestDto.getCode());
-			pstmt.setString(2, communityCommentRequestDto.getUserId());
 
 			pstmt.execute();
 

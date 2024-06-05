@@ -40,10 +40,9 @@ public class CommunityCommentRequestDto {
 		this.content = content;
 	}
 
-	public CommunityCommentRequestDto(String code, String userId) {
+	public CommunityCommentRequestDto(String code) {
 		super();
 		this.code = code;
-		this.userId = userId;
 	}
 
 	public String getCode() { return code; }
