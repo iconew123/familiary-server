@@ -24,7 +24,6 @@ public class DiaryServiceServlet extends HttpServlet {
 
         String command = request.getParameter("command");
         System.out.println("POST command" + command);
-        // System.out.println("request.getPathInfo() : " + request.getPathInfo());
 
         if (command != null) {
             DiaryActionFactory daf = DiaryActionFactory.getInstance();

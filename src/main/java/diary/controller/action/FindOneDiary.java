@@ -58,7 +58,6 @@ public class FindOneDiary implements Action {
                     resObj.put("reg_date", diary.getRegDate());
                     resObj.put("mod_date", diary.getModDate());
 
-                    // 해당일자의 이미지가 있고, 사용가능 상태일때
                     if (image != null && image.isStatus()) {
                         resObj.put("imgNum", image.getNum());
                         resObj.put("imgUrl", image.getUrl());

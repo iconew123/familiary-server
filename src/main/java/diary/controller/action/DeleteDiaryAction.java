@@ -45,11 +45,9 @@ public class DeleteDiaryAction implements Action {
 
             Date date = Date.valueOf(dateStr);
 
-            // 제대로 된 값이 넘어왔을 때,
             if (isGet) {
                 DiaryResponseDto diary = diaryDao.findDiaryOfDateAndCode(date,babyCode);
 
-                // 해당 날짜에 다이어리가 작성이 되었으면
                 if (diary != null) {
                     ImageDao imageDao = ImageDao.getInstance();
 
@@ -72,7 +70,6 @@ public class DeleteDiaryAction implements Action {
                     }
 
                 } else {
-//                    System.out.println("해당 일자에 다이어리 기록이 없습니다.");
                     resObj.put("status", 400);
                     resObj.put("message_diary", "해당 일자의 다이어리 기록을 찾을 수 없습니다.");
                 }
@@ -83,7 +80,6 @@ public class DeleteDiaryAction implements Action {
             }
 
         } else {
-//                System.out.println("잘못된 요청");
             resObj.put("status", 404);
             resObj.put("error", "요청방법을 확인해주세요.");
         }

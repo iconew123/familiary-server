@@ -28,6 +28,11 @@ public class CreateDiaryComment implements Action {
             userNickName = request.getParameter("userNickName");
             content = request.getParameter("content");
 
+            System.out.println("diaryCode: " + diaryCode);
+            System.out.println("userId: " + userId);
+            System.out.println("userNickName: " + userNickName);
+            System.out.println("content: " + content);
+
             boolean isVaild = true;
 
             if(diaryCode == null || diaryCode.isEmpty())
@@ -42,7 +47,7 @@ public class CreateDiaryComment implements Action {
             if(isVaild){
 
                 DiaryCommentRequestDto comment = new DiaryCommentRequestDto(Integer.valueOf(diaryCode), userId, content, userNickName);
-
+                System.out.println("comment: " + comment);
                 if(comment != null){
                     boolean create = diaryCommentDao.createComment(comment);
 
