@@ -61,7 +61,7 @@
 
   * 회원정보 수정 & 탈퇴<br/>
    <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/cedcf5c7-fe40-4403-be1e-ab957c4375db">
 </p>
 
 * 아기 관리
