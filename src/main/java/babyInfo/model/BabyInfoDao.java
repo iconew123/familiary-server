@@ -3,9 +3,12 @@ package babyInfo.model;
 
 import baby.model.BabyDao;
 import baby.model.BabyRequestDto;
+import diary.model.DiaryResponseDto;
 import util.DBManager;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BabyInfoDao {
     private Connection conn;
@@ -16,10 +19,10 @@ public class BabyInfoDao {
 
     }
 
-    private static BabyDao instance = new BabyDao();
+    private static BabyInfoDao instance = new BabyInfoDao();
 
     // 3. 단일 인스턴스에 대한 getter
-    public static BabyDao getInstance() {
+    public static BabyInfoDao getInstance() {
         return instance;
     }
 
@@ -132,6 +135,39 @@ public class BabyInfoDao {
         }
 
         return false;
+    }
+
+    public List<BabyInfo> findAllInfo(String babyCode) {
+        List<BabyInfo> infoList = new ArrayList<>();
+
+        try {
+            conn = DBManager.getConnection();
+            String sql = "SELECT * FROM babyinfo WHERE baby_code = ? ORDER BY date DESC;";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, babyCode);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String code = rs.getString(1);
+                String date = rs.getString(2);
+                int height = rs.getInt(3);
+                int weight = rs.getInt(4);
+                String spec_note = rs.getString(5);
+                Timestamp readDate = rs.getTimestamp(6);
+                Timestamp updateDate = rs.getTimestamp(7);
+
+                BabyInfo info = new BabyInfo(code, date, height, weight, spec_note, readDate, updateDate);
+                infoList.add(info);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DBManager.close(conn, pstmt, rs);
+        }
+
+        return infoList;
     }
 }
 

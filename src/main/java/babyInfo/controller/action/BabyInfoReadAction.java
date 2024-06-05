@@ -23,29 +23,22 @@ public class BabyInfoReadAction implements Action {
             String babyCode = request.getParameter("code");
             String date = request.getParameter("date");
 
-            if (babyCode == null || date == null) {
-                throw new IllegalArgumentException("code 또는 date 파라미터가 누락되었습니다.");
-            }
-
-            System.out.println("진입4");
 
             BabyInfoDao dao = new BabyInfoDao();
             BabyInfo info = dao.findBabyInfoByCodeAndDate(babyCode, date);
 
-            if (info == null) {
-                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                response.getWriter().write("{\"error\":\"해당하는 정보를 찾을 수 없습니다.\"}");
-                return;
+            JSONObject jsonObj = new JSONObject();
+            if (info != null) {
+                jsonObj.put("baby_code", info.getBaby_code());
+                jsonObj.put("date", info.getDate());
+                jsonObj.put("height", info.getHeight());
+                jsonObj.put("weight", info.getWeight());
+                jsonObj.put("spec_note", info.getSpec_note());
+            } else {
+                jsonObj.put("status", 400);
+                jsonObj.put("message", "해당일의 정보 검색 실패");
             }
 
-            JSONObject jsonObj = new JSONObject();
-            jsonObj.put("baby_code", info.getBaby_code());
-            jsonObj.put("date", info.getDate());
-            jsonObj.put("height", info.getHeight());
-            jsonObj.put("weight", info.getWeight());
-            jsonObj.put("spec_note", info.getSpec_note());
-
-            // 클라이언트로 JSON 응답을 보냄
             response.getWriter().append(jsonObj.toString());
         } catch (Exception e) {
             e.printStackTrace();
