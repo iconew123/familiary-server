@@ -10,6 +10,11 @@
   * 자신의 육아에 대한 경험을 바탕으로 추천과 비추천 정보를 공유 할 수 있습니다.
   * 사람들끼리 소통하며 친분을 쌓기도 하고, 자유롭게 도움을 요청할 수 있습니다.
 
+### 시나리오
+<p align="center">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/8af92b4c-9cc4-439d-ba7f-7e4ee0aab9ed">
+</p>
+
 
 ### 활용 기술
 * Back-End
