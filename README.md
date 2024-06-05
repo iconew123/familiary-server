@@ -51,5 +51,14 @@
 5. [화면설계서](https://drive.google.com/file/d/1E_uTQvctvmOBdXes3DbKaJ13d_8YqUut/view?usp=drive_link)
 6. [WBS](https://docs.google.com/spreadsheets/d/128qu0fl6bdxIbF27ZLxJ9pl_UIwAxATd7azqcxNJEhE/edit?usp=drive_link)
 
-7. 데모 (준비중)
+7. 데모
+   1. 회원가입<br/>
+   <p align="center">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/d9899d35-a681-4fae-886d-97b52f1a1969">
+</p>
+   3. 아기등록
+   4. 다이어리 작성
+   5. 다이어리 보기
+   6. 다이어리 삭제
+   7.  
 
