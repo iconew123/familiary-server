@@ -14,11 +14,16 @@
 ### 활용 기술
 * Back-End
   *  JAVA
-  *  JSP
+  *  Servlel
+  *  Tomcat
 * [Front-End](https://github.com/iconew123/familiary.git)
+  * JS (React)
+  * HTML/CSS
 * Database
   * MySQL
-  * imgbb
+
+* 3 Party App
+ * imgbb
 
 
 ### 문서
