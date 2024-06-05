@@ -1,7 +1,6 @@
 package user.controller.action;
 
 import enroll.model.EnrollDao;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import util.Action;
 
@@ -9,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 public class CheckDeleteBabyAction implements Action {
 
@@ -18,7 +16,6 @@ public class CheckDeleteBabyAction implements Action {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        // 요청에서 userId 받아오기
         String userId = request.getParameter("user_id");
 
         JSONObject jsonObj = new JSONObject();
@@ -36,6 +33,5 @@ public class CheckDeleteBabyAction implements Action {
         jsonObj.put("isExist", isExist);
 
         response.getWriter().write(jsonObj.toString());
-
     }
 }

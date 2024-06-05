@@ -26,7 +26,6 @@ public class UpdateAction implements Action {
 			String address = request.getParameter("address");
 			String email = request.getParameter("email");
 
-
 			boolean isValid = true;
 			if (password == null || password.equals(""))
 				isValid = false;
@@ -42,7 +41,7 @@ public class UpdateAction implements Action {
 
 				UserRequestDto userDto = new UserRequestDto(id, password, nickname, telecom, phone, address, email);
 				UserResponseDto user = userDao.updateUser(userDto, newPassword);
-				System.out.println(user!=null);
+
 				if (user!=null) {
 					resObj.put("status", 200);
 					resObj.put("message", "User updated successfully.");

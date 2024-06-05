@@ -37,7 +37,6 @@ public class LoginAction implements Action {
             UserResponseDto user = userDao.findUserByIdAndPassword(id,password);
 
             if (user != null) {
-               System.out.println("user");
                resObj.put("status", 200);
                resObj.put("message", "User login successfully.");
                resObj.put("id", id);

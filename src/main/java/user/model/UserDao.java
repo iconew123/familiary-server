@@ -190,13 +190,6 @@ public class UserDao {
 
 		String sql = "UPDATE users SET password = ?, nickname = ? ,telecom = ? , phone = ?, address = ? , email=? WHERE id = ?";
 		try {
-			System.out.println("id : " + userDto.getId());
-			System.out.println("password : " + userDto.getPassword());
-			System.out.println("nickname : " + userDto.getNickname());
-			System.out.println("telecom : " + userDto.getTelecom());
-			System.out.println("phone : " + userDto.getPhone());
-			System.out.println("address : " + userDto.getAddress());
-			System.out.println("email : " + userDto.getEmail());
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, PasswordCrypto.encrypt(newPassword));
 			pstmt.setString(2, userDto.getNickname());
@@ -211,7 +204,6 @@ public class UserDao {
 			pstmt.execute();
 			User userVo = findUserById(userDto.getId());
 			user = new UserResponseDto(userVo);
-			System.out.println(userDto.getNickname());
 
 		} catch (SQLException e) {
 			e.printStackTrace();
