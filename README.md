@@ -59,8 +59,7 @@
   <img src="https://github.com/iconew123/familiary-server/assets/163233482/d9899d35-a681-4fae-886d-97b52f1a1969">
 </p>
 
-
-       * 회원정보 수정 & 탈퇴<br/>
+      * 회원정보 수정 & 탈퇴<br/>
    <p align="center">
   <img src="">
 </p>
