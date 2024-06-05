@@ -23,7 +23,7 @@
   * MySQL
 
 * 3 Party App
- * imgbb
+  * imgbb
 
 
 ### 문서
