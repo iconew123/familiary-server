@@ -17,6 +17,7 @@
 
 
 ### 활용 기술
+[사용기술-familiary](https://github.com/iconew123/familiary-server/assets/163233482/ebdb4944-277a-45fb-a83f-6a13878ab05f)
 * Back-End
   *  JAVA
   *  Servlel
