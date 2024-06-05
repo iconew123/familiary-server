@@ -2,11 +2,6 @@
 
 ### 프로젝트 개요
 <p align="center">
-  <img src="https://github.com/iconew123/familiary-server/assets/163233482/d2f45358-281e-4277-8139-1cbe8d8ba599">
-</p>
-
-
-<p align="center">
   <img src="https://github.com/iconew123/familiary-server/assets/163233482/51f137e0-d89f-484e-b887-d7ef9c6838a5">
 </p>
 
