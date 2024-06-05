@@ -34,7 +34,6 @@ public class SearchAllDiaries implements Action {
 
                 if (list.size() > 0) {
                     for (DiaryResponseDto dList : list) {
-                        // 각각의 JSON오브젝트로 생성해서 JSONArray삽입
                         JSONObject resObj = new JSONObject();
                         resObj.put("date", dList.getDate());
                         resObj.put("title", dList.getTitle());

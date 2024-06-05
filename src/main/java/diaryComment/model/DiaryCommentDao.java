@@ -137,7 +137,7 @@ public class DiaryCommentDao {
 
 		try {
 			conn = DBManager.getConnection();
-			String sql = "SELECT * FROM diary_comment WHERE diary_code = ?";
+			String sql = "SELECT * FROM diary_comment WHERE diary_code = ? ORDER BY reg_date ASC;";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, diaryCode);
 

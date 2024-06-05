@@ -43,7 +43,6 @@ public class CreateDiaryAction implements Action {
         boolean isVaild = true;
         boolean isGet = true;
 
-        // 오늘날짜 다이어리를 이미 작성했는지 유효성 검사
         DiaryResponseDto diary = diaryDao.findDiaryOfDateAndCode(sqlDate,babyCode);
 
         if (diary == null) {
@@ -110,11 +109,9 @@ public class CreateDiaryAction implements Action {
                 }
 
                 if (isGet) {
-                    // 오늘의 다이어리 생성
                     DiaryRequestDto toDayDiary = new DiaryRequestDto(babyCode, sqlDate, title, content, category);
                     boolean isCorrect = diaryDao.createDiary(toDayDiary);
 
-                    // 이미지가 있다면 , 이미지도 테이블에 저장
                     if (isCorrect) {
 
                         if (imageId != null && imageUrl != null) {
@@ -126,14 +123,6 @@ public class CreateDiaryAction implements Action {
                             System.out.println(uploadImage);
 
                             boolean isUploadSuccess = imageDao.createImage(uploadImage);
-
-                            /*
-                            if (isUploadSuccess) {
-                                System.out.println("이미지 업로드 성공");
-                            } else {
-                                System.out.println("이미지 업로드 실패");
-                            }
-					        */
 
                             resObj.put("status", 200);
                             resObj.put("message_diary", "다이어리가 성공적으로 등록되었습니다.");
@@ -160,7 +149,6 @@ public class CreateDiaryAction implements Action {
             }
 
         } else {
-//			System.out.println("이미 오늘 다이어리를 작성완료했습니다. 일기를 수정해주세요.");
             resObj.put("status", 400);
             resObj.put("message_diary", "금일 다이어리 작성을 완료했습니다. 수정기능을 이용해주세요.");
         }

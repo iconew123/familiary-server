@@ -42,7 +42,7 @@ public class SearchAllImages implements Action {
                         JSONObject resObj = new JSONObject();
                         resObj.put("imgurl", image.getUrl());
                         resObj.put("status", image.isStatus());
-                        // Date 형으로만들어서 바로 뽑아오기
+
                         Date date = diaryDao.getDate(Integer.valueOf(image.getCode()));
                         resObj.put("Date", date);
 

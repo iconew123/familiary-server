@@ -65,19 +65,14 @@ public class UpdateDiaryAction implements Action {
                     }
                 } else if (name.equals("date")) {
                     dateStr = InputStreamParsor.parseToString(in).trim();
-//                    System.out.println("date: " + date);
                 } else if (name.equals("babycode")) {
                     babyCode = InputStreamParsor.parseToString(in).trim();
-//                    System.out.println("babycode: " + babyCode);
                 } else if (name.equals("title")) {
                     title = InputStreamParsor.parseToString(in).trim();
-//                    System.out.println("title: " + title);
                 } else if (name.equals("content")) {
                     content = InputStreamParsor.parseToString(in).trim();
-//                    System.out.println("content: " + content);
                 } else if (name.equals("category")) {
                     category = InputStreamParsor.parseToString(in).trim();
-//                    System.out.println("category: " + category);
                 }
 
                 in.close();
@@ -112,14 +107,6 @@ public class UpdateDiaryAction implements Action {
                     DiaryRequestDto updateDiary = new DiaryRequestDto(diary.getCode(), babyCode, date, title, content, category);
                     isUpdate = diaryDao.updateDiary(updateDiary);
 
-                /*
-                if (isUpdate) {
-                    System.out.println("다이어리 업데이트 완료");
-                } else {
-                    System.out.println("다이어리 업데이트 실패");
-                }
-                */
-
                     if (isUpdate) {
                         resObj.put("status", 200);
                         resObj.put("message_diary", "다이어리 업데이트 성공");
@@ -147,25 +134,14 @@ public class UpdateDiaryAction implements Action {
                             }
                         }
 
-
-                        /*
-                        if (isValid) {
-                            System.out.println("이미지 업데이트 완료");
-                        } else {
-                            System.out.println("이미지 업데이트 실패");
-                        }
-                        */
-
                         if (isValid)
                             resObj.put("message_image", "이미지 업데이트 성공");
                         else
                             resObj.put("message_image", "이미지 업데이트 실패");
                     } else {
-//                    System.out.println("바꿀 이미지가 없습니다.");
                         resObj.put("message_image", "업데이트 할 이미지가 없습니다. 현재 이미지로 유지합니다.");
                     }
                 } else {
-//                System.out.println("등록된 다이어리가 없습니다.");
                     resObj.put("status", 400);
                     resObj.put("message_diary", "해당 일자의 다이어리 기록을 찾을 수 없습니다.");
                 }
