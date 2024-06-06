@@ -27,7 +27,6 @@ public class CommunityDao {
 		return instance;
 	}
 
-	// 메인 게시판 커뮤니티 (글 최신순)
 	public List<CommunityResponseDto> findCommunityAll() {
 		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
 		conn = DBManager.getConnection();
@@ -55,7 +54,6 @@ public class CommunityDao {
 		return list;
 	}
 
-	// 잡담 게시판용 게시글 전체 보기
 	public List<CommunityResponseDto> findCommunityAllByTalk() {
 		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
 		conn = DBManager.getConnection();
@@ -83,7 +81,6 @@ public class CommunityDao {
 		return list;
 	}
 
-	// 공지 게시판용 게시글 전체 보기
 	public List<CommunityResponseDto> findCommunityAllByNotice() {
 		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
 		conn = DBManager.getConnection();
@@ -111,7 +108,6 @@ public class CommunityDao {
 		return list;
 	}
 
-	// 추천 게시판용 게시글 전체 보기
 	public List<CommunityResponseDto> findCommunityAllByRecommend() {
 		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
 		conn = DBManager.getConnection();
@@ -250,5 +246,4 @@ public class CommunityDao {
 		}
 		return false;
 	}
-
 }

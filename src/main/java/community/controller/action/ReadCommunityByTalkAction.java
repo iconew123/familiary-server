@@ -18,7 +18,7 @@ public class ReadCommunityByTalkAction implements Action {
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
 		response.setHeader("Access-Control-Max-Age", "3600");
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
@@ -29,20 +29,18 @@ public class ReadCommunityByTalkAction implements Action {
 		JSONArray jsonArray = new JSONArray();
 		for (CommunityResponseDto dto : boardList) {
 			JSONObject jsonObject = new JSONObject();
+
 			jsonObject.put("code", dto.getCode());
 			jsonObject.put("userId", dto.getUserId());
 			jsonObject.put("userNickName", dto.getUserNickname());
 			jsonObject.put("title", dto.getTitle());
 			jsonObject.put("content", dto.getContent());
 			jsonObject.put("category", dto.getCategory());
-			jsonObject.put("regDate", dto.getRegDate().toString()); // Assuming regDate is a string
+			jsonObject.put("regDate", dto.getRegDate().toString());
 
 			jsonArray.put(jsonObject);
 		}
-
 		String jsonString = jsonArray.toString();
-
-		System.out.println(jsonString);
 
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json;charset=UTF-8");

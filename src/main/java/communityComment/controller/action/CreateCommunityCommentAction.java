@@ -16,18 +16,17 @@ public class CreateCommunityCommentAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
 
         request.setCharacterEncoding("UTF-8");
         String method = request.getMethod();
-        System.out.println("method : " + method);
 
         CommunityCommentDao communityCommentDao = CommunityCommentDao.getInstance();
 
-        if (method.equalsIgnoreCase("POST")) { // POST 메소드 확인
+        if (method.equalsIgnoreCase("POST")) {
             StringBuilder jsonBuilder = new StringBuilder();
             String line;
 
@@ -40,9 +39,7 @@ public class CreateCommunityCommentAction implements Action {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 return;
             }
-
             String jsonString = jsonBuilder.toString();
-            System.out.println("Received JSON: " + jsonString); // JSON 문자열 로그 출력
 
             try {
                 JSONObject jsonObject = new JSONObject(jsonString);
@@ -51,21 +48,13 @@ public class CreateCommunityCommentAction implements Action {
                 String userNickname = jsonObject.getString("userNickname");
                 String content = jsonObject.getString("content");
 
-                System.out.println(communityCode);
-                System.out.println(userId);
-                System.out.println(userNickname);
-                System.out.println(content);
-
                 CommunityCommentRequestDto communityComment = new CommunityCommentRequestDto(communityCode, userId, userNickname, content);
                 communityCommentDao.createCommunityComment(communityComment);
 
-                System.out.println("Community comment created: " + communityComment);
-
-                // 결과 응답
                 JSONObject resObj = new JSONObject();
                 resObj.put("status", 200);
                 resObj.put("message", "댓글 등록 완료");
-                resObj.put("comment", communityComment); // 새로 추가된 댓글 정보도 함께 응답
+                resObj.put("comment", communityComment);
 
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json;charset=UTF-8");
@@ -90,7 +79,6 @@ public class CreateCommunityCommentAction implements Action {
                 }
             }
         } else {
-            // 잘못된 메소드 요청에 대한 처리
             response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json;charset=UTF-8");

@@ -1,6 +1,5 @@
 package communityComment.controller;
 
-import community.controller.CommunityActionFactory;
 import communityComment.controller.action.CreateCommunityCommentAction;
 import communityComment.controller.action.DeleteCommunityCommentAction;
 import communityComment.controller.action.ReadCommunityCommentAction;
