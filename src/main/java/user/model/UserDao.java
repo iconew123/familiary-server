@@ -71,28 +71,6 @@ public class UserDao {
 		return false;
 	}
 
-	public String getPasswordById(String id) {
-		String password = null;
-		try {
-			conn = DBManager.getConnection();
-			String sql = "SELECT password FROM users WHERE id=?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				password = rs.getString(2);
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return password;
-	}
-
 	public UserResponseDto findUserByIdAndPassword(String id, String password) {
 		UserResponseDto user = null;
 
@@ -209,26 +187,6 @@ public class UserDao {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(conn, pstmt);
-		}
-		return user;
-	}
-
-	public UserResponseDto updateUserPhone(UserRequestDto userDto) {
-		UserResponseDto user = null;
-		try {
-			conn = DBManager.getConnection();
-			String sql = "UPDATE users SET telecom=?, phone=? WHERE id=? AND password=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userDto.getTelecom());
-			pstmt.setString(2, userDto.getPhone());
-			pstmt.setString(3, userDto.getId());
-			pstmt.setString(4, userDto.getPassword());
-
-			pstmt.execute();
-
-			user = findUserByIdAndPassword(userDto.getId(), userDto.getPassword());
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		return user;
 	}

@@ -25,9 +25,8 @@ public class JoinAction implements Action {
          String securityNumber = request.getParameter("securityNumber");
          String telecom = request.getParameter("telecom");
          String phone = request.getParameter("phone");
-         String address = request.getParameter("address");
          String email = request.getParameter("email");
-
+         String address = request.getParameter("address");
 
          boolean isValid = true;
 
@@ -54,13 +53,20 @@ public class JoinAction implements Action {
 
          if (isValid) {
             UserRequestDto userDto = new UserRequestDto(id, password, nickname, name, securityNumber, telecom,
-                    phone, address, email);
+                  phone, email, address);
             UserDao userDao = UserDao.getInstance();
             UserResponseDto user = userDao.createUser(userDto);
 
             if (user != null) {
                resObj.put("status", 200);
                resObj.put("message", "User created successfully.");
+               resObj.put("id", id);
+               resObj.put("nickname", nickname);
+               resObj.put("securityNumber", securityNumber);
+               resObj.put("telecom", telecom);
+               resObj.put("phone", phone);
+               resObj.put("email", email);
+               resObj.put("address", address);
             } else {
                response.sendError(400);
                resObj.put("message", "No Existed User");
@@ -69,7 +75,6 @@ public class JoinAction implements Action {
             resObj.put("status", 500);
             resObj.put("message", "Database Error");
          }
-
          response.getWriter().append(resObj.toString());
       }
    }

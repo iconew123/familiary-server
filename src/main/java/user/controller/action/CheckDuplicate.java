@@ -26,7 +26,6 @@ public class CheckDuplicate implements Action {
             if (value == null || value.equals(""))
                 isValid = false;
 
-
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json;charset=utf-8");
             JSONObject resObj = new JSONObject();
