@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Familiary</title>
 </head>
 <body>
-HI
+Familiary
 </body>
 </html>
