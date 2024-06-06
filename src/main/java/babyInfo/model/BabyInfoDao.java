@@ -1,9 +1,5 @@
 package babyInfo.model;
 
-
-import baby.model.BabyDao;
-import baby.model.BabyRequestDto;
-import diary.model.DiaryResponseDto;
 import util.DBManager;
 
 import java.sql.*;
@@ -21,7 +17,6 @@ public class BabyInfoDao {
 
     private static BabyInfoDao instance = new BabyInfoDao();
 
-    // 3. 단일 인스턴스에 대한 getter
     public static BabyInfoDao getInstance() {
         return instance;
     }
@@ -90,7 +85,7 @@ public class BabyInfoDao {
         boolean success = false;
 
         try {
-            conn = DBManager.getConnection(); // 데이터베이스 연결 가져오기
+            conn = DBManager.getConnection();
 
             String sql = "UPDATE babyinfo SET height=?, weight=?, spec_note=? WHERE baby_code=? AND date=?";
 

@@ -31,8 +31,7 @@ public class BabyDeleteAction implements Action{
 			jsonResponse.put("status", 500);
 			jsonResponse.put("message", "아기 정보 삭제에 실패했습니다.");
 		}
-		
-		// 클라이언트로 응답 전송.
+
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().append(jsonResponse.toString());

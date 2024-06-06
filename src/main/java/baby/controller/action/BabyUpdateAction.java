@@ -43,11 +43,8 @@ public class BabyUpdateAction implements Action {
 		String imageUrl = null;
 
 		if (method.equals("POST")) {
-			// 요첨 값 받아오기
 			Collection<Part> parts = request.getParts();
 
-
-			// 각 Part 객체를 순회하며 이름과 내용을 출력
 			for (Part part : parts) {
 				String type = part.getContentType();
 				String partName = part.getName();
@@ -121,9 +118,6 @@ public class BabyUpdateAction implements Action {
 			}
 		}
 
-
-
-		// 응답 JSON 생성
 		JSONObject jsonResponse = new JSONObject();
 		if (success) {
 			jsonResponse.put("status", 200);
@@ -132,8 +126,7 @@ public class BabyUpdateAction implements Action {
 			jsonResponse.put("status", 500);
 			jsonResponse.put("message", "아기 정보 업데이트에 실패했습니다.");
 		}
-		
-        // 클라이언트로 응답 전송
+
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().write(jsonResponse.toString());

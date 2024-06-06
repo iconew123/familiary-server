@@ -4,8 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import baby.model.Baby;
-import babyInfo.model.BabyInfoResponseDto;
 import util.DBManager;
 
 public class EnrollDao {
@@ -13,18 +11,11 @@ public class EnrollDao {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 
-	// UserDao 객체를 단일 인스턴스로 만들기 위해
-	// Singleton Pattern 적용
-
-	// 1. 생성자를 private으로
 	public EnrollDao() {
 
 	}
 
-	// 2. 단일 인스턴스를 생성 (클래스 내부에서)
 	private static EnrollDao instance = new EnrollDao();
-
-	// 3. 단일 인스턴스에 대한 getter
 	public static EnrollDao getInstance() {
 		return instance;
 	}
@@ -116,8 +107,6 @@ public class EnrollDao {
 			String sql = "SELECT position FROM enroll WHERE baby_code = ? AND user_id = ?";
 
 			pstmt = conn.prepareStatement(sql);
-			System.out.println("baby_code: " + baby_code);
-			System.out.println("user_id: " + user_id);
 			pstmt.setString(1, baby_code);
 			pstmt.setString(2, user_id);
 

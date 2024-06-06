@@ -18,15 +18,7 @@ public class ReadBabyCodeAction implements Action {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        // CORS 설정
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-
-        // 요청에서 userId 받아오기
         String userId = request.getParameter("user_id");
-        System.out.println("user_id: " + userId );
         JSONObject jsonObj = new JSONObject();
 
         if (userId == null || userId.isEmpty()) {
@@ -51,7 +43,6 @@ public class ReadBabyCodeAction implements Action {
             jsonObj.put("codes", babyCodes);
         }
 
-        System.out.println("value: " + babyNicknames);
         response.getWriter().write(jsonObj.toString());
 
 

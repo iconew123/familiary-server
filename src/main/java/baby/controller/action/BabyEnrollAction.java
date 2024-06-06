@@ -15,15 +15,10 @@ import java.io.IOException;
 public class BabyEnrollAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-
         String method = request.getMethod();
 
         String user_id = null;
-        String baby_code = null; // 여기서 baby_code를 GET 매개변수로부터 받아옵니다.
+        String baby_code = null;
         String position = null;
 
         if (method.equals("POST")) {
@@ -39,7 +34,7 @@ public class BabyEnrollAction implements Action {
 
             if (baby == null) {
                 resObj.put("message", "존재하지 않는 코드입니다.");
-//                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+
             } else {
                 EnrollRequestDto enroll = new EnrollRequestDto(user_id, baby_code, position);
                 EnrollDao enrollDao = new EnrollDao();
@@ -58,7 +53,6 @@ public class BabyEnrollAction implements Action {
                 }
 
                 resObj.put("exists", exists);
-                System.out.println("여부: " + exists);
                 if (exists) {
                     resObj.put("message", "해당 포지션이 이미 존재합니다.");
 //                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

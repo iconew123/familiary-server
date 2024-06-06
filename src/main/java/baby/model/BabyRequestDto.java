@@ -8,10 +8,10 @@ import javax.sql.rowset.serial.SerialBlob;
 public class BabyRequestDto {
 	private String code;
 	private String nickname;
-	private String name; // null
-	private String gender; // null
+	private String name;
+	private String gender;
 	private String expected_date;
-	private String blood_type; // null
+	private String blood_type;
 
 	public BabyRequestDto(String nickname, String name, String gender, String expected_date,
 			String blood_type) {

@@ -5,10 +5,10 @@ import java.sql.Blob;
 public class BabyResponseDto {
 	private String code;
 	private String nickname;
-	private String name;		// null 
-	private String gender;		// null 
+	private String name;
+	private String gender;
 	private String expected_date;
-	private String blood_type;	// null
+	private String blood_type;
 	
 	
 	public BabyResponseDto(String nickname, String name, String gender,
