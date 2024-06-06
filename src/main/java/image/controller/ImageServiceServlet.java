@@ -16,9 +16,6 @@ public class ImageServiceServlet extends HttpServlet {
         String command = request.getPathInfo();
         String method = request.getMethod();
 
-        System.out.println("command : " + command);
-        System.out.println("method : " + method);
-
         ImageActionFactory af = ImageActionFactory.getInstance();
         Action action = af.getAction(command, method);
 

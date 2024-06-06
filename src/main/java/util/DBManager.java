@@ -17,7 +17,6 @@ public class DBManager {
             DataSource source = (DataSource) init.lookup("java:comp/env/jdbc/ProjectDB");
 
             conn = source.getConnection();
-
         } catch (Exception e) {
             e.printStackTrace();
         }

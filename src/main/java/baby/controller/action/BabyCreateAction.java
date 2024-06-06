@@ -60,8 +60,6 @@ public class BabyCreateAction implements Action {
 						JSONObject jsonResponse = InputStreamParsor.uploadImage(in, type);
 						imageId = jsonResponse.getJSONObject("data").getString("id");
 						imageUrl = jsonResponse.getJSONObject("data").getString("url");
-						System.out.println("Image ID: " + imageId);
-						System.out.println("Image URL: " + imageUrl);
 					} catch (Exception e) {
 						e.printStackTrace();
 						throw new ServletException("이미지 업로드 실패", e);
@@ -108,9 +106,6 @@ public class BabyCreateAction implements Action {
 		Baby sample = dao.readLatestBaby();
 		String baby_code = sample.getCode();
 
-		System.out.println("유저: " + user_id);
-		System.out.println("아기: " + baby_code);
-
 		EnrollRequestDto enroll = new EnrollRequestDto(user_id, baby_code, position);
 		EnrollDao enrollDao = new EnrollDao();
 		enrollDao.createEnroll(enroll);
@@ -119,15 +114,8 @@ public class BabyCreateAction implements Action {
 			ImageDao imageDao = ImageDao.getInstance();
 
 			ImageRequestDto uploadImage = new ImageRequestDto(imageUrl, imageId, "baby", baby_code);
-			System.out.println(uploadImage);
 
-			boolean isUploadSuccess = imageDao.createImage(uploadImage);
-
-			if (isUploadSuccess) {
-				System.out.println("이미지 업로드 성공");
-			} else {
-				System.out.println("이미지 업로드 실패");
-			}
+			imageDao.createImage(uploadImage);
 		}
 
 		JSONObject resObj = new JSONObject();

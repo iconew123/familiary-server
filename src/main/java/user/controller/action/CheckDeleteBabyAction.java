@@ -16,11 +16,11 @@ public class CheckDeleteBabyAction implements Action {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        String id = request.getParameter("id");
+        String userId = request.getParameter("user_id");
 
         JSONObject jsonObj = new JSONObject();
 
-        if (id == null || id.isEmpty()) {
+        if (userId == null || userId.isEmpty()) {
             jsonObj.put("status", 400);
             jsonObj.put("message", "유저 정보가 제공되지 않았습니다.");
             response.getWriter().write(jsonObj.toString());
@@ -28,7 +28,7 @@ public class CheckDeleteBabyAction implements Action {
         }
 
         EnrollDao dao = new EnrollDao();
-        boolean isExist = dao.checkBaby(id);
+        boolean isExist = dao.checkBaby(userId);
 
         jsonObj.put("isExist", isExist);
 

@@ -149,8 +149,6 @@ public class CreateDiaryAction implements Action {
         response.setContentType("application/json;charset=utf-8");
 
         response.getWriter().append(resObj.toString());
-
-        System.out.println(resObj);
     }
 
 }

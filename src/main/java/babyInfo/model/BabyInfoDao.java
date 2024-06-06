@@ -97,7 +97,7 @@ public class BabyInfoDao {
             pstmt.setString(5, info.getDate());
 
             int rowsAffected = pstmt.executeUpdate();
-            System.out.println(rowsAffected);
+
             success = (rowsAffected > 0);
         } catch (SQLException e) {
             e.printStackTrace();

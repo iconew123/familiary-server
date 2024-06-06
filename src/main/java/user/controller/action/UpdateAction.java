@@ -26,7 +26,6 @@ public class UpdateAction implements Action {
 			String address = request.getParameter("address");
 			String email = request.getParameter("email");
 
-
 			boolean isValid = true;
 			if (password == null || password.equals(""))
 				isValid = false;
@@ -59,6 +58,7 @@ public class UpdateAction implements Action {
 					resObj.put("status", 400);
 					resObj.put("message", "No Existed User");
 				}
+
 			} else {
 				response.sendError(500);
 				resObj.put("status", 500);
@@ -67,5 +67,7 @@ public class UpdateAction implements Action {
 			response.getWriter().append(resObj.toString());
 
 		}
+
+
 	}
 }

@@ -55,7 +55,6 @@ public class BabyEnrollAction implements Action {
                 resObj.put("exists", exists);
                 if (exists) {
                     resObj.put("message", "해당 포지션이 이미 존재합니다.");
-//                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 } else {
                     enrollDao.createEnroll(enroll);
                     resObj.put("message", "아기가 성공적으로 등록되었습니다.");

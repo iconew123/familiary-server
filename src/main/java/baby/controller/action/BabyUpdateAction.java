@@ -24,13 +24,7 @@ public class BabyUpdateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
-		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-
 		String method = request.getMethod();
-		System.out.println("method : " + method);
 
 		String code = null;
 		String nickname = null;
@@ -91,31 +85,18 @@ public class BabyUpdateAction implements Action {
 				in.close();
 			}
 		}
-		System.out.println("변경닉네임: " + nickname);
-		System.out.println("베이비코드: " + code);
-		System.out.println("baby name: " + name);
-
-		System.out.println("성별: " + gender);
 		BabyDao dao = new BabyDao();
 		BabyRequestDto baby = new BabyRequestDto(code, nickname, name, gender, expected_date, blood_type);
 		boolean success = dao.updateBaby(baby);
-		System.out.println("변경 여부: " + success);
 
 		if ((imageId != null && imageUrl != null)) {
 			ImageDao imageDao = ImageDao.getInstance();
 
 			ImageRequestDto uploadImage = new ImageRequestDto(imageUrl, imageId, "baby", code);
-			System.out.println(uploadImage);
 
 			dao.DeleteImageStatus(baby);
-			boolean isUploadSuccess = imageDao.createImage(uploadImage);
+			imageDao.createImage(uploadImage);
 
-
-			if (isUploadSuccess) {
-				System.out.println("이미지 업로드 성공");
-			} else {
-				System.out.println("이미지 업로드 실패");
-			}
 		}
 
 		JSONObject jsonResponse = new JSONObject();

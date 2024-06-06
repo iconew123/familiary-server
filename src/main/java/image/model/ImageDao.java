@@ -75,7 +75,6 @@ public class ImageDao {
             }
 
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             DBManager.close(conn, pstmt);
@@ -103,7 +102,6 @@ public class ImageDao {
                 return false;
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             DBManager.close(conn, pstmt);
@@ -158,12 +156,6 @@ public class ImageDao {
                 boolean status = rs.getBoolean(8);
 
                 image = new ImageResponseDto(num, url, id, getType, getCode, status, regDate, moddate);
-            }
-
-            if (image == null) {
-                System.out.println("이미지 READ 실패 또는 READ할 이미지가 없음");
-            } else {
-                System.out.println("이미지 READ 성공");
             }
 
         } catch (SQLException e) {

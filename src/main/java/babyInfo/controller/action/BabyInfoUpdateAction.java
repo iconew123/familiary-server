@@ -23,7 +23,6 @@ public class BabyInfoUpdateAction implements Action {
         BabyInfoDao dao = new BabyInfoDao();
         dao.updateBabyInfo(babyInfo);
 
-        // 결과를 응답하기
         JSONObject resObj = new JSONObject();
         resObj.put("status", 200);
         resObj.put("message", "아기 정보가 성공적으로 수정되었습니다.");

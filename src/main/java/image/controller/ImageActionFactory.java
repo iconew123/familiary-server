@@ -25,7 +25,6 @@ public class ImageActionFactory {
         switch (method) {
             case "GET":
                 String[] commands = command.split("/");
-                System.out.println(Arrays.toString(commands));
 
                 if (commands.length == 3) {
                     action = new ImageListAction(commands);
@@ -35,21 +34,12 @@ public class ImageActionFactory {
                 break;
 
             case "POST":
-//			action = new ImageRegistAction();
                 break;
-
             case "DELETE":
                 String[] commands2 = command.split("/");
-                System.out.println(Arrays.toString(commands2));
-
                 break;
-
             default:
                 break;
-        }
-
-        if (command.equals(action)) {
-
         }
 
         return action;

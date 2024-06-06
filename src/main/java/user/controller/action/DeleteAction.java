@@ -28,6 +28,7 @@ public class DeleteAction implements Action {
             response.setContentType("application/json;charset=utf-8");
             JSONObject resObj = new JSONObject();
 
+
             if (isValid) {
                 UserDao userDao = UserDao.getInstance();
                 UserResponseDto user = userDao.findUserByIdAndPassword(id,password);

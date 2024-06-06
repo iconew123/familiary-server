@@ -1,6 +1,5 @@
 package user.controller;
 
-import diaryComment.controller.DiaryCommentActionFactory;
 import util.Action;
 
 import javax.servlet.ServletException;
@@ -18,7 +17,6 @@ public class UserServiceServlet extends HttpServlet {
 
 	public UserServiceServlet() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,18 +24,19 @@ public class UserServiceServlet extends HttpServlet {
 
 		String command = request.getParameter("command");
 
-		if(command != null) {
-			DiaryCommentActionFactory dcaf = DiaryCommentActionFactory.getInstance();
-			Action action = dcaf.getAction(command);
+		if (command != null) {
+			UserActionFactory daf = UserActionFactory.getInstance();
+			Action action = daf.getAction(command);
 
-			if(action != null){
+			if (action != null) {
 				action.execute(request, response);
-			}else{
-				response.sendError(404);
+			} else {
+				response.sendError(400);
 			}
-		}else{
-			response.sendError(404);
+		} else {
+			response.sendError(500);
 		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
