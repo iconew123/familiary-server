@@ -1,5 +1,6 @@
 package user.controller;
 
+import diaryComment.controller.DiaryCommentActionFactory;
 import util.Action;
 
 import javax.servlet.ServletException;
@@ -24,24 +25,19 @@ public class UserServiceServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String command = request.getParameter("command");
-		System.out.println("GET command" + command);
 
-		if (command != null) {
-			UserActionFactory daf = UserActionFactory.getInstance();
-			Action action = daf.getAction(command);
+		if(command != null) {
+			DiaryCommentActionFactory dcaf = DiaryCommentActionFactory.getInstance();
+			Action action = dcaf.getAction(command);
 
-			if (action != null) {
+			if(action != null){
 				action.execute(request, response);
-			} else {
-				response.sendError(400);
-				System.out.println("No Existed User");
+			}else{
+				response.sendError(404);
 			}
-		} else {
-			response.sendError(500);
-			System.out.println("Database Error");
+		}else{
+			response.sendError(404);
 		}
-
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

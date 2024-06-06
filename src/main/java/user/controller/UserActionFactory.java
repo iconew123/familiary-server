@@ -43,9 +43,6 @@ public class UserActionFactory {
 			action = new CheckDeleteBabyAction();
 		}
 
-
 		return action;
-		
 	}
-	
 }
