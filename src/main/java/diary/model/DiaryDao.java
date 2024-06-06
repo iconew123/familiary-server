@@ -47,7 +47,6 @@ public class DiaryDao {
                 readDiary = new DiaryResponseDto(diarycode, babyCode, getDate, title, content, category, readDate, updateDate);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             DBManager.close(conn, pstmt, rs);
@@ -100,7 +99,6 @@ public class DiaryDao {
                 return false;
 
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             DBManager.close(conn, pstmt);

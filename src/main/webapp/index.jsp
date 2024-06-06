@@ -8,6 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%=DBManager.getConnection() %>
+HI
 </body>
 </html>

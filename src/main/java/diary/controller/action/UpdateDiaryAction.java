@@ -57,8 +57,6 @@ public class UpdateDiaryAction implements Action {
                         JSONObject jsonResponse = InputStreamParsor.uploadImage(in, type);
                         imageId = jsonResponse.getJSONObject("data").getString("id");
                         imageUrl = jsonResponse.getJSONObject("data").getString("url");
-                        System.out.println("image ID: " + imageId);
-                        System.out.println("Image URL: " + imageUrl);
                     } catch (Exception e) {
                         e.printStackTrace();
                         throw new ServletException("image업로드 실패", e);

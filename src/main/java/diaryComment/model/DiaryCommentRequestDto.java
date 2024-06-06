@@ -2,7 +2,7 @@ package diaryComment.model;
 
 public class DiaryCommentRequestDto {
 
-	private String code; // 다이어리 댓글 번호
+	private String code;
 	private int diaryCode;
 	private String userId;
 	private String nickName;

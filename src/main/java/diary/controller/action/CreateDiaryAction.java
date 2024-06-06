@@ -68,24 +68,18 @@ public class CreateDiaryAction implements Action {
                             JSONObject jsonResponse = InputStreamParsor.uploadImage(in, type);
                             imageId = jsonResponse.getJSONObject("data").getString("id");
                             imageUrl = jsonResponse.getJSONObject("data").getString("url");
-                            System.out.println("image ID: " + imageId);
-                            System.out.println("Image URL: " + imageUrl);
                         } catch (Exception e) {
                             e.printStackTrace();
                             throw new ServletException("image업로드 실패", e);
                         }
                     } else if (name.equals("babycode")) {
                         babyCode = InputStreamParsor.parseToString(in).trim();
-                        System.out.println(babyCode);
                     } else if (name.equals("title")) {
                         title = InputStreamParsor.parseToString(in).trim();
-                        System.out.println(title);
                     } else if (name.equals("content")) {
                         content = InputStreamParsor.parseToString(in).trim();
-                        System.out.println(content);
                     } else if (name.equals("category")) {
                         category = InputStreamParsor.parseToString(in).trim();
-                        System.out.println(category);
                     }
 
                     in.close();
@@ -118,9 +112,7 @@ public class CreateDiaryAction implements Action {
                             ImageDao imageDao = ImageDao.getInstance();
 
                             diary = diaryDao.findDiaryOfDateAndCode(sqlDate,babyCode);
-                            System.out.println(diary);
                             ImageRequestDto uploadImage = new ImageRequestDto(imageUrl, imageId, Diary.diary, String.valueOf(diary.getCode()));
-                            System.out.println(uploadImage);
 
                             boolean isUploadSuccess = imageDao.createImage(uploadImage);
 

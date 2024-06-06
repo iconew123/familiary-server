@@ -3,7 +3,7 @@ package diaryComment.model;
 import java.sql.Timestamp;
 
 public class DiaryComment {
-	private String code; // 다이어리 댓글 번호
+	private String code;
 	private int diaryCode;
 	private String userId;
 	private String nickName;
