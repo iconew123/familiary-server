@@ -14,7 +14,7 @@ public class DeleteCommunityCommentAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
@@ -23,8 +23,6 @@ public class DeleteCommunityCommentAction implements Action {
         CommunityCommentDao communityCommentDao = CommunityCommentDao.getInstance();
 
         String code = request.getParameter("commentCode");
-        // commentCode가 잘 들어오는지 확인
-        System.out.println("Received commentCode: " + code);
 
         CommunityCommentRequestDto communityComment = new CommunityCommentRequestDto(code);
         boolean success = communityCommentDao.deleteCommunityComment(communityComment);

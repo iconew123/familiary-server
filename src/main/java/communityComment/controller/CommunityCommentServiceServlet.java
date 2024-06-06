@@ -12,14 +12,7 @@ public class CommunityCommentServiceServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String command = request.getParameter("command"); // input >> hidden 으로 가져옴
-        String method = request.getMethod();
-
-        System.out.println("command : " + command);
-        System.out.println("method : " + method);
-
-        // 요청된 URL 정보 경로 확인
-        System.out.println("request.getPathInfo() : " + request.getPathInfo());
+        String command = request.getParameter("command");
 
         CommunityCommentActionFactory af = CommunityCommentActionFactory.getInstance();
         Action action = af.getAction(command);

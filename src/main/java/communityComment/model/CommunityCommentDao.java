@@ -23,7 +23,6 @@ public class CommunityCommentDao {
 		return instance;
 	}
 
-	// 해당 글의 댓글 전체 보기
 	public List<CommunityCommentResponseDto> readAllCommunityComment(int communityCode) {
 		List<CommunityCommentResponseDto> list = new ArrayList<CommunityCommentResponseDto>();
 		conn = DBManager.getConnection();
