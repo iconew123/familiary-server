@@ -9,15 +9,9 @@ import util.Action;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
 
 public class BabyInfoCreateAction implements Action {
 
@@ -29,7 +23,6 @@ public class BabyInfoCreateAction implements Action {
         String weight = request.getParameter("weight");
         String spec_note = request.getParameter("spec_note");
         LocalDate today = LocalDate.now();
-        Date sqlDate = Date.valueOf(today);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String date = today.format(formatter);
 
@@ -48,7 +41,6 @@ public class BabyInfoCreateAction implements Action {
 
         if(isValid){
             dao.createBabyInfo(babyInfo);
-            // 결과를 응답하기
 
             resObj.put("status", 200);
             resObj.put("message", "아기 정보가 성공적으로 등록되었습니다.");

@@ -1,8 +1,6 @@
 package babyInfo.model;
 
 
-import java.sql.Date;
-
 public class BabyInfoResponseDto {
     private String baby_code;
     private String date;

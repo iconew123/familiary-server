@@ -21,12 +21,10 @@ public class BabyInfoAction implements Action {
     	response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        // 요청에서 아기 코드 가져오기
         String babyCode = request.getParameter("baby_code");
         String userId = request.getParameter("user_id");
         String type = "baby";
 
-        // 아기 정보를 JSON 형식으로 변환하여 응답 보내기
         JSONObject jsonObj = new JSONObject();
 
         if (babyCode == null || babyCode.isEmpty()) {
@@ -37,7 +35,6 @@ public class BabyInfoAction implements Action {
         }
 
         try {
-            // 아기 정보를 데이터베이스에서 가져오기
             BabyDao babyDao = new BabyDao();
             Baby baby = babyDao.findBabyByCode(babyCode);
 

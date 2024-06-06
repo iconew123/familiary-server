@@ -31,13 +31,7 @@ public class BabyCreateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.setHeader("Access-Control-Allow-Origin", "*");
-//		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-//		response.setHeader("Access-Control-Max-Age", "3600");
-//		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-
 		String method = request.getMethod();
-		System.out.println("method : " + method);
 
 		String nickname = null;
 		String name = null;
@@ -52,11 +46,8 @@ public class BabyCreateAction implements Action {
 		String position = null;
 
 		if (method.equals("POST")) {
-			// 요첨 값 받아오기
 			Collection<Part> parts = request.getParts();
 
-
-			// 각 Part 객체를 순회하며 이름과 내용을 출력
 			for (Part part : parts) {
 				String type = part.getContentType();
 				String partName = part.getName();
@@ -110,7 +101,6 @@ public class BabyCreateAction implements Action {
 			}
 		}
 
-		// 생성 로직
 		BabyRequestDto baby = new BabyRequestDto(nickname, name, gender, expected_date, blood_type);
 		BabyDao dao = new BabyDao();
 		dao.createBaby(baby);
@@ -140,8 +130,6 @@ public class BabyCreateAction implements Action {
 			}
 		}
 
-
-		// 결과를 응답하기
 		JSONObject resObj = new JSONObject();
 		resObj.put("status", 200);
 		resObj.put("message", "아기가 성공적으로 등록되었습니다.");

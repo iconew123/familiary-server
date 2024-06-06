@@ -1,6 +1,5 @@
 package babyInfo.controller;
 
-import baby.controller.action.*;
 import babyInfo.controller.action.*;
 import util.Action;
 
@@ -8,7 +7,6 @@ import util.Action;
 
 public class BabyInfoActionFactory {
 
-    // 기본 생성자
     private BabyInfoActionFactory() {
 
     }

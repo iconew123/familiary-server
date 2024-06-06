@@ -13,18 +13,13 @@ public class BabyDao {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 
-	// UserDao 객체를 단일 인스턴스로 만들기 위해
-	// Singleton Pattern 적용
 
-	// 1. 생성자를 private으로
 	public BabyDao() {
 
 	}
 
-	// 2. 단일 인스턴스를 생성 (클래스 내부에서)
 	private static BabyDao instance = new BabyDao();
 
-	// 3. 단일 인스턴스에 대한 getter
 	public static BabyDao getInstance() {
 		return instance;
 	}
@@ -133,7 +128,7 @@ public class BabyDao {
 		boolean success = false;
 	    
 		try {
-	        conn = DBManager.getConnection(); // 데이터베이스 연결 가져오기
+			conn = DBManager.getConnection();
 
 	        String sql = "UPDATE baby SET nickname=?, name=?, gender=?, expected_date=?, blood_type=? WHERE code=?";
 
@@ -146,12 +141,10 @@ public class BabyDao {
 	        pstmt.setString(6, babyDto.getCode());
 	        
 	        int rowsAffected = pstmt.executeUpdate();
-			System.out.println(rowsAffected);
 	        success = (rowsAffected > 0);
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } finally {
-	        // 리소스 해제
 	        DBManager.close(conn, pstmt);
 	    }
 
@@ -182,7 +175,7 @@ public class BabyDao {
 	public void DeleteImageStatus(BabyRequestDto baby){
 
 		try {
-			conn = DBManager.getConnection(); // 데이터베이스 연결 가져오기
+			conn = DBManager.getConnection();
 
 			String sql = "UPDATE backup AS b JOIN image AS i ON b.num = i.num SET b.status = 0 WHERE i.code = ?";
 
@@ -195,7 +188,6 @@ public class BabyDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// 리소스 해제
 			DBManager.close(conn, pstmt);
 		}
 	}
