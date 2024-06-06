@@ -1,12 +1,6 @@
 package community.controller;
 
-import community.controller.action.CreateCommunityAction;
-import community.controller.action.DeleteCommunityAction;
-import community.controller.action.ReadCommunityByNoticeAction;
-import community.controller.action.ReadCommunityByRecommendAction;
-import community.controller.action.ReadCommunityByTalkAction;
-import community.controller.action.ReadCommunityDetailAction;
-import community.controller.action.UpdateCommunityAction;
+import community.controller.action.*;
 import util.Action;
 
 public class CommunityActionFactory {
@@ -25,6 +19,8 @@ public class CommunityActionFactory {
 
 		if (command.equals("create")) {
 			action = new CreateCommunityAction();
+		} else if(command.equals("read/main")) {
+			action = new MainCommunityAction();
 		} else if (command.equals("read/chat")) {
 			action = new ReadCommunityByTalkAction();
 		} else if (command.equals("read/notice")) {
@@ -38,7 +34,6 @@ public class CommunityActionFactory {
 		} else if (command.equals("read/detail")) {
 			action = new ReadCommunityDetailAction();
 		}
-
 		return action;
 	}
 }
