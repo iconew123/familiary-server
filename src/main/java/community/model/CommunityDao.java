@@ -27,6 +27,34 @@ public class CommunityDao {
 		return instance;
 	}
 
+	// 메인 게시판 커뮤니티 (글 최신순)
+	public List<CommunityResponseDto> findCommunityAll() {
+		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
+		conn = DBManager.getConnection();
+		String sql = "SELECT code, user_id, user_nickname, title, content, category, reg_date FROM community order by reg_date desc";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int code = rs.getInt(1);
+				String userId = rs.getString(2);
+				String userNickName = rs.getString(3);
+				String title = rs.getString(4);
+				String content = rs.getString(5);
+				String category = rs.getString(6);
+				Timestamp regDate = rs.getTimestamp(7);
+				CommunityResponseDto community = new CommunityResponseDto(code, userId, userNickName, title, content,
+						category, regDate);
+				list.add(community);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 	// 잡담 게시판용 게시글 전체 보기
 	public List<CommunityResponseDto> findCommunityAllByTalk() {
 		List<CommunityResponseDto> list = new ArrayList<CommunityResponseDto>();
