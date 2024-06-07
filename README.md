@@ -72,11 +72,11 @@
 * 아기 관리
   * 아기등록<br/>
  <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/fa7d50bd-5550-4f70-8177-3a8ab4248bb6">
 </p>
   * 아기 수정 & 삭제<br/>
  <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/70d676ea-f3dc-4676-be78-bd6bfef0a107">
 
 * 다이어리 관리
   * 다이어리 작성<br/>
