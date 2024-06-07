@@ -151,25 +151,25 @@
 #### INFO 관리
   * 임산부 가이드<br/>
   <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/efe0064a-b467-4a92-98b1-a91dc60dea90">
 </p>
 
 
   * 정부 지원사업<br/>
    <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/894dc884-9692-4e64-9890-76e612c0601a">
 </p>
 
 
   * 병원 정보<br/>
  <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/267926cd-f069-4d76-aed4-0844f34ed991">
 </p>
 
 
   * 태교&운동<br/>
  <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/82a6e243-613a-4468-9986-8e74d48a4362">
 </p>
 
 
