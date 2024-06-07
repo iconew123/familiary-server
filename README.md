@@ -57,7 +57,7 @@
 6. [WBS](https://docs.google.com/spreadsheets/d/128qu0fl6bdxIbF27ZLxJ9pl_UIwAxATd7azqcxNJEhE/edit?usp=drive_link)
 
 ### 데모
-* 회원관리
+# 회원관리
       
   * 회원가입<br/>
    <p align="center">
@@ -69,40 +69,46 @@
   <img src="https://github.com/iconew123/familiary-server/assets/163233482/cedcf5c7-fe40-4403-be1e-ab957c4375db">
 </p>
 
-* 아기 관리
-  * 아기등록<br/>
+# 아기 관리
+
+아기등록<br/>
  <p align="center">
   <img src="https://github.com/iconew123/familiary-server/assets/163233482/fa7d50bd-5550-4f70-8177-3a8ab4248bb6">
 </p>
-  * 아기 수정 & 삭제<br/>
+
+
+아기 수정 & 삭제<br/>
  <p align="center">
   <img src="https://github.com/iconew123/familiary-server/assets/163233482/70d676ea-f3dc-4676-be78-bd6bfef0a107">
 
-* 다이어리 관리
-  * 다이어리 작성<br/>
+# 다이어리 관리
+다이어리 작성<br/>
  <p align="center">
   <img src="https://github.com/iconew123/familiary-server/assets/163233482/4df861df-aecd-4b38-99a4-a11174346382">
 </p>
 
-  * 다이어리 상세보기 & 댓글 달기<br/>
+
+다이어리 상세보기 & 댓글 달기<br/>
  <p align="center">
   <img src="https://github.com/iconew123/familiary-server/assets/163233482/6f12268d-6dbe-4606-8eeb-55163b518018">
 </p>
 
-  * 다이어리 수정 & 삭제  <br/>
+
+다이어리 수정 & 삭제  <br/>
  <p align="center">
   <img src="https://github.com/iconew123/familiary-server/assets/163233482/f7806091-cdc3-4947-ba84-10ac2974f8fe">
 </p>
 
 
-  * 다이어리 모아 보기
+
+다이어리 모아 보기
  <p align="center">
   <img src="https://github.com/iconew123/familiary-server/assets/163233482/a7a0edb6-8577-43f7-a609-89fe9ee821eb">
 </p>
 
-*아기정보 관리
+# 아기정보 관리
 
-* 아기 정보 등록<br/>
+아기 정보 등록<br/>
 <p align="center">
   <img src="https://github.com/iconew123/familiary-server/assets/163233482/b740880e-1baa-4d4c-9e4b-0acf443489a6">
 </p>
@@ -120,7 +126,7 @@
 </p>
 
 
-* 커뮤니티 관리
+# 커뮤니티 관리
   * 커뮤니티 글 작성<br/>
  <p align="center">
   <img src="">
@@ -140,7 +146,7 @@
 
 
 
-* INFO 관리
+# INFO 관리
   * 임산부 가이드<br/>
   <p align="center">
   <img src="">
