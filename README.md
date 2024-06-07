@@ -81,28 +81,87 @@
 * 다이어리 관리
   * 다이어리 작성<br/>
  <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/4df861df-aecd-4b38-99a4-a11174346382">
 </p>
 
-  * 다이어리 보기<br/>
+  * 다이어리 상세보기 & 댓글 달기<br/>
  <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/6f12268d-6dbe-4606-8eeb-55163b518018">
 </p>
 
   * 다이어리 수정 & 삭제  <br/>
  <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/f7806091-cdc3-4947-ba84-10ac2974f8fe">
 </p>
-  * 다이어리 댓글 달기
+
+
+  * 다이어리 모아 보기
+ <p align="center">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/a7a0edb6-8577-43f7-a609-89fe9ee821eb">
+</p>
+
+*아기정보 관리
+
+* 아기 정보 등록<br/>
+<p align="center">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/b740880e-1baa-4d4c-9e4b-0acf443489a6">
+</p>
+
+
+* 아기 정보 수정& 삭제<br/>
+<p align="center">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/4f3d0de1-ab8e-4ce5-b4ea-b1f5e56c04ad">
+</p>
+
+* 아기 정보 모아보기
+<br/>
+<p align="center">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/18b8ccff-8a61-4db1-9396-3a2d066b8852">
+</p>
+
 
 * 커뮤니티 관리
-  * 커뮤니티 글 작성 
-  * 커뮤니티 글 수정 & 삭제
-  * 커뮤니티 댓글 달기
+  * 커뮤니티 글 작성<br/>
+ <p align="center">
+  <img src="">
+</p>
+
+
+  * 커뮤니티 글 수정 & 삭제<br/>
+   <p align="center">
+  <img src="">
+</p>
+
+
+  * 커뮤니티 댓글 달기 & 삭제<br/>
+ <p align="center">
+  <img src="">
+</p>
+
+
 
 * INFO 관리
-  * 임산부 가이드
-  * 정부 지원사업
-  * 병원 정보
-  * 태교&운동
+  * 임산부 가이드<br/>
+  <p align="center">
+  <img src="">
+</p>
+
+
+  * 정부 지원사업<br/>
+   <p align="center">
+  <img src="">
+</p>
+
+
+  * 병원 정보<br/>
+ <p align="center">
+  <img src="">
+</p>
+
+
+  * 태교&운동<br/>
+ <p align="center">
+  <img src="">
+</p>
+
 
