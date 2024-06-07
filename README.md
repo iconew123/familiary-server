@@ -25,7 +25,7 @@
 
 ### 활용 기술
 <p align="center">
-  <img src="https://github.com/iconew123/familiary-server/assets/163233482/b5a9102e-2402-4aa3-887a-f9bb8e6bc3ae">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/eba094e6-4e99-4168-899f-2dcca5cfd399">
 </p>
 
 * Back-End
@@ -59,14 +59,14 @@
 ### 데모
 #### 회원관리
       
-  * 회원가입<br/>
+  * 회원가입 & 로그인<br/>
    <p align="center">
-  <img src="https://github.com/iconew123/familiary-server/assets/163233482/d9899d35-a681-4fae-886d-97b52f1a1969">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/50fe3661-6132-4ebc-92ec-66fcb2caf582">
 </p>
 
   * 회원정보 수정 & 탈퇴<br/>
    <p align="center">
-  <img src="https://github.com/iconew123/familiary-server/assets/163233482/cedcf5c7-fe40-4403-be1e-ab957c4375db">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/91f1b541-2dbf-475c-908e-5a4221f5cd9b">
 </p>
 
 #### 아기 관리
@@ -127,21 +127,23 @@
 
 
 #### 커뮤니티 관리
+
+
   * 커뮤니티 글 작성<br/>
  <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/aeee640e-c5ca-4b55-82cc-811e4ea5b95d">
 </p>
 
 
   * 커뮤니티 글 수정 & 삭제<br/>
    <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/436bd96c-e08a-4751-8d6b-09306657a663">
 </p>
 
 
   * 커뮤니티 댓글 달기 & 삭제<br/>
  <p align="center">
-  <img src="">
+  <img src="https://github.com/iconew123/familiary-server/assets/163233482/812f5e2f-c7cb-4b2d-81bf-4734cd80e67e">
 </p>
 
 
