@@ -128,7 +128,7 @@ public class BabyDao {
 		boolean success = false;
 	    
 		try {
-			conn = DBManager.getConnection();
+			r
 
 	        String sql = "UPDATE baby SET nickname=?, name=?, gender=?, expected_date=?, blood_type=? WHERE code=?";
 
