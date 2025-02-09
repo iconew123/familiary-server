@@ -8,6 +8,6 @@
 <title>Familiary</title>
 </head>
 <body>
-<%=DBManager.getConnection()%>
+hi
 </body>
 </html>
