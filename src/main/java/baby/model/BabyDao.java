@@ -128,8 +128,6 @@ public class BabyDao {
 		boolean success = false;
 	    
 		try {
-			r
-
 	        String sql = "UPDATE baby SET nickname=?, name=?, gender=?, expected_date=?, blood_type=? WHERE code=?";
 
 			pstmt = conn.prepareStatement(sql);
